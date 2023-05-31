@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "SUSTENTAÇÃO DA INFRAESTRUTURA",
+    "description": "Solicitação de serviços e atividades relacionadas à infraestrutura de rede.",
+    "img": ""
+  },
+  {
+    "id": 2,
+    "title": "DISPOSITIVOS E ATIVOS DE REDE",
+    "description": "Solicitar configuração de dispositivos da rede corporativa.",
+    "img": ""
+  },
+  {
+    "id": 3,
+    "title": "FALHAS OU ERROS",
+    "description": "Acionar equipe de especialistas devido à falhas na rede.",
+    "img": ""
+  }
+]

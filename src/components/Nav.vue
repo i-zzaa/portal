@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="grid grid-cols-2 items-center px-6 py-2 rounded-lg shadow-md justify-end m-4"
+    class="grid grid-cols-2 items-center px-6 py-2 rounded-lg shadow-md justify-end"
   >
     <div class="bg-logo-01 bg-no-repeat bg-contain h-12"></div>
 
@@ -11,7 +11,7 @@
           :key="index"
           class="active:underline flex items-center gap-2"
         >
-          <component :is="item.icon" class="h-6 w-6" />
+          <!-- <component :is="item.icon" class="h-6 w-6" /> -->
           <RouterLink class="text-sm" :to="item.to">{{
             item.label.toUpperCase()
           }}</RouterLink>

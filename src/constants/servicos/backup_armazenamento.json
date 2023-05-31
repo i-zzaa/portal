@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "SOLICITAÇÃO DE BACKUP",
+    "description": "Solicitar gravação dos arquivos do seu computador em local seguro.",
+    "img": ""
+  },
+  {
+    "id": 2,
+    "title": "RECUPERAÇÃO DE BACKUP",
+    "description": "Solicitar recuperação de arquivos excluídos acidentalmente.",
+    "img": ""
+  }
+]

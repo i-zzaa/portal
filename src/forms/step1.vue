@@ -1,8 +1,8 @@
 <template>
-  <div class="h-screen w-full p-8 mt-12 text-center">
-    <h1 class="text-2xl font-medium m-12 text-title">
-      {{ $t("home_title") }}
-      <span class="font-light"> {{ $t("home_title_detail") }}</span>
+  <div class="h-screen w-full p-8 text-center">
+    <h1 class="text-2xl font-medium mb-12 text-title">
+      {{ $t("step1_title") }}
+      <span class="font-light"> {{ $t("step1_title_detail") }}</span>
     </h1>
 
     <ul class="flex flex-wrap gap-6 justify-center">
@@ -22,7 +22,6 @@
       </li>
     </ul>
   </div>
-  <div></div>
 </template>
 
 <script lang="ts">
@@ -33,6 +32,8 @@ import { mapActions } from "pinia";
 import { RouterView } from "vue-router";
 import { useWizard } from "@/store/module_wizard";
 import { computed } from "vue";
+
+const INDEX_STEP = 0;
 
 export default {
   components: { Card, PhKey, PhShareNetwork, PhFloppyDisk, RouterView },
@@ -56,9 +57,9 @@ export default {
     ...mapActions(useHelpDesk, ["updateStep"]),
 
     nextTicket(item: any) {
-      const stepCurrent = { ...this.steps[0] };
+      const stepCurrent = { ...this.steps[INDEX_STEP] };
       stepCurrent.status = this.$t("ENUM.success");
-      this.updateStep(0, stepCurrent);
+      this.updateStep(INDEX_STEP, stepCurrent);
 
       const step = { ...this.steps[1] };
       step.status = this.$t("ENUM.none");
@@ -66,8 +67,6 @@ export default {
 
       this.setCatalog(item);
       this.setStep(1);
-
-      this.$router.push("help-desk");
     },
   },
 };

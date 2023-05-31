@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "CRIAÇÃO DE LOGIN",
+    "description": "Solicitar a criação da conta de rede e e-mail para novos colaboradores.",
+    "img": ""
+  },
+  {
+    "id": 2,
+    "title": "ACESSO À PASTA NO SERVIDOR",
+    "description": "Solicitar acesso ou alteração no tipo de acesso às pastas no servidor.",
+    "img": ""
+  },
+  {
+    "id": 3,
+    "title": "ALTERAÇÃO OU REMOÇÃO DE CAIXA DE E-MAIL PESSOAL OU INSTITUCIONAL",
+    "description": "Quando é necessário fazer alterações na caixa de e-mail do colaborador ou do setor.",
+    "img": ""
+  }
+]

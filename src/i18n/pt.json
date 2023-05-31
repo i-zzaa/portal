@@ -1,6 +1,20 @@
 {
   "login_text": " Empresa de Tecnologia da Informação e \n\n Comunicação do Município de São Paulo",
   "login_submit": "Entrar",
-  "home_title": "Selecione um catálogo de Serviço - ",
-  "home_title_detail": "PortalTI"
+  "home_title": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. ",
+  "home_title_detail": "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..",
+  "step1_title": "Selecione um catálogo de Serviço - ",
+  "step1_title_detail": "PortalTI",
+  "step2_title": "Selecione um Serviço - ",
+  "step2_title_detail": "{ catalogo }",
+  "step3_title": "Solicitação de Atendimento",
+  "step3_title_detail": "",
+  "ENUM": {
+    "success": "success",
+    "none": "none",
+    "error": "error",
+    "btn_prev": "Anterior",
+    "btn_next": "Próximo",
+    "btn_submit": "Enviar"
+  }
 }
