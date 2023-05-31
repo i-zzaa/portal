@@ -1,8 +1,10 @@
 <script lang="ts">
 import { RouterView } from "vue-router";
+import PNav from "@/components/Nav.vue";
+import PFooter from "@/components/Footer.vue";
 
 export default {
-  components: { RouterView },
+  components: { RouterView, PNav, PFooter },
   setup() {
     return {};
   },
@@ -10,10 +12,9 @@ export default {
 </script>
 
 <template>
-  <!-- <router-view name="DHeader"></router-view> -->
-
+  <p-nav />
   <v-content>
-    <!-- <router-view name="DSidebar"></router-view> -->
     <router-view></router-view>
   </v-content>
+  <p-footer />
 </template>
