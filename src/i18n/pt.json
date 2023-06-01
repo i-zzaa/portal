@@ -9,6 +9,8 @@
   "step2_title_detail": "{ catalogo }",
   "step3_title": "Solicitação de Atendimento",
   "step3_title_detail": "",
+  "call_title": "Meus Chamados",
+  "call_title_detail": "",
   "ENUM": {
     "success": "success",
     "none": "none",

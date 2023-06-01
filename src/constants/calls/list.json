@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "ticket": "202303015000057",
+    "title": "[PORTAL] Solicitação de Atendimento:: teste",
+    "tipo": "Requisição",
+    "status": "Reaberto",
+    "prioridade": "3 Média",
+    "date": "01/03/2023 12:01:07"
+  },
+  {
+    "id": 2,
+    "ticket": "202112085000024",
+    "title": "Teste",
+    "tipo": "Solicitação",
+    "status": "Encerrado",
+    "prioridade": "3 Média",
+    "date": "17/05/2021 15:25:00"
+  },
+  {
+    "id": 3,
+    "ticket": "202112085000024",
+    "title": "Teste",
+    "tipo": "Solicitação",
+    "status": "Reaberto",
+    "prioridade": "3 Média",
+    "date": "17/05/2021 15:25:00"
+  },
+  {
+    "id": 4,
+    "ticket": "202112085000024",
+    "title": "Teste",
+    "tipo": "Solicitação",
+    "status": "Reaberto",
+    "prioridade": "3 Média",
+    "date": "17/05/2021 15:25:00"
+  },
+  {
+    "id": 4,
+    "ticket": "202112085000024",
+    "title": "Teste",
+    "tipo": "Solicitação",
+    "status": "Reaberto",
+    "prioridade": "3 Média",
+    "date": "17/05/2021 15:25:00"
+  }
+]

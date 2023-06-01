@@ -6,7 +6,11 @@ export default {
       colors: {
         black: "#000000",
         "gray-01": "#fafafb",
-        "blue-01": "#022e49",
+        "gray-02": "#9ca3af",
+        "red-01": "#f87171",
+        "orange-01": "#fb923c",
+        "green-01": "#34d399",
+        "blue-01": "#22d3ee",
         primary: "#022e49",
         secondary: "#022e49",
         title: "#344767",

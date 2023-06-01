@@ -20,11 +20,11 @@
               :class="{
                 'after:block': currentStep === index,
                 'after:hidden': index === 0,
-                'text-green-500':
+                'text-green-01':
                   currentStep !== index && step.status === $t('ENUM.success'),
                 'text-[#dee2e6]':
                   currentStep !== index && step.status === $t('ENUM.none'),
-                'text-red-500':
+                'text-red-01':
                   currentStep !== index && step.status === $t('ENUM.error'),
                 'text-[#344767]': currentStep === index,
                 'cursor-pointer': hasclick,
