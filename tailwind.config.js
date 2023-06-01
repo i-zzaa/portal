@@ -23,6 +23,12 @@ export default {
         "logo-01": "url('@/assets/img/logo-01.png')",
         "gradient-01": "radial-gradient(at top left, #06BDEF 0%, #022e49 60%)",
       },
+      maxWidth: {
+        80: "80%",
+      },
+      boxShadow: {
+        custom: "0 2px 4px rgba(0, 0, 0, 0.2)",
+      },
     },
   },
   plugins: [],

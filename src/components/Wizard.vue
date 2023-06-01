@@ -15,7 +15,7 @@
               :key="index"
               @click="() => hasclick && handleClick(index)"
               type="button"
-              class="before:w-[0.85rem] before:h-[0.85rem] before:rounded-[50%] after:top-[5px] rounded-0 indent-[-82.5rem] relative m-0 cursor-pointer border-none bg-transparent px-1.5 pb-0.5 pt-5 outline-none transition-all ease-linear before:absolute before:top-0 before:left-1/2 before:z-30 before:box-border before:block before:-translate-x-1/2 before:border-2 before:border-solid before:border-current before:transition-all before:ease-linear before:content-[''] sm:indent-0 before:scale-[1.2] before:bg-current after:absolute after:left-[calc(-50%-13px/2)] after:z-10 after:h-0.5 after:w-full after:transition-all after:ease-linear after:content-[''] after:bg-current"
+              class="before:w-[0.85rem] before:h-[0.85rem] before:rounded-[50%] after:top-[5px] rounded-0 indent-[-82.5rem] relative m-0 border-none bg-transparent px-1.5 pb-0.5 pt-5 outline-none transition-all ease-linear before:absolute before:top-0 before:left-1/2 before:z-30 before:box-border before:block before:-translate-x-1/2 before:border-2 before:border-solid before:border-current before:transition-all before:ease-linear before:content-[''] sm:indent-0 before:scale-[1.2] before:bg-current after:absolute after:left-[calc(-50%-13px/2)] after:z-10 after:h-0.5 after:w-full after:transition-all after:ease-linear after:content-[''] after:bg-current"
               :title="step.title"
               :class="{
                 'after:block': currentStep === index,

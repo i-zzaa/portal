@@ -1,4 +1,10 @@
 <template>
+  <transition name="modal">
+    <modal v-if="showModal" @close="showModal = false">
+      <template v-slot:body> Teste </template>
+    </modal>
+  </transition>
+
   <div class="h-screen w-full p-8 mt-12 text-center">
     <h1 class="text-2xl font-ligth m-12 text-title">
       {{ $t("call_title") }}
@@ -8,7 +14,7 @@
     <ul class="flex flex-wrap gap-6 justify-center">
       <li v-for="(item, index) in listCall" :key="index" class="">
         <ticket
-          @click="() => nextTicket(item)"
+          @click="showModal = true"
           :color="`${status[item.status.toLowerCase()].color}-01`"
         >
           <template v-slot:title>
@@ -52,13 +58,14 @@
 
 <script lang="ts">
 import Ticket from "@/components/Ticket.vue";
+import Modal from "@/components/Modal.vue";
 import { useMyCalls } from "@/store/module_chamados";
 import { PhArrowsClockwise, PhCheck } from "@phosphor-icons/vue";
 import { RouterView } from "vue-router";
 import { computed } from "vue";
 
 export default {
-  components: { Ticket, PhCheck, PhArrowsClockwise, RouterView },
+  components: { Ticket, PhCheck, PhArrowsClockwise, RouterView, Modal },
   setup() {
     const myCalls = useMyCalls();
     myCalls.getCalls();
@@ -73,6 +80,11 @@ export default {
     return {
       listCall,
       status,
+    };
+  },
+  data() {
+    return {
+      showModal: false,
     };
   },
   methods: {
