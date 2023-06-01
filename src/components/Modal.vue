@@ -5,11 +5,20 @@
   >
     <div class="flex items-center">
       <div
-        class="bg-white p-4 rounded-lg shadow-md transition-all duration-300 font-sans"
+        class="bg-white border-t-8 p-4 rounded-lg shadow-md transition-all duration-300"
+        :class="`border-${color}`"
       >
-        <div class="flex justify-end cursor-pointer" @click="$emit('close')">
-          <ph-x class="text-gray-02" :size="20" />
+        <div
+          class="flex justify-between cursor-pointer gap-24 p-4"
+          @click="$emit('close')"
+        >
+          <slot name="title"></slot>
+          <ph-x
+            class="text-gray-02 hover:opacity-70 hover:cursor-pointer hover:scale-110"
+            :size="20"
+          />
         </div>
+        <hr class="bg-primary w-full mt-4" />
 
         <div class="mt-4">
           <slot name="body"></slot>
@@ -27,6 +36,7 @@
 import { PhX } from "@phosphor-icons/vue";
 export default {
   components: { PhX },
+  props: { color: String },
 };
 </script>
 

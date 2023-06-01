@@ -6,7 +6,7 @@
         :key="index"
         class="flex items-center gap-2"
       >
-        <component :is="item.component" />
+        <!-- <component :is="item.component" /> -->
       </li>
     </ul>
   </footer>

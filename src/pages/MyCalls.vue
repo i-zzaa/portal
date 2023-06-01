@@ -1,7 +1,21 @@
 <template>
   <transition name="modal">
-    <modal v-if="showModal" @close="showModal = false">
-      <template v-slot:body> Teste </template>
+    <modal
+      v-if="showModal"
+      @close="showModal = false"
+      :color="`${ticket.color}-01`"
+    >
+      <template v-slot:title>
+        <span class="text-2xl">
+          Detalhes do Ticket nº {{ ticket?.ticket }}</span
+        >
+      </template>
+
+      <template v-slot:body>
+        <div>
+          <Acordion :items="ticket?.detail" />
+        </div>
+      </template>
     </modal>
   </transition>
 
@@ -13,20 +27,14 @@
 
     <ul class="flex flex-wrap gap-6 justify-center">
       <li v-for="(item, index) in listCall" :key="index" class="">
-        <ticket
-          @click="showModal = true"
-          :color="`${status[item.status.toLowerCase()].color}-01`"
-        >
+        <ticket @click="() => nextTicket(item)" :color="`${item.color}-01`">
           <template v-slot:title>
             <div class="grid">
               <span
                 class="h-6 w-6 rounded-full flex items-center justify-center -mt-8"
-                :class="`bg-${status[item.status.toLowerCase()].color}-01`"
+                :class="`bg-${item.color}-01`"
               >
-                <component
-                  :is="status[item.status.toLowerCase()].icon"
-                  class="h-4 w-4 text-white"
-                />
+                <component :is="item.icon" class="h-4 w-4 text-white" />
               </span>
 
               <div>
@@ -57,38 +65,76 @@
 </template>
 
 <script lang="ts">
-import Ticket from "@/components/Ticket.vue";
-import Modal from "@/components/Modal.vue";
-import { useMyCalls } from "@/store/module_chamados";
-import { PhArrowsClockwise, PhCheck } from "@phosphor-icons/vue";
+import { PhArrowsClockwise, PhCheck, PhTicket } from "@phosphor-icons/vue";
 import { RouterView } from "vue-router";
 import { computed } from "vue";
 
+import Ticket from "@/components/Ticket.vue";
+import Modal from "@/components/Modal.vue";
+import Acordion from "@/components/Acordion.vue";
+
+import { useMyCalls } from "@/store/module_chamados";
+import { STATUS } from "@/constants/utils";
+
 export default {
-  components: { Ticket, PhCheck, PhArrowsClockwise, RouterView, Modal },
+  components: {
+    Ticket,
+    PhCheck,
+    PhTicket,
+    PhArrowsClockwise,
+    RouterView,
+    Modal,
+    Acordion,
+  },
   setup() {
     const myCalls = useMyCalls();
     myCalls.getCalls();
 
-    const listCall = computed(() => myCalls.listCall);
+    const listCall = computed(() => {
+      return myCalls.listCall.map((item: any) => {
+        switch (item.status) {
+          case STATUS.reaberto:
+            item.color = "orange";
+            item.icon = "PhArrowsClockwise";
+            break;
+          case STATUS.encerrado:
+            item.color = "blue";
+            item.icon = "PhCheck";
+            break;
+          case STATUS.resolvido:
+            item.color = "green";
+            item.icon = "PhCheck";
+            break;
+          case STATUS.novo:
+            item.color = "blue";
+            item.icon = "PhTicket";
+            break;
+          default:
+            break;
+        }
 
-    const status = {
-      reaberto: { color: "orange", icon: "PhArrowsClockwise" },
-      encerrado: { color: "blue", icon: "PhCheck" },
-    };
+        return item;
+      });
+    });
 
     return {
       listCall,
-      status,
     };
   },
   data() {
     return {
       showModal: false,
+      ticket: {
+        ticket: "",
+        color: "gray",
+      },
     };
   },
   methods: {
-    nextTicket() {},
+    nextTicket(item: any) {
+      this.ticket = item;
+      this.showModal = true;
+    },
   },
 };
 </script>
