@@ -19,8 +19,8 @@
     </modal>
   </transition>
 
-  <div class="h-screen w-full p-8 mt-12 text-center">
-    <h1 class="text-2xl font-ligth m-12 text-title">
+  <div class="w-full p-8">
+    <h1 class="text-2xl font-ligth mb-12 text-title ml-40">
       {{ $t("call_title") }}
       <span class="font-light"> {{ $t("call_title_detail") }}</span>
     </h1>
@@ -77,6 +77,7 @@ import { useMyCalls } from "@/store/module_chamados";
 import { STATUS } from "@/constants/utils";
 
 export default {
+  title: "Meus Chamados",
   components: {
     Ticket,
     PhCheck,

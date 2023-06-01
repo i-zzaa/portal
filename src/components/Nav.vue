@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="grid grid-cols-2 items-center px-6 py-2 rounded-lg shadow-md justify-end"
+    class="grid grid-cols-2 items-center px-6 py-2 rounded-lg shadow-md justify-end h-20"
   >
     <div class="bg-logo-01 bg-no-repeat bg-contain h-12"></div>
 

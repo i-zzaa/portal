@@ -7,7 +7,10 @@
     font-family: Manrope, system-ui, sans-serif;
   }
 
-  *{
-    /* box-sizing: border-box; */
-  }
+
+}
+
+*{
+  font-family: Manrope, system-ui, sans-serif;
+
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="h-screen w-full p-8 mt-12 text-center">
-    <h1 class="text-2xl font-medium m-12 text-title">
+  <div class="w-full p-8 text-center">
+    <h1 class="text-2xl font-medium mb-12 text-title">
       {{ $t("home_title") }}
       <span class="font-light"> {{ $t("home_title_detail") }}</span>
     </h1>
@@ -36,6 +36,7 @@ import { computed } from "vue";
 
 export default {
   components: { Card, PhKey, PhShareNetwork, PhFloppyDisk, RouterView },
+  title: "| Home",
   setup() {
     const store = useWizard();
     const helpDesk = useHelpDesk();

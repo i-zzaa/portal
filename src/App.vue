@@ -1,17 +1,17 @@
 <script lang="ts">
 import { RouterView } from "vue-router";
-import PFooter from "@/components/Footer.vue";
 
 export default {
-  components: { RouterView, PFooter },
+  components: { RouterView },
 };
 </script>
 
 <template>
-  <router-view name="PNav"></router-view>
-
-  <v-content>
-    <router-view></router-view>
-  </v-content>
-  <p-footer />
+  <div class="grid grid-rows-8 h-screen">
+    <router-view name="PNav"></router-view>
+    <v-content class="row-span-6 overflow-y-auto">
+      <router-view></router-view>
+    </v-content>
+    <router-view name="PFooter" class="row-span-1"></router-view>
+  </div>
 </template>
