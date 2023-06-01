@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuth } from "@/store/module_login";
+import PNav from "@/components/Nav.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,19 +24,28 @@ const router = createRouter({
     {
       path: "/home",
       name: "Home",
-      component: () => import("@/pages/Home.vue"),
+      components: {
+        PNav,
+        default: () => import("@/pages/Home.vue"),
+      },
       meta: { title: "Home" },
     },
     {
       path: "/help-desk",
       name: "HelpDesk",
-      component: () => import("@/pages/HelpDesk.vue"),
+      components: {
+        PNav,
+        default: () => import("@/pages/HelpDesk.vue"),
+      },
       meta: { title: "Home" },
     },
     {
       path: "/meus-chamados",
       name: "Chamados",
-      component: () => import("@/pages/MyCalls.vue"),
+      components: {
+        PNav,
+        default: () => import("@/pages/MyCalls.vue"),
+      },
       meta: { title: "Home" },
     },
   ],

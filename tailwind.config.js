@@ -11,6 +11,7 @@ export default {
         "orange-01": "#fb923c",
         "green-01": "#34d399",
         "blue-01": "#22d3ee",
+        "blue-02": "#003583",
         primary: "#022e49",
         secondary: "#022e49",
         title: "#344767",
@@ -21,6 +22,7 @@ export default {
       backgroundImage: {
         "img-01": "url('@/assets/img/img-01.jpg')",
         "logo-01": "url('@/assets/img/logo-01.png')",
+        "logo-02": "url('@/assets/img/logo-02.png')",
         "gradient-01": "radial-gradient(at top left, #06BDEF 0%, #022e49 60%)",
       },
       maxWidth: {

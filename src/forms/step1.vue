@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-full p-8 text-center">
+  <div class="w-full p-8 text-center">
     <h1 class="text-2xl font-medium mb-12 text-title">
       {{ $t("step1_title") }}
       <span class="font-light"> {{ $t("step1_title_detail") }}</span>

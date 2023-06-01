@@ -21,6 +21,7 @@
         <ph-sign-out
           :size="20"
           class="text-right text-primary hover:opacity-70 hover:cursor-pointer hover:scale-105"
+          @click="$router.push('/login')"
         />
       </div>
     </div>
