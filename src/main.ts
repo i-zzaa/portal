@@ -1,7 +1,8 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { createI18n } from "vue-i18n";
-import Notifications from "@kyvg/vue3-notification";
+
+import "vue3-toastify/dist/index.css";
 
 import "@/assets/css/main.css";
 
@@ -21,4 +22,4 @@ const app = createApp(App);
 
 const pinia = createPinia();
 
-app.use(pinia).use(router).use(i18n).use(Notifications).mount("#app");
+app.use(pinia).use(router).use(i18n).mount("#app");

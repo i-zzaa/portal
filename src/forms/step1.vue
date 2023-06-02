@@ -49,7 +49,6 @@ export default {
     const steps = computed(() => store.steps);
 
     const listCatalogs = computed(() => helpDesk.listCatalogs);
-
     return {
       currentStep,
       steps,
