@@ -5,12 +5,29 @@
 @layer base {
   html {
     font-family: Manrope, system-ui, sans-serif;
+    letter-spacing: 0.02em;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #022e49;
+    border-radius: 5px;
+  }
+  
+
+
+  .transform-translate {
+    transform: translate(-50%, -50%)
+  }
+
 
 
 }
 
-*{
-  font-family: Manrope, system-ui, sans-serif;
+.menu-list {
+  transition: top 0.4s, left 0.4s, transform 0.4s !important;
 
 }

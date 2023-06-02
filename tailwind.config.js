@@ -7,6 +7,7 @@ export default {
         black: "#000000",
         "gray-01": "#fafafb",
         "gray-02": "#9ca3af",
+        "gray-03": "#f1f1f1",
         "red-01": "#f87171",
         "orange-01": "#fb923c",
         "green-01": "#34d399",
@@ -28,8 +29,15 @@ export default {
       maxWidth: {
         80: "80%",
       },
-      boxShadow: {
-        custom: "0 2px 4px rgba(0, 0, 0, 0.2)",
+      keyframes: {
+        "slide-in": {
+          "0%": { top: "-100%", left: "100%", transform: "translate(0, 0)" },
+          "100%": {
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          },
+        },
       },
     },
   },
