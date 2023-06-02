@@ -103,6 +103,7 @@ export default {
       ticket: {
         ticket: "",
         color: "gray",
+        detail: [],
       },
     };
   },

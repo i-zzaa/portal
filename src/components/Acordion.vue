@@ -91,7 +91,7 @@ export default {
     };
   },
   methods: {
-    toggle(index) {
+    toggle(index: number) {
       this.activeIndex = index;
     },
   },

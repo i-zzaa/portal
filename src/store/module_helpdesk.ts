@@ -1,6 +1,5 @@
 import CatalogService from "@/services/CatalogService";
 import HelpDeskService from "@/services/HelpDeskService";
-import { AxiosResponse } from "axios";
 import { defineStore } from "pinia";
 
 import { toast } from "vue3-toastify";
@@ -15,6 +14,7 @@ export const useHelpDesk = defineStore("helpDesk", {
   state: () => ({
     catalogo: "",
     servico: "",
+    solicitacao: "",
     listCatalogs: [],
     listServices: [],
     steps: [
@@ -62,7 +62,7 @@ export const useHelpDesk = defineStore("helpDesk", {
         toast.error("Erro ao carregar os serviços!");
       }
     },
-    async setSolicitation(params: any) {
+    async setSolicitation() {
       try {
         // const { data }: any = await CatalogService.get();
         // this.listCatalogs = data;

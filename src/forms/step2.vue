@@ -59,14 +59,14 @@ export default {
   components: { Card, PhKey, PhShareNetwork, PhFloppyDisk },
   setup() {
     const helpDesk = useHelpDesk();
-    const catalogo = computed(() => helpDesk.catalogo);
+    const catalogo: any = computed(() => helpDesk.catalogo);
 
     helpDesk.getService(catalogo.value.id);
 
     const store = useWizard();
     const steps = computed(() => store.steps);
 
-    const listServices = computed(() => helpDesk.listServices);
+    const listServices: any = computed(() => helpDesk.listServices);
 
     return {
       catalogo,

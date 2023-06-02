@@ -63,11 +63,11 @@ import {
 import PButton from "@/components/Button.vue";
 import { FieldInput } from "@/components/Filds/index";
 
-import * as msal from "msal";
+// import * as msal from "msal";
 // import { GoogleAuth } from "google-auth-library";
 // import FacebookLogin from "vue-facebook-login-component";
 
-import { toast } from "vue3-toastify";
+// import { toast } from "vue3-toastify";
 
 export default {
   components: {
@@ -89,24 +89,23 @@ export default {
       e.preventDefault();
     },
     auth_outlook() {
-      const config = {
-        auth: {
-          clientId: "SEU_CLIENT_ID",
-          redirectUri: "http://localhost:8080", // Coloque a URL correta para redirecionamento
-        },
-      };
-
-      const client = new msal.PublicClientApplication(config);
-      client
-        .loginPopup()
-        .then((response: any) => {
-          console.log(response);
-          // Lidar com a resposta do login
-        })
-        .catch((error: any) => {
-          console.log(error);
-          toast.error($t("error_login_outlook"));
-        });
+      // const config = {
+      //   auth: {
+      //     clientId: "SEU_CLIENT_ID",
+      //     redirectUri: "http://localhost:8080", // Coloque a URL correta para redirecionamento
+      //   },
+      // };
+      // const client = new msal.PublicClientApplication(config);
+      // client
+      //   .loginPopup()
+      //   .then((response: any) => {
+      //     console.log(response);
+      //     // Lidar com a resposta do login
+      //   })
+      //   .catch((error: any) => {
+      //     console.log(error);
+      //     toast.error($t("error_login_outlook"));
+      //   });
     },
     async auth_google() {
       // const auth = new GoogleAuth();

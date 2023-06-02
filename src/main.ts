@@ -7,11 +7,11 @@ import "vue3-toastify/dist/index.css";
 import "@/assets/css/main.css";
 
 import router from "@/router";
-import pt from "@/i18n/pt.json";
+import * as pt from "@/i18n/pt.json";
 
 import App from "./App.vue";
 
-const i18n = new createI18n({
+const i18n = createI18n({
   locale: "pt-BR",
   messages: {
     "pt-BR": pt,

@@ -3,7 +3,7 @@
     <Wizard
       title="Selecione um catálogo de Serviço"
       description="This information will let us know more about you."
-      :steps="steps"
+      :steps="store.steps"
       :components="components"
       :hasclick="false"
     />
@@ -17,19 +17,16 @@ import Step3 from "@/forms/step3.vue";
 
 import Wizard from "@/components/Wizard.vue";
 
-import { computed } from "vue";
 import { useHelpDesk } from "@/store/module_helpdesk";
 
 export default {
   components: { Step1, Step2, Step3, Wizard },
   setup() {
     const store = useHelpDesk();
-    const steps = computed(() => store.steps);
-
     store.getCatalogo();
 
     return {
-      steps,
+      store,
     };
   },
   data() {
@@ -39,6 +36,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

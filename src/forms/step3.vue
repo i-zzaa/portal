@@ -7,11 +7,7 @@
         <div class="w-10/12 max-w-full px-3 mx-auto [flex:0_0_auto]">
           <h1 class="text-2xl font-medium m-12 text-title">
             {{ $t("step3_title") }}
-            <span class="font-light">
-              {{
-                $t("step3_title_detail", { solicitacao: solicitacao?.title })
-              }}</span
-            >
+            <span class="font-light"> {{ $t("step3_title_detail") }}</span>
           </h1>
         </div>
       </div>
@@ -142,16 +138,10 @@ const INDEX_STEP = 2;
 export default {
   components: { Card, PhKey, PhShareNetwork, PhFloppyDisk },
   setup() {
-    const helpDesk = useHelpDesk();
-
-    const catalogo = computed(() => helpDesk.catalogo);
-    const solicitacao = computed(() => helpDesk.solicitacao);
-
     const store = useWizard();
     const steps = computed(() => store.steps);
 
     return {
-      solicitacao,
       steps,
     };
   },
