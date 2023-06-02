@@ -49,6 +49,24 @@
           :onclick="submit"
           color="primary"
         />
+
+        <div class="mt-4 flex justify-evenly">
+          <div
+            class="rounded-full p-1 cursor-pointer hover:scale-150 duration-700 h-8 w-8 bg-facebook flex justify-center items-center"
+          >
+            <ph-facebook-logo :size="60" class="text-white" />
+          </div>
+          <div
+            class="rounded-full p-1 cursor-pointer hover:scale-150 duration-700 h-8 w-8 bg-google flex justify-center items-center"
+          >
+            <ph-google-chrome-logo :size="60" class="text-white" />
+          </div>
+          <div
+            class="rounded-full p-1 cursor-pointer hover:scale-150 duration-700 h-8 w-8 bg-microsoft flex justify-center items-center"
+          >
+            <ph-microsoft-outlook-logo :size="60" class="text-white" />
+          </div>
+        </div>
       </div>
     </div>
   </form>
@@ -56,9 +74,19 @@
 
 <script lang="ts">
 import PButton from "@/components/Button.vue";
+import {
+  PhFacebookLogo,
+  PhGoogleChromeLogo,
+  PhMicrosoftOutlookLogo,
+} from "@phosphor-icons/vue";
 
 export default {
-  components: { PButton },
+  components: {
+    PButton,
+    PhFacebookLogo,
+    PhGoogleChromeLogo,
+    PhMicrosoftOutlookLogo,
+  },
   methods: {
     submit(e: any) {
       e.preventDefault();

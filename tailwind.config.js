@@ -16,6 +16,9 @@ export default {
         primary: "#022e49",
         secondary: "#022e49",
         title: "#344767",
+        facebook: "#1877f2",
+        google: "#ef4444",
+        microsoft: "#84cc16",
       },
       fontFamily: {
         sans: ["Manrope", "Inter"],
