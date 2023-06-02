@@ -8,7 +8,7 @@ const router = createRouter({
   routes: [
     {
       path: "/:catchAll(.*)",
-      redirect: "/login-2",
+      redirect: "/login",
     },
     {
       path: "/login",
