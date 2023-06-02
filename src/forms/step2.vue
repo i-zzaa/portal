@@ -81,7 +81,17 @@ export default {
 
     nextTicket(item: any, index: number = 2) {
       const stepCurrent = { ...this.steps[INDEX_STEP] };
-      stepCurrent.status = this.$t("ENUM.success");
+
+      switch (index) {
+        case 0:
+          stepCurrent.status = this.$t("ENUM.none");
+          break;
+
+        default:
+          stepCurrent.status = this.$t("ENUM.success");
+          break;
+      }
+
       this.updateStep(INDEX_STEP, stepCurrent);
 
       const step = { ...this.steps[index] };
