@@ -14,6 +14,7 @@
   "footer_location": "Prodam - Empresa de Tecnologia da Informação e \nComunicação do Município de São Paulo",
   "footer_tel": "Telefone: 61 3246-6340",
   "footer_email": "atendimento-prodam@ios.com.br",
+  "error_login_outlook": "Erro ao realizar o login!",
   "ENUM": {
     "success": "success",
     "none": "none",
