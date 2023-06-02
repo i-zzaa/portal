@@ -25,41 +25,12 @@
       <span class="font-light"> {{ $t("call_title_detail") }}</span>
     </h1>
 
-    <ul class="flex flex-wrap gap-6 justify-center">
-      <li v-for="(item, index) in listCall" :key="index" class="">
-        <ticket @click="() => nextTicket(item)" :color="`${item.color}-01`">
-          <template v-slot:title>
-            <div class="grid">
-              <span
-                class="h-6 w-6 rounded-full flex items-center justify-center -mt-8"
-                :class="`bg-${item.color}-01`"
-              >
-                <component :is="item.icon" class="h-4 w-4 text-white" />
-              </span>
-
-              <div>
-                <span title="Ticket">{{ item.ticket }}</span>
-              </div>
-            </div>
-            <hr class="bg-primary w-full mt-4" />
-          </template>
-
-          <div class="mt-8">
-            <div class="grid items-center gap-2 text-sm text-start">
-              <span><b>Título: </b>{{ item.title }}</span>
-              <span><b>Tipo: </b> {{ item.tipo }}</span>
-              <span><b>Prioridade: </b> {{ item.prioridade }}</span>
-            </div>
-          </div>
-
-          <template v-slot:footer>
-            <span class="text-xs text-gray-02 flex items-end">
-              {{ item.date }}
-            </span>
-          </template>
-        </ticket>
-      </li>
-    </ul>
+    <call-cards
+      :listCall="listCall"
+      :nextTicket="nextTicket"
+      v-if="listCall.lenght > 5"
+    />
+    <call-list :listCall="listCall" :nextTicket="nextTicket" v-else />
   </div>
   <div></div>
 </template>
@@ -72,6 +43,8 @@ import { computed } from "vue";
 import Ticket from "@/components/Ticket.vue";
 import Modal from "@/components/Modal.vue";
 import Acordion from "@/components/Acordion.vue";
+import CallCards from "@/components/CallCards.vue";
+import CallList from "@/components/CallList.vue";
 
 import { useMyCalls } from "@/store/module_chamados";
 import { STATUS } from "@/constants/utils";
@@ -86,12 +59,14 @@ export default {
     RouterView,
     Modal,
     Acordion,
+    CallCards,
+    CallList,
   },
   setup() {
     const myCalls = useMyCalls();
     myCalls.getCalls();
 
-    const listCall = computed(() => {
+    const listCall: any = computed(() => {
       return myCalls.listCall.map((item: any) => {
         switch (item.status) {
           case STATUS.reaberto:
