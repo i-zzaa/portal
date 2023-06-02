@@ -1,6 +1,8 @@
 <template>
-  <div class="h-screen w-full grid grid-cols-3 overflow-hidden mx-auto">
-    <div class="relative bg-gradient-01 flex justify-center items-center">
+  <div class="h-screen w-full grid sm:grid-cols-3 overflow-hidden mx-auto">
+    <div
+      class="relative bg-gradient-01 sm:flex hidden justify-center items-center"
+    >
       <div
         class="bg-img-01 bg-no-repeat bg-cover bg-center opacity-40 flex text-center items-center absolute w-full h-full"
       ></div>
