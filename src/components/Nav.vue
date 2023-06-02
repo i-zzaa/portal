@@ -5,14 +5,14 @@
     <div class="bg-logo-01 bg-no-repeat bg-contain h-12"></div>
 
     <div class="grid items-center grid-cols-3 h-full">
-      <ul class="flex space-x-12 col-span-2 h-full items-center">
+      <ul class="flex col-span-2 h-full items-center gap-8">
         <li
           v-for="(item, index) in routesCurrent"
           :key="index"
-          class="flex items-center gap-2 h-full relative"
+          class="flex items-center gap-2 h-full relative min-w-[5rem] nowrap"
         >
           <RouterLink
-            class="text-sm text-primary hover:opacity-80"
+            class="text-sm text-primary hover:opacity-80 text-ellipsis overflow-hidden"
             :to="item.to"
             >{{ item.label.toUpperCase() }}</RouterLink
           >
@@ -123,5 +123,10 @@ export default {
   content: "◦";
   left: 50%;
   bottom: 0;
+}
+.router-link-active a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>
