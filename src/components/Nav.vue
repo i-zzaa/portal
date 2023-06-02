@@ -29,7 +29,11 @@
   </nav>
 
   <header
-    class="sm:hidden relative before:content-center before:fixed before:top-[-100px] before:right-[-10%] before:w-[200px] before:h-[200px] before:bg-primary before:rounded-full duration-700"
+    class="sm:hidden relative before:content-center before:fixed before:top-[-100px] before:right-[-5rem] before:w-[200px] before:h-[200px] before:bg-primary before:rounded-full duration-700"
+    :class="{
+      'before:bg-primary': !menuHamburguerActive,
+      'before:bg-primary-opacity': menuHamburguerActive,
+    }"
   >
     <label for="menuCheck" class="menu-icon cursor-pointer p-2 rounded-md">
       <ph-list
@@ -47,21 +51,36 @@
       />
     </label>
 
-    <ul
-      class="menu-list fixed items-center w-[150vw] h-[150vh] rounded-full bg-primary text-white duration-500"
-      :class="{
-        'top-[50%]': menuHamburguerActive,
-        'left-[50%]': menuHamburguerActive,
-        'transform-translate': menuHamburguerActive,
-        'z-[998]': menuHamburguerActive,
-      }"
-      v-if="menuHamburguerActive"
-    >
-      <li>Home</li>
-      <li>Products</li>
-      <li>About</li>
-      <li>Contact</li>
-    </ul>
+    <div>
+      <ul
+        class="menu-list fixed items-center w-[150vw] h-[150vh] rounded-full bg-primary-opacity text-white duration-500 space-y-5 text-center backdrop-filter backdrop-blur-sm bg-opacity-75 transition-all"
+        :class="{
+          'top-[50%]': menuHamburguerActive,
+          'left-[50%]': menuHamburguerActive,
+          'transform-translate': menuHamburguerActive,
+          'z-[998]': menuHamburguerActive,
+          'p-[20rem]': menuHamburguerActive,
+        }"
+        v-if="menuHamburguerActive"
+      >
+        <li class="flex justify-center">
+          <div
+            class="bg-logo-01 bg-center bg-no-repeat bg-contain h-24 w-40"
+          ></div>
+        </li>
+        <li
+          v-for="(item, index) in routesCurrent"
+          :key="index"
+          class="hover:scale-105 transition-all duration-700"
+        >
+          <RouterLink
+            class="text-sm text-white hover:opacity-80 text-ellipsis overflow-hidden"
+            :to="item.to"
+            >{{ item.label.toUpperCase() }}</RouterLink
+          >
+        </li>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -128,5 +147,18 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.menu-list {
+  transition: top 0.4s, left 0.4s, transform 0.4s !important;
+}
+
+.transform-translate {
+  transform: translate(-50%, -50%);
+}
+
+.backdrop {
+  background-color: #022e49c9;
+  backdrop-filter: blur(8px);
 }
 </style>

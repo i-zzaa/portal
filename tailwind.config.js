@@ -14,6 +14,7 @@ export default {
         "blue-01": "#22d3ee",
         "blue-02": "#003583",
         primary: "#022e49",
+        "primary-opacity": "#022e49c9",
         secondary: "#022e49",
         title: "#344767",
         facebook: "#1877f2",

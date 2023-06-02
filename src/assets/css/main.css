@@ -19,15 +19,5 @@
   
 
 
-  .transform-translate {
-    transform: translate(-50%, -50%)
-  }
-
-
-
-}
-
-.menu-list {
-  transition: top 0.4s, left 0.4s, transform 0.4s !important;
 
 }
