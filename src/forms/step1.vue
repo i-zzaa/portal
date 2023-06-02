@@ -1,26 +1,31 @@
 <template>
-  <div class="w-full p-8 text-center">
-    <h1 class="text-2xl font-medium mb-12 text-title">
-      {{ $t("step1_title") }}
-      <span class="font-light"> {{ $t("step1_title_detail") }}</span>
-    </h1>
+  <div
+    form="account"
+    class="mx-auto flex flex-col w-3/4 min-w-0 p-4 break-words bg-white border-0 dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
+  >
+    <div class="w-full p-8 text-center">
+      <h1 class="text-2xl font-medium mb-12 text-title">
+        {{ $t("step1_title") }}
+        <span class="font-light"> {{ $t("step1_title_detail") }}</span>
+      </h1>
 
-    <ul class="flex flex-wrap gap-6 justify-center">
-      <li v-for="(item, index) in listCatalogs" :key="index" class="">
-        <Card @click="() => nextTicket(item)">
-          <template v-slot:title>
-            <div class="flex items-center gap-2 text-sm text-start">
-              <component :is="item.icon" class="h-6 w-6" />
-              {{ item.title }}
+      <ul class="flex flex-wrap gap-6 justify-center">
+        <li v-for="(item, index) in listCatalogs" :key="index" class="">
+          <Card @click="() => nextTicket(item)">
+            <template v-slot:title>
+              <div class="flex items-center gap-2 text-sm text-start">
+                <component :is="item.icon" class="h-6 w-6" />
+                {{ item.title }}
+              </div>
+              <hr class="bg-primary w-full mt-4" />
+            </template>
+            <div class="mt-8">
+              {{ item.description }}
             </div>
-            <hr class="bg-primary w-full mt-4" />
-          </template>
-          <div class="mt-8">
-            {{ item.description }}
-          </div>
-        </Card>
-      </li>
-    </ul>
+          </Card>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

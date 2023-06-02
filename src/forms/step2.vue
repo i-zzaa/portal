@@ -40,13 +40,6 @@
         >
           {{ $t("ENUM.btn_prev") }}
         </button>
-        <button
-          @click="() => nextTicket(null, 2)"
-          type="button"
-          class="inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-[#141727] to-[#3a416f] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25"
-        >
-          {{ $t("ENUM.btn_next") }}
-        </button>
       </div>
     </div>
   </div>
