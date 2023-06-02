@@ -79,7 +79,7 @@ export default {
     ...mapActions(useWizard, ["setStep"]),
     ...mapActions(useHelpDesk, ["updateStep"]),
 
-    nextTicket(item: any, index?: number = 2) {
+    nextTicket(item: any, index: number = 2) {
       const stepCurrent = { ...this.steps[INDEX_STEP] };
       stepCurrent.status = this.$t("ENUM.success");
       this.updateStep(INDEX_STEP, stepCurrent);

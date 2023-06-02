@@ -1,75 +1,41 @@
 <template>
-  <div class="w-full p-8 text-center">
-    <h1 class="text-2xl font-medium mb-12 text-title">
-      {{ $t("home_title") }}
-      <span class="font-light"> {{ $t("home_title_detail") }}</span>
-    </h1>
-
-    <ul class="flex flex-wrap gap-6 justify-center">
-      <li v-for="(item, index) in listCatalogs" :key="index" class="">
-        <Card @click="() => nextTicket(item)">
-          <template v-slot:title>
-            <div class="flex items-center gap-2 text-sm text-start">
-              <component :is="item.icon" class="h-6 w-6" />
-              {{ item.title }}
-            </div>
-            <hr class="bg-primary w-full mt-4" />
-          </template>
-          <div class="mt-8">
-            {{ item.description }}
-          </div>
-        </Card>
-      </li>
-    </ul>
+  <div class="w-full max-w-full px-3 text-center [flex:0_0_auto]">
+    <Wizard
+      title="Selecione um catálogo de Serviço"
+      description="This information will let us know more about you."
+      :steps="steps"
+      :components="components"
+      :hasclick="false"
+    />
   </div>
-  <div></div>
 </template>
 
 <script lang="ts">
-import Card from "@/components/Card.vue";
-import { useHelpDesk } from "@/store/module_catalogo";
-import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
-import { mapActions } from "pinia";
-import { RouterView } from "vue-router";
-import { useWizard } from "@/store/module_wizard";
+import Step1 from "@/forms/step1.vue";
+import Step2 from "@/forms/step2.vue";
+import Step3 from "@/forms/step3.vue";
+
+import Wizard from "@/components/Wizard.vue";
 import { computed } from "vue";
+import { useHelpDesk } from "@/store/module_catalogo";
 
 export default {
-  components: { Card, PhKey, PhShareNetwork, PhFloppyDisk, RouterView },
-  title: "| Home",
+  components: { Step1, Step2, Step3, Wizard },
   setup() {
-    const store = useWizard();
-    const helpDesk = useHelpDesk();
-    const currentStep = computed(() => store.currentStep);
+    const store = useHelpDesk();
     const steps = computed(() => store.steps);
 
-    const listCatalogs = computed(() => helpDesk.listCatalogs);
-
     return {
-      currentStep,
       steps,
-      listCatalogs,
     };
   },
-  methods: {
-    ...mapActions(useHelpDesk, ["setCatalog"]),
-    ...mapActions(useWizard, ["setStep"]),
-    ...mapActions(useHelpDesk, ["updateStep"]),
-
-    nextTicket(item: any) {
-      const stepCurrent = { ...this.steps[0] };
-      stepCurrent.status = this.$t("ENUM.success");
-      this.updateStep(0, stepCurrent);
-
-      const step = { ...this.steps[1] };
-      step.status = this.$t("ENUM.none");
-      this.updateStep(1, step);
-
-      this.setCatalog(item);
-      this.setStep(1);
-
-      this.$router.push("help-desk");
-    },
+  data() {
+    return {
+      components: [Step1, Step2, Step3],
+    };
   },
 };
 </script>
+
+<style>
+</style>

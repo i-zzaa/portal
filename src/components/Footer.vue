@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-primary">
+  <footer class="fixed bottom-0 w-full bg-primary">
     <ul class="flex justify-between w-full text-white px-4 py-2">
       <li class="flex items-center gap-2 justify-center">
         <span class="leading-4 flex gap-2 items-center text-xs">
