@@ -48,7 +48,7 @@
 <script lang="ts">
 import Card from "@/components/Card.vue";
 import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
-import { useHelpDesk } from "@/store/module_catalogo";
+import { useHelpDesk } from "@/store/module_helpdesk";
 import { computed } from "vue";
 import { mapActions } from "pinia";
 import { useWizard } from "@/store/module_wizard";

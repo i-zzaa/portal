@@ -54,7 +54,7 @@
 import { useWizard } from "@/store/module_wizard";
 import { mapActions } from "pinia";
 import { computed } from "vue";
-import { useHelpDesk } from "@/store/module_catalogo";
+import { useHelpDesk } from "@/store/module_helpdesk";
 
 export interface StepsProps {
   title: string;

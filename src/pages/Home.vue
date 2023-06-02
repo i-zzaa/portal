@@ -16,14 +16,17 @@ import Step2 from "@/forms/step2.vue";
 import Step3 from "@/forms/step3.vue";
 
 import Wizard from "@/components/Wizard.vue";
+
 import { computed } from "vue";
-import { useHelpDesk } from "@/store/module_catalogo";
+import { useHelpDesk } from "@/store/module_helpdesk";
 
 export default {
   components: { Step1, Step2, Step3, Wizard },
   setup() {
     const store = useHelpDesk();
     const steps = computed(() => store.steps);
+
+    store.getCatalogo();
 
     return {
       steps,

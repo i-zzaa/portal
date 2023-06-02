@@ -10,7 +10,7 @@ import Step2 from "@/forms/step2.vue";
 import Step3 from "@/forms/step3.vue";
 
 import { computed } from "vue";
-import { useHelpDesk } from "@/store/module_catalogo";
+import { useHelpDesk } from "@/store/module_helpdesk";
 
 export default {
   components: { Step3 },

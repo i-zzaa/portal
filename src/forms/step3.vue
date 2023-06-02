@@ -132,7 +132,7 @@
 <script lang="ts">
 import Card from "@/components/Card.vue";
 import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
-import { useHelpDesk } from "@/store/module_catalogo";
+import { useHelpDesk } from "@/store/module_helpdesk";
 import { computed } from "vue";
 import { mapActions } from "pinia";
 import { useWizard } from "@/store/module_wizard";
@@ -160,9 +160,9 @@ export default {
     ...mapActions(useHelpDesk, ["updateStep"]),
 
     nextTicket() {
-      const step = { ...this.steps[2] };
+      const step = { ...this.steps[INDEX_STEP] };
       step.status = this.$t("ENUM.none");
-      this.updateStep(2, step);
+      this.updateStep(INDEX_STEP, step);
 
       this.setStep(1);
     },

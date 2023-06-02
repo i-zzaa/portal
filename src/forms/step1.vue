@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import Card from "@/components/Card.vue";
-import { useHelpDesk } from "@/store/module_catalogo";
+import { useHelpDesk } from "@/store/module_helpdesk";
 import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
 import { mapActions } from "pinia";
 import { RouterView } from "vue-router";
@@ -48,7 +48,7 @@ export default {
     const currentStep = computed(() => store.currentStep);
     const steps = computed(() => store.steps);
 
-    const listCatalogs = computed(() => helpDesk.listCatalogs);
+    const listCatalogs: any = computed(() => helpDesk.listCatalogs);
     return {
       currentStep,
       steps,
