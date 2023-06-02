@@ -1,46 +1,61 @@
 <template>
-  <ul class="flex flex-wrap gap-6 justify-center">
-    <li v-for="(item, index) in listCall" :key="index" class="">
-      <ticket @click="() => nextTicket(item)" :color="`${item?.color}-01`">
-        <template v-slot:title>
-          <div class="grid">
-            <span
-              class="h-6 w-6 rounded-full flex items-center justify-center -mt-8"
-              :class="`bg-${item?.color}-01`"
+  <div
+    form="account"
+    class="mx-auto flex flex-col w-[85%] min-w-0 p-24 break-words bg-white border-0 dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
+  >
+    <ul class="grid flex-wrap gap-2">
+      <li v-for="(item, index) in listCall" :key="index" class="w-full">
+        <list
+          @click="() => nextTicket(item)"
+          :color="`border-${item?.color}-01`"
+          list
+        >
+          <div class="">
+            <div
+              class="flex items-start justify-between gap-2 text-sm text-primary"
             >
-              <component :is="item?.icon" class="h-4 w-4 text-white" />
-            </span>
+              <div class="grid gap-1">
+                <span class="font-semibold"> Ticket </span>
+                <span> {{ item?.ticket }} </span>
+              </div>
 
-            <div>
-              <span title="Ticket">{{ item?.ticket }}</span>
+              <div class="grid gap-1">
+                <span class="font-semibold"> Status </span>
+                <span class="flex items-center">
+                  {{ item?.status }}
+                  <component :is="item?.icon" class="h-4 w-4 text-white" />
+                </span>
+              </div>
+
+              <div class="grid gap-1">
+                <span class="font-semibold"> Título </span>
+                <span> {{ item?.title }} </span>
+              </div>
+              <div class="grid gap-1">
+                <span class="font-semibold"> Tipo </span>
+                <span> {{ item?.tipo }} </span>
+              </div>
+              <div class="grid gap-1">
+                <span class="font-semibold"> Prioridade </span>
+                <span> {{ item?.prioridade }} </span>
+              </div>
+              <div class="grid gap-1">
+                <span class="font-semibold"> Data </span>
+                <span> {{ item?.date }} </span>
+              </div>
             </div>
           </div>
-          <hr class="bg-primary w-full mt-4" />
-        </template>
-
-        <div class="mt-8">
-          <div class="grid items-center gap-2 text-sm text-start">
-            <span><b>Título: </b>{{ item?.title }}</span>
-            <span><b>Tipo: </b> {{ item?.tipo }}</span>
-            <span><b>Prioridade: </b> {{ item?.prioridade }}</span>
-          </div>
-        </div>
-
-        <template v-slot:footer>
-          <span class="text-xs text-gray-02 flex items-end">
-            {{ item.date }}
-          </span>
-        </template>
-      </ticket>
-    </li>
-  </ul>
+        </list>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
 import { PhArrowsClockwise, PhCheck, PhTicket } from "@phosphor-icons/vue";
 import { RouterView } from "vue-router";
 
-import Ticket from "@/components/Ticket.vue";
+import List from "@/components/List.vue";
 import Modal from "@/components/Modal.vue";
 import Acordion from "@/components/Acordion.vue";
 
@@ -51,7 +66,7 @@ export default {
     listCall: { type: Array<any>, required: true },
   },
   components: {
-    Ticket,
+    List,
     PhCheck,
     PhTicket,
     PhArrowsClockwise,
@@ -61,3 +76,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.items:not(:last-child)::after {
+  content: "|";
+  padding-left: 2.5em;
+}
+</style>

@@ -20,7 +20,7 @@
   </transition>
 
   <div class="w-full p-8">
-    <h1 class="text-2xl font-ligth mb-12 text-title ml-40">
+    <h1 class="text-3xl font-ligth mb-12 text-title ml-40">
       {{ $t("call_title") }}
       <span class="font-light"> {{ $t("call_title_detail") }}</span>
     </h1>
@@ -28,7 +28,7 @@
     <call-cards
       :listCall="listCall"
       :nextTicket="nextTicket"
-      v-if="listCall.lenght > 5"
+      v-if="listCall.lenght < 10"
     />
     <call-list :listCall="listCall" :nextTicket="nextTicket" v-else />
   </div>
