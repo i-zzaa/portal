@@ -1,18 +1,26 @@
 <template>
   <div
     form="account"
-    class="mx-auto flex flex-col w-[85%] min-w-0 p-24 break-words bg-white border-0 dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
+    class="mx-auto flex flex-col w-[85%] min-w-fit p-12 break-words bg-white border-0 dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
   >
     <ul class="grid flex-wrap gap-2">
       <li v-for="(item, index) in listCall" :key="index" class="w-full">
         <list
           @click="() => nextTicket(item)"
-          :color="`border-${item?.color}-01`"
+          :color="`border-${item?.status.toLowerCase()}`"
           list
         >
-          <div class="">
+          <div class="relative">
+            <div class="grid gap-1">
+              <span
+                class="absolute top-[50%] -left-10 hover:-left-4 h-6 w-6 rounded-full flex items-center justify-center -mt-8"
+                :class="`${item?.status.toLowerCase()}`"
+              >
+                <component :is="item?.icon" class="h-4 w-4 text-white" />
+              </span>
+            </div>
             <div
-              class="flex items-start justify-between gap-2 text-sm text-primary"
+              class="sm:flex grid sm:gap-2 gap-4 items-start justify-between text-sm text-primary"
             >
               <div class="grid gap-1">
                 <span class="font-semibold"> Ticket </span>
@@ -23,7 +31,6 @@
                 <span class="font-semibold"> Status </span>
                 <span class="flex items-center">
                   {{ item?.status }}
-                  <component :is="item?.icon" class="h-4 w-4 text-white" />
                 </span>
               </div>
 
@@ -77,9 +84,5 @@ export default {
 };
 </script>
 
-<style>
-.items:not(:last-child)::after {
-  content: "|";
-  padding-left: 2.5em;
-}
+<style scoped>
 </style>

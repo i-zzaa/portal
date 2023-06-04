@@ -1,12 +1,15 @@
 <template>
   <ul class="flex flex-wrap gap-6 justify-center">
     <li v-for="(item, index) in listCall" :key="index" class="">
-      <ticket @click="() => nextTicket(item)" :color="`${item?.color}-01`">
+      <ticket
+        @click="() => nextTicket(item)"
+        :color="`${item?.status.toLowerCase()}`"
+      >
         <template v-slot:title>
           <div class="grid">
             <span
               class="h-6 w-6 rounded-full flex items-center justify-center -mt-8"
-              :class="`bg-${item?.color}-01`"
+              :class="`${item?.status.toLowerCase()}`"
             >
               <component :is="item?.icon" class="h-4 w-4 text-white" />
             </span>

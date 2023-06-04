@@ -2,9 +2,9 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { createI18n } from "vue-i18n";
 
-import "vue3-toastify/dist/index.css";
-
 import "@/assets/css/main.css";
+
+import "vue3-toastify/dist/index.css";
 
 import router from "@/router";
 import * as pt from "@/i18n/pt.json";

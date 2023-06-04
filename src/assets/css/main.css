@@ -16,8 +16,35 @@
     background-color: #022e49;
     border-radius: 5px;
   }
+
+
   
-
-
-
 }
+
+
+.encerrado {
+  background-color: #22d3ee !important;
+}
+.resolvido {
+  background-color: #34d399 !important;
+}
+.novo {
+  background-color: #22d3ee !important;
+}
+.reaberto {
+  background-color: #fb923c !important;
+}
+
+.border-encerrado {
+  border-color: #22d3ee !important;
+}
+.border-resolvido {
+  border-color: #34d399 !important;
+}
+.border-novo {
+  border-color: #22d3ee !important;
+}
+.border-reaberto {
+  border-color: #fb923c !important;
+}
+  

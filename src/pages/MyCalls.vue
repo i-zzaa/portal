@@ -3,7 +3,7 @@
     <modal
       v-if="showModal"
       @close="showModal = false"
-      :color="`${ticket.color}-01`"
+      :color="`border-${ticket?.status.toLowerCase()}`"
     >
       <template v-slot:title>
         <span class="text-2xl">
@@ -70,11 +70,11 @@ export default {
       return myCalls.listCall.map((item: any) => {
         switch (item.status) {
           case STATUS.reaberto:
-            item.color = "orange";
+            item.color = "border-orange-01";
             item.icon = "PhArrowsClockwise";
             break;
           case STATUS.encerrado:
-            item.color = "blue";
+            item.color = "border-blue-01";
             item.icon = "PhCheck";
             break;
           case STATUS.resolvido:

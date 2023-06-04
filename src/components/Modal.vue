@@ -6,7 +6,7 @@
     <div class="flex items-center">
       <div
         class="bg-white border-t-8 p-4 rounded-lg shadow-md transition-all duration-300"
-        :class="`border-${color}`"
+        :class="`${color}`"
       >
         <div
           class="flex justify-between cursor-pointer gap-24 p-4"

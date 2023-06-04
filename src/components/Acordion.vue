@@ -12,7 +12,7 @@
         <div class="w-full text-left flex gap-2 justify-start">
           <span
             class="h-6 w-6 rounded-full flex items-center justify-center"
-            :class="`bg-${item.color}-01`"
+            :class="`${item?.status.toLowerCase()}`"
           >
             <component :is="item.icon" class="h-4 w-4 text-white" />
           </span>
