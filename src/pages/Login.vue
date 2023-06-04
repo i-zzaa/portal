@@ -28,9 +28,6 @@ import PButton from "@/components/Button.vue";
 export default {
   components: { FormLogin, PButton },
   title: "Login",
-  methods: {
-    submit() {},
-  },
 };
 </script>
 

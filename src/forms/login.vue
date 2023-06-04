@@ -3,15 +3,15 @@
     <div class="bg-logo-01 bg-center bg-contain bg-no-repeat h-20"></div>
     <div class="grid gap-4 mt-8 w-96 mx-auto">
       <field-input
-        label="Email"
-        name="email"
-        type="email"
-        autocomplete="email"
-        id="email"
-        v-model="email"
+        :label="$t('login_input_label')"
+        name="login"
+        type="text"
+        autocomplete="login"
+        id="login"
+        v-model="username"
       />
       <field-input
-        label="Senha"
+        :label="$t('login_password_label')"
         name="password"
         type="password"
         autocomplete="password"
@@ -27,7 +27,7 @@
             >
           </div> -->
 
-      <p-button :label="$t('login_submit')" :onclick="submit" color="primary" />
+      <p-button :label="$t('login_submit')" color="primary" type="submit" />
 
       <div class="mt-4 flex justify-evenly">
         <facebook-login
@@ -59,6 +59,7 @@ import {
   PhGoogleChromeLogo,
   PhMicrosoftOutlookLogo,
 } from "@phosphor-icons/vue";
+import { useAuth } from "@/store/module_login";
 
 import PButton from "@/components/Button.vue";
 import { FieldInput } from "@/components/Filds/index";
@@ -67,7 +68,7 @@ import { FieldInput } from "@/components/Filds/index";
 // import { GoogleAuth } from "google-auth-library";
 // import FacebookLogin from "vue-facebook-login-component";
 
-// import { toast } from "vue3-toastify";
+import { toast } from "vue3-toastify";
 
 export default {
   components: {
@@ -77,16 +78,35 @@ export default {
     PhMicrosoftOutlookLogo,
     FieldInput,
   },
+  setup() {
+    const store = useAuth();
+
+    return {
+      store,
+    };
+  },
   data() {
     return {
       FACEBOOK_ID: "",
-      email: "",
-      password: "",
+      username: "atendimento.prodam",
+      password: "Pr0d@m@2021",
     };
   },
   methods: {
-    submit(e: any) {
-      e.preventDefault();
+    submit() {
+      if (!this.username) {
+        toast.error($t("enum_not_username"));
+        throw new Error($t("enum_not_username"));
+      }
+      if (!this.password) {
+        toast.error($t("enum_not_password"));
+        throw new Error($t("enum_not_password"));
+      }
+
+      this.store.login({
+        username: this.username,
+        password: this.password,
+      });
     },
     auth_outlook() {
       // const config = {
