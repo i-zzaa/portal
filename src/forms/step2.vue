@@ -1,18 +1,8 @@
 <template>
-  <div
-    form="account"
-    class="mx-auto flex flex-col w-3/4 min-w-0 p-4 break-words bg-white border-0 dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
+  <container
+    :title="$t('step2_title')"
+    :detail="$t('step2_title_detail', { catalogo: catalogo?.title })"
   >
-    <div class="flex flex-wrap -mx-3 text-center">
-      <div class="w-10/12 max-w-full px-3 mx-auto [flex:0_0_auto]">
-        <h1 class="text-2xl font-medium m-12 text-title">
-          {{ $t("step2_title") }}
-          <span class="font-light">
-            {{ $t("step2_title_detail", { catalogo: catalogo?.title }) }}</span
-          >
-        </h1>
-      </div>
-    </div>
     <div>
       <div class="flex flex-wrap mt-6 justify-center">
         <ul class="flex flex-wrap gap-6 justify-center">
@@ -42,21 +32,24 @@
         </button>
       </div>
     </div>
-  </div>
+  </container>
 </template>
 
 <script lang="ts">
-import Card from "@/components/Card.vue";
 import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
 import { useHelpDesk } from "@/store/module_helpdesk";
 import { computed } from "vue";
 import { mapActions } from "pinia";
+
+import Container from "@/components/Container.vue";
+import Card from "@/components/Card.vue";
+
 import { useWizard } from "@/store/module_wizard";
 
 const INDEX_STEP = 1;
 
 export default {
-  components: { Card, PhKey, PhShareNetwork, PhFloppyDisk },
+  components: { Container, Card, PhKey, PhShareNetwork, PhFloppyDisk },
   setup() {
     const helpDesk = useHelpDesk();
     const catalogo: any = computed(() => helpDesk.catalogo);

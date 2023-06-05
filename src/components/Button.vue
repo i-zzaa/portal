@@ -15,7 +15,7 @@ export default {
     label: String,
     onclick: Function,
     color: String,
-    type: Record<"submit", "reset", "button", undefined>,
+    type: String,
   },
 };
 </script>

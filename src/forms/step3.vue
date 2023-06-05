@@ -1,16 +1,6 @@
 <template>
   <div class="p-4">
-    <div
-      class="flex flex-col w-2/3 mx-auto py-4 px-8 break-words bg-white dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
-    >
-      <div class="flex flex-wrap -mx-3 text-start">
-        <div class="w-10/12 max-w-full [flex:0_0_auto]">
-          <h1 class="text-3xl font-ligth my-12 text-title">
-            {{ $t("step3_title") }}
-            <span class="font-light"> {{ $t("step3_title_detail") }}</span>
-          </h1>
-        </div>
-      </div>
+    <container :title="$t('step3_title')" :detail="$t('step3_title_detail')">
       <form @submit="submit">
         <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
           <field-select
@@ -134,7 +124,7 @@
           </div>
         </div>
       </form>
-    </div>
+    </container>
   </div>
 </template>
 
@@ -147,6 +137,7 @@ import { toast } from "vue3-toastify";
 
 import { useHelpDesk } from "@/store/module_helpdesk";
 
+import Container from "@/components/Container.vue";
 import Card from "@/components/Card.vue";
 import { FieldInput } from "@/components/Filds/index";
 import { FieldTextarea } from "@/components/Filds/index";
@@ -159,6 +150,7 @@ export default {
     hasButtonPrev: { type: Boolean, default: true },
   },
   components: {
+    Container,
     Card,
     PhKey,
     PhShareNetwork,
