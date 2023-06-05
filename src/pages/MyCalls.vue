@@ -20,6 +20,32 @@
   </transition>
 
   <container :title="$t('call_title')" :detail="$t('call_title_detail')">
+    <template v-slot:header>
+      <div
+        class="w-full ml-auto grid grid-cols-5 items-center justify-center gap-1"
+      >
+        <field-input
+          :label="$t('call_search')"
+          name="search"
+          type="text"
+          autocomplete="search"
+          id="search"
+          v-model="word"
+          :required="false"
+          container-custom="w-full col-span-4"
+          class-custom="border border-gray-04 rounded-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-03 w-full disabled:cursor-no-drop disabled:text-gray-02 text-text"
+        />
+        <div class="col-span-1">
+          <p-button
+            label=""
+            color="primary"
+            type="submit"
+            icon="PhMagnifyingGlass"
+            class-custom="w-8 h-8 rounded-full p-4"
+          />
+        </div>
+      </div>
+    </template>
     <call-cards
       :listCall="listCall"
       :nextTicket="nextTicket"
@@ -40,6 +66,8 @@ import Modal from "@/components/Modal.vue";
 import Acordion from "@/components/Acordion.vue";
 import CallCards from "@/components/CallCards.vue";
 import CallList from "@/components/CallList.vue";
+import { FieldInput } from "@/components/Filds/index";
+import PButton from "@/components/Button.vue";
 
 import { useMyCalls } from "@/store/module_chamados";
 import { STATUS } from "@/constants/utils";
@@ -57,6 +85,8 @@ export default {
     Acordion,
     CallCards,
     CallList,
+    FieldInput,
+    PButton,
   },
   setup() {
     const myCalls = useMyCalls();
@@ -66,19 +96,15 @@ export default {
       return myCalls.listCall.map((item: any) => {
         switch (item.status) {
           case STATUS.reaberto:
-            item.color = "border-orange-01";
             item.icon = "PhArrowsClockwise";
             break;
           case STATUS.encerrado:
-            item.color = "border-blue-01";
             item.icon = "PhCheck";
             break;
           case STATUS.resolvido:
-            item.color = "green";
             item.icon = "PhCheck";
             break;
           case STATUS.novo:
-            item.color = "blue";
             item.icon = "PhTicket";
             break;
           default:
@@ -101,9 +127,14 @@ export default {
         color: "gray",
         detail: [],
       },
+      word: "",
     };
   },
   methods: {
+    search(item: any) {
+      this.ticket = item;
+      this.showModal = true;
+    },
     nextTicket(item: any) {
       this.ticket = item;
       this.showModal = true;
