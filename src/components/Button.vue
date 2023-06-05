@@ -1,6 +1,5 @@
 <template>
   <button
-    :type="type"
     class="flex w-full justify-center items-center rounded-full text-sm font-semibold leading-6 text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     :class="`bg-${color} ${classCustom}`"
     @click="onclick && onclick"
@@ -14,6 +13,10 @@
 <script lang="ts">
 import { PhMagnifyingGlass } from "@phosphor-icons/vue";
 
+export interface ButtonTypeProps {
+  type: string | "button" | "submit" | "reset" | undefined;
+}
+
 export default {
   components: {
     PhMagnifyingGlass,
@@ -22,7 +25,6 @@ export default {
     label: String,
     onclick: Function,
     color: String,
-    type: String,
     icon: String,
     classCustom: { type: String, required: false, default: " px-3 py-1.5" },
   },

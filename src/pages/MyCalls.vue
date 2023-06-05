@@ -124,7 +124,7 @@ export default {
       showModal: false,
       ticket: {
         ticket: "",
-        color: "gray",
+        status: "",
         detail: [],
       },
       word: "",

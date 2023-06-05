@@ -80,7 +80,7 @@ export const useHelpDesk = defineStore("helpDesk", {
         toast.error("Erro ao carregar os serviços!");
       }
     },
-    async setSolicitation(form: SolicitacaoProps) {
+    async setSolicitation(form: SolicitacaoProps | any) {
       try {
         await HelpDeskService.createTicket(form);
         toast.success("Ticket criado com sucesso!");

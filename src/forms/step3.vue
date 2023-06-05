@@ -205,20 +205,20 @@ export default {
     },
     submit() {
       if (!this.form.idCatalog) {
-        toast.error($t("enum.not_catalog"));
-        throw new Error($t("enum.not_catalog"));
+        toast.error(this.$t("enum.not_catalog"));
+        throw new Error(this.$t("enum.not_catalog"));
       }
       if (!this.form.idService) {
-        toast.error($t("enum.not_service"));
-        throw new Error($t("enum.not_service"));
+        toast.error(this.$t("enum.not_service"));
+        throw new Error(this.$t("enum.not_service"));
       }
       if (!this.form.assunto) {
-        toast.error($t("enum.not_title"));
-        throw new Error($t("enum.not_title"));
+        toast.error(this.$t("enum.not_title"));
+        throw new Error(this.$t("enum.not_title"));
       }
       if (!this.form.detahes) {
-        toast.error($t("enum.not_detail"));
-        throw new Error($t("enum.not_detail"));
+        toast.error(this.$t("enum.not_detail"));
+        throw new Error(this.$t("enum.not_detail"));
       }
 
       this.helpDesk.setSolicitation(this.form);
