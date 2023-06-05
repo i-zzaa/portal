@@ -1,105 +1,81 @@
 <template>
   <div class="p-4">
     <div
-      class="flex flex-col w-2/3 mx-auto p-4 break-words bg-white dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
+      class="flex flex-col w-2/3 mx-auto py-4 px-8 break-words bg-white dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
     >
-      <div class="flex flex-wrap -mx-3 text-center">
-        <div class="w-10/12 max-w-full px-3 mx-auto [flex:0_0_auto]">
-          <h1 class="text-2xl font-medium m-12 text-title">
+      <div class="flex flex-wrap -mx-3 text-start">
+        <div class="w-10/12 max-w-full [flex:0_0_auto]">
+          <h1 class="text-3xl font-ligth my-12 text-title">
             {{ $t("step3_title") }}
             <span class="font-light"> {{ $t("step3_title_detail") }}</span>
           </h1>
         </div>
       </div>
       <div>
-        <div class="flex flex-wrap -mx-3 text-left">
-          <div
-            class="w-full max-w-full px-3 mt-4 ml-auto [flex:0_0_auto] md:w-8/12"
-          >
-            <label
-              class="mb-2 ml-1 font-bold text-[.75rem] text-slate-700 dark:text-white/80"
-              for="Street Name"
-              >Street Name</label
-            ><input
-              type="text"
-              name="Street Name"
-              placeholder="Eg. Soft"
-              class="focus:shadow-[0_0_0_2px_#e9aede] dark:bg-grey-950 dark:placeholder:text-white/80 dark:text-white/80 text-[.875rem] leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-grey-700 outline-none transition-all placeholder:text-grey-500 focus:border-[#e293d3] focus:outline-none"
-            />
-          </div>
-          <div
-            class="w-full max-w-full px-3 mt-4 ml-auto [flex:0_0_auto] md:w-4/12"
-          >
-            <label
-              class="mb-2 ml-1 font-bold text-[.75rem] text-slate-700 dark:text-white/80"
-              for="Street No"
-              >Street No</label
-            ><input
-              type="number"
-              name="Street No"
-              min="01"
-              placeholder="Eg 221"
-              class="focus:shadow-[0_0_0_2px_#e9aede] dark:bg-grey-950 dark:placeholder:text-white/80 dark:text-white/80 text-[.875rem] leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-grey-700 outline-none transition-all placeholder:text-grey-500 focus:border-[#e293d3] focus:outline-none"
-            />
-          </div>
-          <div
-            class="w-full max-w-full px-3 mt-4 ml-auto [flex:0_0_auto] md:w-8/12"
-          >
-            <label
-              class="mb-2 ml-1 font-bold text-[.75rem] text-slate-700 dark:text-white/80"
-              for="Street Name"
-              >Street Name</label
-            ><input
-              type="text"
-              name="Street Name"
-              placeholder="Eg. Soft"
-              class="focus:shadow-[0_0_0_2px_#e9aede] dark:bg-grey-950 dark:placeholder:text-white/80 dark:text-white/80 text-[.875rem] leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-grey-700 outline-none transition-all placeholder:text-grey-500 focus:border-[#e293d3] focus:outline-none"
-            />
-          </div>
-          <div
-            class="w-full max-w-full px-3 mt-4 ml-auto [flex:0_0_auto] md:w-4/12"
-          >
-            <label
-              class="mb-2 ml-1 font-bold text-[.75rem] text-slate-700 dark:text-white/80"
-              for="Street No"
-              >Street No</label
-            ><input
-              type="number"
-              name="Street No"
-              min="01"
-              placeholder="Eg 221"
-              class="focus:shadow-[0_0_0_2px_#e9aede] dark:bg-grey-950 dark:placeholder:text-white/80 dark:text-white/80 text-[.875rem] leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-grey-700 outline-none transition-all placeholder:text-grey-500 focus:border-[#e293d3] focus:outline-none"
-            />
-          </div>
-          <div
-            class="w-full max-w-full px-3 mt-4 ml-auto [flex:0_0_auto] md:w-8/12"
-          >
-            <label
-              class="mb-2 ml-1 font-bold text-[.75rem] text-slate-700 dark:text-white/80"
-              for="Street Name"
-              >Street Name</label
-            ><input
-              type="text"
-              name="Street Name"
-              placeholder="Eg. Soft"
-              class="focus:shadow-[0_0_0_2px_#e9aede] dark:bg-grey-950 dark:placeholder:text-white/80 dark:text-white/80 text-[.875rem] leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-grey-700 outline-none transition-all placeholder:text-grey-500 focus:border-[#e293d3] focus:outline-none"
-            />
-          </div>
-          <div
-            class="w-full max-w-full px-3 mt-4 ml-auto [flex:0_0_auto] md:w-4/12"
-          >
-            <label
-              class="mb-2 ml-1 font-bold text-[.75rem] text-slate-700 dark:text-white/80"
-              for="Street No"
-              >Street No</label
-            ><input
-              type="number"
-              name="Street No"
-              min="01"
-              placeholder="Eg 221"
-              class="focus:shadow-[0_0_0_2px_#e9aede] dark:bg-grey-950 dark:placeholder:text-white/80 dark:text-white/80 text-[.875rem] leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-grey-300 bg-white bg-clip-padding px-3 py-2 font-normal text-grey-700 outline-none transition-all placeholder:text-grey-500 focus:border-[#e293d3] focus:outline-none"
-            />
-          </div>
+        <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
+          <field-input
+            :label="$t('step3_input_1')"
+            name="assunto"
+            type="text"
+            autocomplete="assunto"
+            id="assunto"
+            v-model="form.assunto"
+            containerCustom="col-span-6 sm:col-span-6	"
+          />
+          <field-textarea
+            :label="$t('step3_input_2')"
+            name="detahes"
+            type="text"
+            autocomplete="detahes"
+            id="detahes"
+            v-model="form.detahes"
+            containerCustom="col-span-6 sm:col-span-6	"
+          />
+          <field-input
+            :label="$t('step3_input_3')"
+            name="destinatario"
+            type="text"
+            autocomplete="destinatario"
+            id="destinatario"
+            v-model="form.destinatario"
+            containerCustom="col-span-6 sm:col-span-2"
+          />
+          <field-input
+            :label="$t('step3_input_4')"
+            name="telefone"
+            type="text"
+            autocomplete="telefone"
+            id="telefone"
+            v-model="form.telefone"
+            containerCustom="col-span-6 sm:col-span-2"
+          />
+          <field-input
+            :label="$t('step3_input_5')"
+            name="ramal"
+            type="text"
+            autocomplete="ramal"
+            id="ramal"
+            v-model="form.ramal"
+            containerCustom="col-span-6 sm:col-span-2"
+          />
+          <field-input
+            :label="$t('step3_input_6')"
+            name="ip"
+            type="text"
+            autocomplete="ip"
+            id="ip"
+            v-model="form.ip"
+            containerCustom="col-span-6 sm:col-span-3"
+          />
+          <field-input
+            :label="$t('step3_input_7')"
+            name="patrimonio"
+            type="text"
+            autocomplete="patrimonio"
+            id="patrimonio"
+            v-model="form.patrimonio"
+            containerCustom="col-span-6 sm:col-span-3"
+          />
         </div>
         <div class="flex flex-wrap -mx-3">
           <div class="flex w-full max-w-full px-3 mt-6 [flex:0_0_auto]">
@@ -133,16 +109,37 @@ import { computed } from "vue";
 import { mapActions } from "pinia";
 import { useWizard } from "@/store/module_wizard";
 
+import { FieldInput } from "@/components/Filds/index";
+import { FieldTextarea } from "@/components/Filds/index";
+
 const INDEX_STEP = 2;
 
 export default {
-  components: { Card, PhKey, PhShareNetwork, PhFloppyDisk },
+  components: {
+    Card,
+    PhKey,
+    PhShareNetwork,
+    PhFloppyDisk,
+    FieldInput,
+    FieldTextarea,
+  },
   setup() {
     const store = useWizard();
     const steps = computed(() => store.steps);
 
+    const form = {
+      assunto: "",
+      detahes: "",
+      destinatario: "",
+      telefone: "",
+      ramal: "",
+      ip: "",
+      patrimonio: "",
+    };
+
     return {
       steps,
+      form,
     };
   },
   methods: {

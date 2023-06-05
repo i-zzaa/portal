@@ -8,6 +8,7 @@ export default {
         "gray-01": "#fafafb",
         "gray-02": "#9ca3af",
         "gray-03": "#f1f1f1",
+        "gray-04": "#d1d5db",
         "red-01": "#f87171",
         "orange-01": "#fb923c",
         "green-01": "#34d399",

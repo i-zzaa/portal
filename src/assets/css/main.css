@@ -17,13 +17,11 @@
     border-radius: 5px;
   }
 
-
-  
 }
 
 
 .encerrado {
-  background-color: #22d3ee !important;
+  background-color: #d1d5db !important;
 }
 .resolvido {
   background-color: #34d399 !important;
@@ -36,7 +34,7 @@
 }
 
 .border-encerrado {
-  border-color: #22d3ee !important;
+  border-color: #d1d5db !important;
 }
 .border-resolvido {
   border-color: #34d399 !important;

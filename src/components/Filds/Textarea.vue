@@ -15,7 +15,7 @@
       >{{ label }}</label
     >
 
-    <input
+    <textarea
       :id="id"
       :name="name"
       :type="type"
