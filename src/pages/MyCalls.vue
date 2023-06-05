@@ -19,24 +19,14 @@
     </modal>
   </transition>
 
-  <div
-    form="account"
-    class="mx-auto flex flex-col w-[85%] min-w-fit p-12 break-words bg-white border-0 dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
-  >
-    <div class="w-full p-8">
-      <h1 class="text-3xl font-ligth mb-12 text-title">
-        {{ $t("call_title") }}
-        <span class="font-light"> {{ $t("call_title_detail") }}</span>
-      </h1>
-
-      <call-cards
-        :listCall="listCall"
-        :nextTicket="nextTicket"
-        v-if="listCall.lenght < 10"
-      />
-      <call-list :listCall="listCall" :nextTicket="nextTicket" v-else />
-    </div>
-  </div>
+  <container :title="$t('call_title')" :detail="$t('call_title_detail')">
+    <call-cards
+      :listCall="listCall"
+      :nextTicket="nextTicket"
+      v-if="listCall.lenght < 10"
+    />
+    <call-list :listCall="listCall" :nextTicket="nextTicket" v-else />
+  </container>
 </template>
 
 <script lang="ts">
@@ -44,6 +34,7 @@ import { PhArrowsClockwise, PhCheck, PhTicket } from "@phosphor-icons/vue";
 import { RouterView } from "vue-router";
 import { computed } from "vue";
 
+import Container from "@/components/Container.vue";
 import Ticket from "@/components/Ticket.vue";
 import Modal from "@/components/Modal.vue";
 import Acordion from "@/components/Acordion.vue";
@@ -56,6 +47,7 @@ import { STATUS } from "@/constants/utils";
 export default {
   title: "Meus Chamados",
   components: {
+    Container,
     Ticket,
     PhCheck,
     PhTicket,
