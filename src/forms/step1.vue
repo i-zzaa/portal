@@ -53,6 +53,7 @@ export default {
       currentStep,
       steps,
       listCatalogs,
+      helpDesk,
     };
   },
   methods: {

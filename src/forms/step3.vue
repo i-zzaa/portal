@@ -12,7 +12,10 @@
         </div>
       </div>
       <div>
-        <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
+        <form
+          class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left"
+          @submit="submit"
+        >
           <field-select
             :label="$t('step3_select_1')"
             name="assunto"
@@ -25,6 +28,7 @@
             label-index="title"
             index="id"
             :onchange="onchange"
+            :required="true"
           />
           <field-select
             :label="$t('step3_select_2')"
@@ -39,6 +43,7 @@
             index="id"
             :onchange="() => {}"
             :disabled="!form.idCatalog"
+            :required="true"
           />
           <field-input
             :label="$t('step3_input_1')"
@@ -48,6 +53,7 @@
             id="assunto"
             v-model="form.assunto"
             containerCustom="col-span-6 sm:col-span-6	"
+            :required="true"
           />
           <field-textarea
             :label="$t('step3_input_2')"
@@ -57,6 +63,7 @@
             id="detahes"
             v-model="form.detahes"
             containerCustom="col-span-6 sm:col-span-6	"
+            :required="true"
           />
           <field-input
             :label="$t('step3_input_3')"
@@ -66,6 +73,7 @@
             id="destinatario"
             v-model="form.destinatario"
             containerCustom="col-span-6 sm:col-span-2"
+            :disabled="true"
           />
           <field-input
             :label="$t('step3_input_4')"
@@ -75,6 +83,7 @@
             id="telefone"
             v-model="form.telefone"
             containerCustom="col-span-6 sm:col-span-2"
+            :required="true"
           />
           <field-input
             :label="$t('step3_input_5')"
@@ -84,6 +93,7 @@
             id="ramal"
             v-model="form.ramal"
             containerCustom="col-span-6 sm:col-span-2"
+            :required="true"
           />
           <field-input
             :label="$t('step3_input_6')"
@@ -93,6 +103,7 @@
             id="ip"
             v-model="form.ip"
             containerCustom="col-span-6 sm:col-span-3"
+            :disabled="true"
           />
           <field-input
             :label="$t('step3_input_7')"
@@ -102,13 +113,14 @@
             id="patrimonio"
             v-model="form.patrimonio"
             containerCustom="col-span-6 sm:col-span-3"
+            :required="true"
           />
-        </div>
+        </form>
         <div class="flex flex-wrap -mx-3">
           <div class="flex w-full max-w-full px-3 mt-6 [flex:0_0_auto]">
             <button
               type="button"
-              @click="() => nextTicket()"
+              @click="() => prevTicket()"
               class="inline-block px-6 py-3 mb-0 font-bold text-right uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs bg-gradient-to-tl from-[#ced4da] to-[#ebeff4] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25 text-[#3a416f]"
             >
               {{ $t("ENUM.btn_prev") }}
@@ -132,7 +144,7 @@
 import Card from "@/components/Card.vue";
 import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
 import { useHelpDesk } from "@/store/module_helpdesk";
-import { computed } from "vue";
+import { computed, reactive } from "vue";
 import { mapActions } from "pinia";
 import { useWizard } from "@/store/module_wizard";
 
@@ -158,21 +170,19 @@ export default {
 
     const helpDesk = useHelpDesk();
     helpDesk.getCatalogo();
+    helpDesk.getNetWork();
+    const solicitacao = computed(() => helpDesk.solicitacao);
+
+    helpDesk.setSolicitacao({
+      ...solicitacao.value,
+    });
 
     const listCatalogs = computed(() => helpDesk.listCatalogs);
     const listServices = computed(() => helpDesk.listServices);
 
-    const form = {
-      idCatalog: "",
-      idService: "",
-      assunto: "",
-      detahes: "",
-      destinatario: "",
-      telefone: "",
-      ramal: "",
-      ip: "",
-      patrimonio: "",
-    };
+    const form = reactive({
+      ...helpDesk.solicitacao,
+    });
 
     return {
       steps,
@@ -186,7 +196,7 @@ export default {
     ...mapActions(useWizard, ["setStep"]),
     ...mapActions(useHelpDesk, ["updateStep"]),
 
-    nextTicket() {
+    prevTicket() {
       const step = { ...this.steps[INDEX_STEP] };
       step.status = this.$t("ENUM.none");
       this.updateStep(INDEX_STEP, step);
@@ -195,9 +205,10 @@ export default {
     },
     onchange(e: any) {
       e.preventDefault();
-      this.helpDesk.getService(this.form.idCatalog);
+      this.helpDesk.getService(Number(this.form.idCatalog));
       this.form.idService = "";
     },
+    submit() {},
   },
 };
 </script>

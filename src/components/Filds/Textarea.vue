@@ -26,6 +26,7 @@
       @focus="isFocused = true"
       @blur="isFocused = false"
       :disabled="disabled"
+      :required="required"
     />
   </div>
 </template>
@@ -48,6 +49,8 @@ export default {
     classLabel: String,
     containerCustom: String,
     autocomplete: String,
+    required: Boolean,
+
     modelValue: {
       type: [String, Number],
       required: true,

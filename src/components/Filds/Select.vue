@@ -26,6 +26,7 @@
       @focus="isFocused = true"
       @blur="isFocused = false"
       :disabled="disabled"
+      :required="required"
     >
       <option v-for="option in options" :value="option[index] || option">
         {{ option[labelIndex] }}
@@ -51,6 +52,8 @@ export default {
     classLabel: String,
     containerCustom: String,
     autocomplete: String,
+    required: Boolean,
+
     modelValue: {
       type: [String, Number],
       required: true,

@@ -19,8 +19,8 @@ export const useAuth = defineStore("user", {
         const { data }: any = await AuthService.signIn(form);
         this.user = data;
       } catch (error) {
-        console.log("module_catalogo - getCatalogo - ", error);
-        toast.error("Erro ao carregar os catálogos!");
+        console.log("module_login - login - ", error);
+        toast.error("Erro ao efetuar o login!");
       }
     },
     logout() {},

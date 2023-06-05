@@ -18,6 +18,7 @@ export default {
         "primary-opacity": "#022e49c9",
         secondary: "#022e49",
         title: "#344767",
+        text: "#3f3f46",
         facebook: "#1877f2",
         google: "#ef4444",
         microsoft: "#84cc16",

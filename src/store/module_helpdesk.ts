@@ -1,4 +1,3 @@
-import CatalogService from "@/services/CatalogService";
 import HelpDeskService from "@/services/HelpDeskService";
 import { defineStore } from "pinia";
 
@@ -14,7 +13,17 @@ export const useHelpDesk = defineStore("helpDesk", {
   state: () => ({
     catalogo: "",
     servico: "",
-    solicitacao: "",
+    solicitacao: {
+      idCatalog: "",
+      idService: "",
+      assunto: "",
+      detahes: "",
+      destinatario: "atendimento-prodam@ios.com.br",
+      telefone: "",
+      ramal: "",
+      ip: "",
+      patrimonio: "",
+    },
     listCatalogs: [],
     listServices: [],
     steps: [
@@ -36,16 +45,30 @@ export const useHelpDesk = defineStore("helpDesk", {
   actions: {
     setCatalog(params: any) {
       this.catalogo = params;
+      this.solicitacao.idCatalog = params.id;
     },
     updateStep(index: number, item: any) {
       this.steps[index] = item;
     },
     setService(params: any) {
       this.servico = params;
+      this.solicitacao.idService = params.id;
+    },
+    setSolicitacao(params: any) {
+      this.solicitacao = params;
+    },
+    async getNetWork() {
+      try {
+        const { data }: any = await HelpDeskService.getNetwork();
+        this.solicitacao.ip = data;
+      } catch (error) {
+        console.log("module_catalogo - getCatalogo - ", error);
+        toast.error("Erro ao carregar os catálogos!");
+      }
     },
     async getCatalogo() {
       try {
-        const { data }: any = await CatalogService.get();
+        const { data }: any = await HelpDeskService.getCatalog();
         this.listCatalogs = data;
       } catch (error) {
         console.log("module_catalogo - getCatalogo - ", error);
@@ -54,7 +77,7 @@ export const useHelpDesk = defineStore("helpDesk", {
     },
     async getService(idCatalog: number) {
       try {
-        const { data } = await HelpDeskService.get(idCatalog);
+        const { data } = await HelpDeskService.getService(idCatalog);
 
         this.listServices = data;
       } catch (error) {
