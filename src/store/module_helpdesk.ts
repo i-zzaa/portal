@@ -1,13 +1,8 @@
 import HelpDeskService from "@/services/HelpDeskService";
+import { SolicitacaoProps } from "@/types/helpdesk";
 import { defineStore } from "pinia";
 
 import { toast } from "vue3-toastify";
-
-export interface CatalogProps {
-  icon: string;
-  title: string;
-  description: string;
-}
 
 export const useHelpDesk = defineStore("helpDesk", {
   state: () => ({
@@ -85,10 +80,10 @@ export const useHelpDesk = defineStore("helpDesk", {
         toast.error("Erro ao carregar os serviços!");
       }
     },
-    async setSolicitation() {
+    async setSolicitation(form: SolicitacaoProps) {
       try {
-        // const { data }: any = await CatalogService.get();
-        // this.listCatalogs = data;
+        await HelpDeskService.createTicket(form);
+        toast.success("Ticket criado com sucesso!");
       } catch (error) {
         console.log("module_catalogo - setSolicitation - ", error);
         toast.error("Erro ao enviar a solicitação!");

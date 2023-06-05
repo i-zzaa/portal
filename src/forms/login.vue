@@ -95,12 +95,12 @@ export default {
   methods: {
     submit() {
       if (!this.username) {
-        toast.error($t("enum_not_username"));
-        throw new Error($t("enum_not_username"));
+        toast.error($t("enum.not_username"));
+        throw new Error($t("enum.not_username"));
       }
       if (!this.password) {
-        toast.error($t("enum_not_password"));
-        throw new Error($t("enum_not_password"));
+        toast.error($t("enum.not_password"));
+        throw new Error($t("enum.not_password"));
       }
 
       this.store.login({

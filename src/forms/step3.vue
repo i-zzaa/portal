@@ -11,11 +11,8 @@
           </h1>
         </div>
       </div>
-      <div>
-        <form
-          class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left"
-          @submit="submit"
-        >
+      <form @submit="submit">
+        <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
           <field-select
             :label="$t('step3_select_1')"
             name="assunto"
@@ -83,7 +80,7 @@
             id="telefone"
             v-model="form.telefone"
             containerCustom="col-span-6 sm:col-span-2"
-            :required="true"
+            :required="false"
           />
           <field-input
             :label="$t('step3_input_5')"
@@ -93,7 +90,7 @@
             id="ramal"
             v-model="form.ramal"
             containerCustom="col-span-6 sm:col-span-2"
-            :required="true"
+            :required="false"
           />
           <field-input
             :label="$t('step3_input_6')"
@@ -113,9 +110,9 @@
             id="patrimonio"
             v-model="form.patrimonio"
             containerCustom="col-span-6 sm:col-span-3"
-            :required="true"
+            :required="false"
           />
-        </form>
+        </div>
         <div class="flex flex-wrap -mx-3">
           <div class="flex w-full max-w-full px-3 mt-6 [flex:0_0_auto]">
             <button
@@ -127,7 +124,7 @@
               {{ $t("ENUM.btn_prev") }}
             </button>
             <button
-              type="button"
+              type="submit"
               send-form-btn=""
               href="javascript:;"
               class="inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-[#141727] to-[#3a416f] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25"
@@ -136,19 +133,21 @@
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Card from "@/components/Card.vue";
 import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
-import { useHelpDesk } from "@/store/module_helpdesk";
 import { computed, reactive } from "vue";
 import { mapActions } from "pinia";
 import { useWizard } from "@/store/module_wizard";
+import { toast } from "vue3-toastify";
 
+import { useHelpDesk } from "@/store/module_helpdesk";
+
+import Card from "@/components/Card.vue";
 import { FieldInput } from "@/components/Filds/index";
 import { FieldTextarea } from "@/components/Filds/index";
 import { FieldSelect } from "@/components/Filds/index";
@@ -212,7 +211,26 @@ export default {
       this.helpDesk.getService(Number(this.form.idCatalog));
       this.form.idService = "";
     },
-    submit() {},
+    submit() {
+      if (!this.form.idCatalog) {
+        toast.error($t("enum.not_catalog"));
+        throw new Error($t("enum.not_catalog"));
+      }
+      if (!this.form.idService) {
+        toast.error($t("enum.not_service"));
+        throw new Error($t("enum.not_service"));
+      }
+      if (!this.form.assunto) {
+        toast.error($t("enum.not_title"));
+        throw new Error($t("enum.not_title"));
+      }
+      if (!this.form.detahes) {
+        toast.error($t("enum.not_detail"));
+        throw new Error($t("enum.not_detail"));
+      }
+
+      this.helpDesk.setSolicitation(this.form);
+    },
   },
 };
 </script>
