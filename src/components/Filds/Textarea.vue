@@ -25,6 +25,7 @@
       @input="(event: any)=> $emit('update:modelValue', event.target.value)"
       @focus="isFocused = true"
       @blur="isFocused = false"
+      :disabled="disabled"
     />
   </div>
 </template>
@@ -37,11 +38,12 @@ export default {
     type: String,
     name: String,
     id: String,
+    disabled: Boolean,
     classCustom: {
       type: String,
       required: false,
       default:
-        "border border-gray-04 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-03 w-full",
+        "border border-gray-04 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-03 w-full disabled:cursor-no-drop",
     },
     classLabel: String,
     containerCustom: String,

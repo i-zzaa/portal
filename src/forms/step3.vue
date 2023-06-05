@@ -13,6 +13,33 @@
       </div>
       <div>
         <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
+          <field-select
+            :label="$t('step3_select_1')"
+            name="assunto"
+            type="text"
+            autocomplete="assunto"
+            id="assunto"
+            v-model="form.idCatalog"
+            containerCustom="col-span-6 sm:col-span-3	"
+            :options="listCatalogs"
+            label-index="title"
+            index="id"
+            :onchange="onchange"
+          />
+          <field-select
+            :label="$t('step3_select_2')"
+            name="assunto"
+            type="text"
+            autocomplete="assunto"
+            id="assunto"
+            v-model="form.idService"
+            containerCustom="col-span-6 sm:col-span-3	"
+            :options="listServices"
+            label-index="title"
+            index="id"
+            :onchange="() => {}"
+            :disabled="!form.idCatalog"
+          />
           <field-input
             :label="$t('step3_input_1')"
             name="assunto"
@@ -111,6 +138,7 @@ import { useWizard } from "@/store/module_wizard";
 
 import { FieldInput } from "@/components/Filds/index";
 import { FieldTextarea } from "@/components/Filds/index";
+import { FieldSelect } from "@/components/Filds/index";
 
 const INDEX_STEP = 2;
 
@@ -122,12 +150,21 @@ export default {
     PhFloppyDisk,
     FieldInput,
     FieldTextarea,
+    FieldSelect,
   },
   setup() {
     const store = useWizard();
     const steps = computed(() => store.steps);
 
+    const helpDesk = useHelpDesk();
+    helpDesk.getCatalogo();
+
+    const listCatalogs = computed(() => helpDesk.listCatalogs);
+    const listServices = computed(() => helpDesk.listServices);
+
     const form = {
+      idCatalog: "",
+      idService: "",
       assunto: "",
       detahes: "",
       destinatario: "",
@@ -140,6 +177,9 @@ export default {
     return {
       steps,
       form,
+      helpDesk,
+      listCatalogs,
+      listServices,
     };
   },
   methods: {
@@ -152,6 +192,11 @@ export default {
       this.updateStep(INDEX_STEP, step);
 
       this.setStep(1);
+    },
+    onchange(e: any) {
+      e.preventDefault();
+      this.helpDesk.getService(this.form.idCatalog);
+      this.form.idService = "";
     },
   },
 };

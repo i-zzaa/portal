@@ -5,28 +5,32 @@
       :for="id"
       class="absolute left-3 top-2 transition-all duration-300 ease-in-out text-gray-02"
       :class="{
-        'text-blue-500': isFocused || modelValue,
-        'left-3': isFocused || modelValue,
-        'top-[-1rem]': isFocused || modelValue,
-        'text-xs': isFocused || modelValue,
+        'text-blue-500': isFocused || !!modelValue,
+        'left-3': isFocused || !!modelValue,
+        'top-[-1rem]': isFocused || !!modelValue,
+        'text-xs': isFocused || !!modelValue,
         classLabel,
       }"
       id="meuLabel"
       >{{ label }}</label
     >
 
-    <input
+    <select
       :id="id"
       :name="name"
       :type="type"
       :autocomplete="autocomplete"
       :value="modelValue"
       :class="classCustom"
-      @input="(event: any)=> $emit('update:modelValue', event.target.value)"
+      @change="handleClange"
       @focus="isFocused = true"
       @blur="isFocused = false"
       :disabled="disabled"
-    />
+    >
+      <option v-for="option in options" :value="option[index] || option">
+        {{ option[labelIndex] }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -47,16 +51,27 @@ export default {
     classLabel: String,
     containerCustom: String,
     autocomplete: String,
-    disabled: Boolean,
     modelValue: {
       type: [String, Number],
       required: true,
     },
+    options: { type: Array<any>, required: true, default: [] },
+    index: { type: String, required: false, default: "value" },
+    labelIndex: { type: String, required: false, default: "label" },
+    onchange: Function,
+    disabled: Boolean,
   },
   data() {
     return {
       isFocused: false,
     };
+  },
+  methods: {
+    handleClange(event: any) {
+      this.$emit("update:modelValue", event.target.value);
+
+      this.onchange && this.onchange(event);
+    },
   },
 };
 </script>
