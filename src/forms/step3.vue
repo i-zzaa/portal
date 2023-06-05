@@ -119,6 +119,7 @@
         <div class="flex flex-wrap -mx-3">
           <div class="flex w-full max-w-full px-3 mt-6 [flex:0_0_auto]">
             <button
+              v-if="hasButtonPrev"
               type="button"
               @click="() => prevTicket()"
               class="inline-block px-6 py-3 mb-0 font-bold text-right uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs bg-gradient-to-tl from-[#ced4da] to-[#ebeff4] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25 text-[#3a416f]"
@@ -155,6 +156,9 @@ import { FieldSelect } from "@/components/Filds/index";
 const INDEX_STEP = 2;
 
 export default {
+  props: {
+    hasButtonPrev: { type: Boolean, default: true },
+  },
   components: {
     Card,
     PhKey,

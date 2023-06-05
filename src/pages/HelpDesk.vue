@@ -1,6 +1,6 @@
 <template>
   <div class="w-full max-w-full px-3 text-center [flex:0_0_auto]">
-    <Step3 />
+    <Step3 :hasButtonPrev="false" />
   </div>
 </template>
 
