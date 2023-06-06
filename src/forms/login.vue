@@ -93,7 +93,8 @@ export default {
     };
   },
   methods: {
-    submit() {
+    submit(e: any) {
+      e.preventDefault();
       if (!this.username) {
         toast.error(this.$t("enum.not_username"));
         throw new Error(this.$t("enum.not_username"));
@@ -107,6 +108,10 @@ export default {
         username: this.username,
         password: this.password,
       });
+
+      if (this.store.isLoggedIn) {
+        this.$router.push("home");
+      }
     },
     auth_outlook() {
       // const config = {

@@ -4,11 +4,13 @@ import { defineStore } from "pinia";
 import { toast } from "vue3-toastify";
 
 const token = localStorage.getItem("token") || null;
+const user = localStorage.getItem("user") || null;
+
 export const useAuth = defineStore("user", {
   state: () => ({
     name: "",
     token: token,
-    user: "",
+    user: user,
   }),
   getters: {
     isLoggedIn: (state) => !!state.token,
@@ -17,7 +19,16 @@ export const useAuth = defineStore("user", {
     async login(form: UserRequest) {
       try {
         const { data }: any = await AuthService.signIn(form);
-        this.user = data;
+        if (!data.token) {
+          toast.error("Erro ao efetuar o login!");
+          throw new Error("Erro ao efetuar o login!");
+        }
+        this.token = data.token;
+        this.user = data.user;
+        sessionStorage.setItem("token", JSON.stringify(this.token));
+        sessionStorage.setItem("user", JSON.stringify(this.user));
+
+        return true;
       } catch (error) {
         console.log("module_login - login - ", error);
         toast.error("Erro ao efetuar o login!");

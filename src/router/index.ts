@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 // import { useAuth } from "@/store/module_login";
 import PNav from "@/components/Nav.vue";
 import PFooter from "@/components/Footer.vue";
+import { useAuth } from "@/store/module_login";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,21 +50,21 @@ const router = createRouter({
   ],
 });
 
-// router.beforeEach((to, from, next) => {
-//   const store = useAuth();
-//   const loggedIn = store.isLoggedIn;
+router.beforeEach((to, from, next) => {
+  const store = useAuth();
+  const loggedIn = store.isLoggedIn;
 
-//   if (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) {
-//     next({
-//       name: "login",
-//       query: { redirect: to.fullPath },
-//     });
+  if (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) {
+    next({
+      name: "login",
+      query: { redirect: to.fullPath },
+    });
 
-//     store.logout();
-//     next("/login-2");
-//   } else {
-//     next();
-//   }
-// });
+    store.logout();
+    next("/login");
+  } else {
+    next();
+  }
+});
 
 export default router;

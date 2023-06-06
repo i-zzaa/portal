@@ -3,6 +3,6 @@ import { UserRequest } from "@/types/user";
 
 export default {
   async signIn(credentials: UserRequest) {
-    return Auth().post("login", credentials);
+    return await Auth().post("login", credentials);
   },
 };
