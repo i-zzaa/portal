@@ -19,7 +19,9 @@ export default () => {
 
   const token = sessionStorage.getItem("token");
   if (token) {
-    axiosInstance.defaults.headers.common.AUTHENTICATION = `Bearer ${token}`;
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${JSON.parse(
+      token
+    )}`;
   }
 
   // axiosInstance.interceptors.response.use(
