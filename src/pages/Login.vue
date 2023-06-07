@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-white grid p-4 items-center col-span-2">
+    <div class="bg-white grid p-4 items-center sm:col-span-2 col-span-3">
       <form-login />
     </div>
 

@@ -1,7 +1,7 @@
 <template>
   <form class="p-8" @submit="submit">
     <div class="bg-logo-01 bg-center bg-contain bg-no-repeat h-20"></div>
-    <div class="grid gap-4 mt-8 w-96 mx-auto">
+    <div class="grid gap-4 mt-8 sm:w-96 w-[95%] mx-auto">
       <field-input
         :label="$t('login_input_label')"
         name="login"

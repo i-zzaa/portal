@@ -29,7 +29,7 @@
   </nav>
 
   <header
-    class="sm:hidden relative before:content-center before:fixed before:top-[-100px] before:right-[-5rem] before:w-[200px] before:h-[200px] before:bg-primary before:rounded-full duration-700"
+    class="sm:hidden relative before:content-center before:fixed before:top-[-100px] before:right-[-5rem] before:w-[200px] before:h-[200px] before:bg-primary before:rounded-full duration-700 before:z-2"
     :class="{
       'before:bg-primary': !menuHamburguerActive,
       'before:bg-primary-opacity': menuHamburguerActive,
@@ -38,14 +38,14 @@
     <label for="menuCheck" class="menu-icon cursor-pointer p-2 rounded-md">
       <ph-list
         :size="35"
-        class="absolute right-4 top-[35%] cursor-pointer text-white active:scale-125 duration-700"
+        class="absolute right-4 top-[35%] cursor-pointer text-white active:scale-125 duration-700 before:z-2"
         @click="menuHamburguerActive = true"
         v-if="!menuHamburguerActive"
       />
 
       <ph-x
         :size="35"
-        class="absolute right-4 top-4 cursor-pointer text-white active:-scale-125 duration-700 z-[999]"
+        class="absolute right-4 top-4 cursor-pointer text-white active:-scale-125 duration-700 z-[999] before:z-2"
         @click="menuHamburguerActive = false"
         v-else
       />
@@ -59,7 +59,8 @@
           'left-[50%]': menuHamburguerActive,
           'transform-translate': menuHamburguerActive,
           'z-[998]': menuHamburguerActive,
-          'p-[20rem]': menuHamburguerActive,
+          'px-[10rem]': menuHamburguerActive,
+          'py-[20rem]': menuHamburguerActive,
         }"
         v-if="menuHamburguerActive"
       >

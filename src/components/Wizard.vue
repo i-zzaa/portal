@@ -39,7 +39,7 @@
       </div>
       <div class="flex flex-wrap -mx-3">
         <div class="w-full max-w-full px-3 m-auto [flex:0_0_auto]">
-          <form class="relative mb-32" style="height: 423px">
+          <form class="relative mb-32">
             <div v-for="(component, index) in components">
               <component :is="component" v-if="currentStep === index" />
             </div>

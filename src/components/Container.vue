@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col w-2/3 mx-auto py-4 px-8 break-words bg-white dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border"
+    class="flex flex-col sm:w-2/3 w-full mx-auto py-4 px-8 break-words bg-white dark:bg-grey-950 dark:shadow-dark-xl shadow-xl rounded-2xl bg-clip-border z-0"
   >
     <div class="flex flex-wrap -mx-3 text-start">
       <div class="w-full grid sm:grid-cols-3 sm:justify-between">
