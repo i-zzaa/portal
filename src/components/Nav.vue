@@ -123,7 +123,7 @@ export default {
   data() {
     return {
       routesCurrent: [
-        { label: "início", icon: "PhHouse", to: "/home" },
+        { label: "início", icon: "PhHouse", to: "/" },
         {
           label: "Solicite um atendimento",
           icon: "PhTicket",

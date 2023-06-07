@@ -27,7 +27,7 @@
             >
           </div> -->
 
-      <p-button :label="$t('login_submit')" color="primary" type="submit" />
+      <p-button :label="$t('login_submit')" type="submit" />
 
       <div class="mt-4 flex justify-evenly">
         <facebook-login
@@ -69,7 +69,6 @@ import { FieldInput } from "@/components/Filds/index";
 // import FacebookLogin from "vue-facebook-login-component";
 
 import { toast } from "vue3-toastify";
-import { computed } from "vue";
 import { mapState } from "pinia";
 
 export default {

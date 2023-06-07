@@ -1,5 +1,5 @@
 <template>
-  <div class="relative mb-2" :class="containerCustom">
+  <div class="relative" :class="containerCustom">
     <label
       v-if="label"
       :for="id"
@@ -43,7 +43,7 @@ export default {
       type: String,
       required: false,
       default:
-        "border border-gray-04 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-03 w-full disabled:cursor-no-drop disabled:text-gray-02 text-text",
+        "border border-gray-04 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-03 w-full disabled:cursor-no-drop disabled:text-gray-02 text-text mb-2",
     },
     classLabel: String,
     containerCustom: String,
