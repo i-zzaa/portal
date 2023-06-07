@@ -89,7 +89,7 @@ export default {
   data() {
     return {
       FACEBOOK_ID: "",
-      username: "root@localhost",
+      username: "root.localhost",
       password: "123456",
     };
   },
