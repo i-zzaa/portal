@@ -89,8 +89,8 @@ export default {
   data() {
     return {
       FACEBOOK_ID: "",
-      username: "atendimento.prodam",
-      password: "Pr0d@m@2021",
+      username: "root@localhost",
+      password: "123456",
     };
   },
   computed: {
