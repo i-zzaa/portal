@@ -1,7 +1,7 @@
-import axios from "axios";
+import Api from "./Api";
 
 export default {
   async getCalls() {
-    return axios.get("ticket");
+    return Api().get("ticket");
   },
 };
