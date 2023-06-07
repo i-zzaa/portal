@@ -62,8 +62,6 @@ router.beforeEach((to, from, next) => {
       break;
 
     default:
-      console.log(loggedIn);
-
       next();
       break;
   }
