@@ -166,6 +166,7 @@ export default {
     const helpDesk = useHelpDesk();
     helpDesk.getCatalogo();
     helpDesk.getNetWork();
+
     const solicitacao = computed(() => helpDesk.solicitacao);
 
     helpDesk.setSolicitacao({

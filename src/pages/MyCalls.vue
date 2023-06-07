@@ -22,6 +22,7 @@
           :label="$t('open_ticket')"
           :color="STATUS.reaberto.toLowerCase()"
           type="submit"
+          @click="$router.push('help-desk')"
         />
       </template>
     </modal>
