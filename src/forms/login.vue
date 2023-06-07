@@ -110,7 +110,7 @@ export default {
       });
 
       if (this.store.isLoggedIn) {
-        this.$router.push("home");
+        this.$router.push("/");
       }
     },
     auth_outlook() {

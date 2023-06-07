@@ -34,6 +34,11 @@ export const useAuth = defineStore("user", {
         toast.error("Erro ao efetuar o login!");
       }
     },
-    logout() {},
+    logout() {
+      this.user = null;
+      this.token = null;
+
+      sessionStorage.clear();
+    },
   },
 });

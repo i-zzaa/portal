@@ -8,24 +8,20 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/:catchAll(.*)",
-      redirect: "/login",
-    },
-    {
       path: "/login",
       name: "login",
       component: () => import("@/pages/Login.vue"),
       meta: { title: "Login" },
     },
     {
-      path: "/home",
+      path: "/",
       name: "Home",
       components: {
         PNav,
         default: () => import("@/pages/Home.vue"),
         PFooter,
       },
-      meta: { title: "Home" },
+      meta: { title: "Home", requiresAuth: true },
     },
     {
       path: "/help-desk",
@@ -35,7 +31,7 @@ const router = createRouter({
         default: () => import("@/pages/HelpDesk.vue"),
         PFooter,
       },
-      meta: { title: "Help Desk" },
+      meta: { title: "Help Desk", requiresAuth: true },
     },
     {
       path: "/meus-chamados",
@@ -45,25 +41,31 @@ const router = createRouter({
         default: () => import("@/pages/MyCalls.vue"),
         PFooter,
       },
-      meta: { title: "Meus Chamados" },
+      meta: { title: "Meus Chamados", requiresAuth: true },
     },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   const store = useAuth();
+
   const loggedIn = store.isLoggedIn;
 
-  if (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) {
-    next({
-      name: "login",
-      query: { redirect: to.fullPath },
-    });
+  switch (true) {
+    case (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) ||
+      (router.resolve(to.path).matched.length === 0 && !loggedIn):
+      store.logout();
+      next("/login");
+      break;
+    case router.resolve(to.path).matched.length === 0 && loggedIn:
+      next("/");
+      break;
 
-    store.logout();
-    next("/login");
-  } else {
-    next();
+    default:
+      console.log(loggedIn);
+
+      next();
+      break;
   }
 });
 
