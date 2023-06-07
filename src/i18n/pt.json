@@ -1,5 +1,5 @@
 {
-  "login_text": " Empresa de Tecnologia da Informação e \n\n Comunicação do Município de São Paulo",
+  "login_text": "Portal de Serviços i9atach - Empresa de Tecnologia da Informação e Comunicação",
   "login_input_label": "Login",
   "login_password_label": "Senha",
   "login_submit": "Entrar",
@@ -23,9 +23,9 @@
   "call_title": "Meus Chamados",
   "call_search": "Pesquisar",
   "call_title_detail": "",
-  "footer_location": "Portal de Serviços i9atach - Empresa de Tecnologia da Informação e Comunicação",
-  "footer_tel": "Telefone: 61 3246-6340",
-  "footer_email": "atendimento-prodam@ios.com.br",
+  "footer_location": "Setor Comercial Sul, Quadra 6, Edifício Arnaldo Villares, Sala 504",
+  "footer_tel": "Telefone: 61 4063-9886",
+  "footer_email": "crm@i9atech.com",
   "error_login_outlook": "Erro ao realizar o login!",
   "open_ticket": "Reabrir",
   "ENUM": {
