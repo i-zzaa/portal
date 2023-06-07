@@ -69,6 +69,8 @@ import { FieldInput } from "@/components/Filds/index";
 // import FacebookLogin from "vue-facebook-login-component";
 
 import { toast } from "vue3-toastify";
+import { computed } from "vue";
+import { mapState } from "pinia";
 
 export default {
   components: {
@@ -92,8 +94,11 @@ export default {
       password: "Pr0d@m@2021",
     };
   },
+  computed: {
+    ...mapState(useAuth, ["isLoggedIn"]),
+  },
   methods: {
-    submit(e: any) {
+    async submit(e: any) {
       e.preventDefault();
       if (!this.username) {
         toast.error(this.$t("enum.not_username"));
@@ -104,12 +109,12 @@ export default {
         throw new Error(this.$t("enum.not_password"));
       }
 
-      this.store.login({
+      await this.store.login({
         username: this.username,
         password: this.password,
       });
 
-      if (this.store.isLoggedIn) {
+      if (this.isLoggedIn) {
         this.$router.push("/");
       }
     },

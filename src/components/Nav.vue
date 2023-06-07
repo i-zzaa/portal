@@ -79,6 +79,13 @@
             >{{ item.label.toUpperCase() }}</RouterLink
           >
         </li>
+        <li
+          class="flex items-center justify-center gap-2 mt-48 hover:opacity-70 hover:cursor-pointer hover:scale-105"
+          @click="handleLogout"
+        >
+          {{ $t("ENUM.logout") }}
+          <ph-sign-out :size="20" class="text-right text-white" />
+        </li>
       </ul>
     </div>
   </header>
@@ -94,6 +101,8 @@ import {
   PhList,
   PhX,
 } from "@phosphor-icons/vue";
+import { mapActions } from "pinia";
+import { useAuth } from "@/store/module_login";
 
 export default {
   components: {
@@ -124,6 +133,14 @@ export default {
       ],
       menuHamburguerActive: false,
     };
+  },
+  methods: {
+    ...mapActions(useAuth, ["logout"]),
+    handleLogout() {
+      this.$router.push("/login");
+      this.menuHamburguerActive = false;
+      this.logout();
+    },
   },
 };
 </script>

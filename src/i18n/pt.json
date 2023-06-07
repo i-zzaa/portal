@@ -28,6 +28,7 @@
   "footer_email": "atendimento-prodam@ios.com.br",
   "error_login_outlook": "Erro ao realizar o login!",
   "ENUM": {
+    "logout": "Sair",
     "success": "success",
     "none": "none",
     "error": "error",
