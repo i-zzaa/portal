@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in list"
       :key="index"
-      class="bg-white dark:bg-slate-800 bg-clip-borde rounded-lg px-2 py-1 ring-1 ring-slate-900/5 hover:shadow-lg hover:cursor-pointer hover:scale-110 duration-700"
+      class="bg-white bg-clip-borde rounded-lg px-2 py-1 ring-1 ring-slate-900/5 hover:shadow-lg hover:cursor-pointer hover:scale-110 duration-700"
     >
       <button
         @click="toggle(index)"
