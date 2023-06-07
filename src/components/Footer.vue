@@ -17,7 +17,7 @@
       <li class="grid items-center leading-4">
         <span class="text-xs leading-4 flex gap-2 items-center">
           <ph-at :size="10" weight="bold" class="duration-700" />
-          {{ $t("footer_email") }}
+          crm@i9atech.com
         </span>
       </li>
       <!-- <li class="p-2">
