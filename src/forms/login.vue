@@ -19,24 +19,16 @@
         v-model="password"
       />
 
-      <!-- <div class="text-sm">
-            <a
-              href="#"
-              class="font-sm font-semibold text-primary hover:text-indigo-500"
-              >Esqueceu a senha?</a
-            >
-          </div> -->
-
       <p-button :label="$t('login_submit')" type="submit" />
 
-      <div class="flex items-center gap-2 text-title mt-8">
+      <div class="flex items-center gap-2 text-gray-02 mt-8 uppercase">
         <hr class="bg-primary w-full" />
         {{ $t("login_or") }}
         <hr class="bg-primary w-full" />
       </div>
 
       <div class="mt-4 flex justify-evenly">
-        <p-button color="bg-gov" :label="$t('login_gov')" @click="login_gov" />
+        <p-button color="bg-gov" :label="$t('login_gov')" @click="authorize" />
       </div>
     </div>
   </form>
@@ -65,15 +57,14 @@ export default {
     FieldInput,
   },
   setup() {
-    const store = useAuth();
+    const auth = useAuth();
 
     return {
-      store,
+      auth,
     };
   },
   data() {
     return {
-      FACEBOOK_ID: "",
       username: "root.localhost",
       password: "123456",
     };
@@ -93,7 +84,7 @@ export default {
         throw new Error(this.$t("enum.not_password"));
       }
 
-      await this.store.login({
+      await this.auth.login({
         username: this.username,
         password: this.password,
       });
@@ -102,7 +93,9 @@ export default {
         this.$router.push("/");
       }
     },
-    async login_gov() {},
+    authorize() {
+      this.auth.authorize();
+    },
   },
 };
 </script>

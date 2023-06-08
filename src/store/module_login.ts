@@ -34,6 +34,22 @@ export const useAuth = defineStore("user", {
         toast.error("Erro ao efetuar o login!");
       }
     },
+    async authorize() {
+      try {
+        await AuthService.authorize();
+      } catch (error) {
+        console.log("module_login - authorize - ", error);
+        toast.error("Erro ao efetuar o login via Gov!");
+      }
+    },
+    async getTokenGov(code: any) {
+      try {
+        await AuthService.getTokenGov(code);
+      } catch (error) {
+        console.log("module_login - getTokenGov - ", error);
+        toast.error("Erro ao efetuar o login via Gov!");
+      }
+    },
     logout() {
       this.user = null;
       this.token = null;
