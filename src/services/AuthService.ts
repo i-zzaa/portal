@@ -1,22 +1,26 @@
 import { Auth, AuthGovAuthorize } from "@/services/Api";
 import { UserRequest } from "@/types/user";
-import qs from "qs";
+import * as qs from "qs";
 
 export default {
   async signIn(credentials: UserRequest) {
     return await Auth().post("login", credentials);
   },
   async authorize() {
-    const params = {
-      client_id: import.meta.env.VITE_CLIENT_ID,
-      redirect_uri: import.meta.env.VITE_CLIENT_URI,
-      response_type: "code",
-      scope: "openid+profile+email",
-      state: import.meta.env.VITE_CLIENT_STATE,
-    };
-    const queryString = qs.stringify(params);
+    // const params = {
+    //   client_id: import.meta.env.VITE_CLIENT_ID,
+    //   redirect_uri: import.meta.env.VITE_CLIENT_URI,
+    //   response_type: "code",
+    //   scope: "openid+profile+email",
+    //   state: import.meta.env.VITE_CLIENT_STATE,
+    // };
+    // const queryString: any = qs.stringify(params);
 
-    window.location.href = `${import.meta.env.VITE_API_AUTH_GOV}authorize?`;
+    // window.location.href = `${
+    //   import.meta.env.VITE_API_AUTH_GOV
+    // }authorize?${queryString}`;
+
+    window.location.href = `${import.meta.env.VITE_API_AUTH_GOV}authorize`;
   },
   async getTokenGov(code: any) {
     const data = {
