@@ -29,25 +29,14 @@
 
       <p-button :label="$t('login_submit')" type="submit" />
 
+      <div class="flex items-center gap-2 text-title mt-8">
+        <hr class="bg-primary w-full" />
+        {{ $t("login_or") }}
+        <hr class="bg-primary w-full" />
+      </div>
+
       <div class="mt-4 flex justify-evenly">
-        <facebook-login
-          :appId="FACEBOOK_ID"
-          class="rounded-full p-1 cursor-pointer hover:scale-150 duration-700 h-8 w-8 bg-facebook flex justify-center items-center"
-        >
-          <ph-facebook-logo :size="60" class="text-white" />
-        </facebook-login>
-        <div
-          class="rounded-full p-1 cursor-pointer hover:scale-150 duration-700 h-8 w-8 bg-google flex justify-center items-center"
-          @click="() => auth_google()"
-        >
-          <ph-google-chrome-logo :size="60" class="text-white" />
-        </div>
-        <div
-          class="rounded-full p-1 cursor-pointer hover:scale-150 duration-700 h-8 w-8 bg-microsoft flex justify-center items-center"
-          @click="() => auth_outlook()"
-        >
-          <ph-microsoft-outlook-logo :size="60" class="text-white" />
-        </div>
+        <p-button color="bg-gov" :label="$t('login_gov')" @click="login_gov" />
       </div>
     </div>
   </form>
@@ -63,10 +52,6 @@ import { useAuth } from "@/store/module_login";
 
 import PButton from "@/components/Button.vue";
 import { FieldInput } from "@/components/Filds/index";
-
-// import * as msal from "msal";
-// import { GoogleAuth } from "google-auth-library";
-// import FacebookLogin from "vue-facebook-login-component";
 
 import { toast } from "vue3-toastify";
 import { mapState } from "pinia";
@@ -117,41 +102,7 @@ export default {
         this.$router.push("/");
       }
     },
-    auth_outlook() {
-      // const config = {
-      //   auth: {
-      //     clientId: "SEU_CLIENT_ID",
-      //     redirectUri: "http://localhost:8080", // Coloque a URL correta para redirecionamento
-      //   },
-      // };
-      // const client = new msal.PublicClientApplication(config);
-      // client
-      //   .loginPopup()
-      //   .then((response: any) => {
-      //     console.log(response);
-      //     // Lidar com a resposta do login
-      //   })
-      //   .catch((error: any) => {
-      //     console.log(error);
-      //     toast.error($t("error_login_outlook"));
-      //   });
-    },
-    async auth_google() {
-      // const auth = new GoogleAuth();
-      // const client: any = await auth.getClient();
-      // const url = client.generateAuthUrl({
-      //   access_type: "online",
-      // });
-      // window.open(url, "_blank");
-    },
-    async auth_facebook() {
-      // const auth = new GoogleAuth();
-      // const client: any = await auth.getClient();
-      // const url = client.generateAuthUrl({
-      //   access_type: "online",
-      // });
-      // window.open(url, "_blank");
-    },
+    async login_gov() {},
   },
 };
 </script>

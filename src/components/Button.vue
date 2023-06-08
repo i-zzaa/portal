@@ -3,6 +3,7 @@
     class="flex w-full justify-center items-center rounded-full text-sm font-semibold leading-6 text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     :class="`${color} ${classCustom}`"
     @click="onclick && onclick"
+    :type="type"
   >
     <component v-if="!!icon" :is="icon" class="h-4 w-4" />
 
@@ -13,9 +14,7 @@
 <script lang="ts">
 import { PhMagnifyingGlass } from "@phosphor-icons/vue";
 
-export interface ButtonTypeProps {
-  type: string | "button" | "submit" | "reset" | undefined;
-}
+type ButtonType = "submit" | "reset" | "button";
 
 export default {
   components: {
@@ -27,6 +26,12 @@ export default {
     color: { type: String, required: false, default: "bg-primary" },
     icon: String,
     classCustom: { type: String, required: false, default: " px-3 py-1.5" },
+    type: {
+      type: String as () => ButtonType,
+      default: "button",
+      validator: (value: string) =>
+        ["submit", "reset", "button"].includes(value),
+    },
   },
 };
 </script>

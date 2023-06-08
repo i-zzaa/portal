@@ -3,6 +3,8 @@
   "login_input_label": "Login",
   "login_password_label": "Senha",
   "login_submit": "Entrar",
+  "login_gov": "Entrar com GOV.BR",
+  "login_or": "Ou",
   "home_title": "Neque porro quisquam est qui dolorem...",
   "home_title_detail": "There is no one who loves pain itself, who seeks after...",
   "step1_title": "Selecione um catálogo de Serviço - ",

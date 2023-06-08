@@ -1,15 +1,17 @@
 <template>
   <div
-    class="bg-white bg-clip-borde rounded-lg px-6 py-6 ring-1 ring-slate-900/5 shadow-lg hover:cursor-pointer hover:scale-110 duration-700 h-72 w-64"
+    class="bg-white border-t-8 bg-clip-borde rounded-lg px-6 py-6 ring-1 ring-slate-900/5 shadow-lg hover:cursor-pointer hover:scale-110 duration-700 h-72 w-64 grid"
+    :class="`border-${color}`"
   >
-    <h3
-      class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight"
+    <div
+      class="text-slate-900 dark:text-white font-medium tracking-tight row-span-1"
     >
       <slot name="title"></slot>
-    </h3>
-    <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+    </div>
+    <p class="text-slate-500 text-sm">
       <slot></slot>
     </p>
+    <div class="fized bottom-0"><slot name="footer"></slot></div>
   </div>
 </template>
 

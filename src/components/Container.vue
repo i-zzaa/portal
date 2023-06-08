@@ -12,7 +12,7 @@
         <slot name="header"></slot>
       </div>
     </div>
-    <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+    <p class="text-slate-500 mt-2 text-sm">
       <slot></slot>
     </p>
   </div>

@@ -22,6 +22,7 @@ export default {
         facebook: "#1877f2",
         google: "#ef4444",
         microsoft: "#84cc16",
+        gov: "#1351b4",
 
         encerrado: "#22d3ee",
         resolvido: "#34d399",

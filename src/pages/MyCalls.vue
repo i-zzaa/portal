@@ -54,12 +54,7 @@
         </div>
       </div>
     </template>
-    <call-cards
-      :listCall="listCall"
-      :nextTicket="nextTicket"
-      v-if="listCall.lenght < 10"
-    />
-    <call-list :listCall="listCall" :nextTicket="nextTicket" v-else />
+    <call-list :listCall="listCall" :nextTicket="nextTicket" />
   </container>
 </template>
 
@@ -69,10 +64,8 @@ import { RouterView } from "vue-router";
 import { computed } from "vue";
 
 import Container from "@/components/Container.vue";
-import Ticket from "@/components/Ticket.vue";
 import Modal from "@/components/Modal.vue";
 import Acordion from "@/components/Acordion.vue";
-import CallCards from "@/components/CallCards.vue";
 import CallList from "@/components/CallList.vue";
 import { FieldInput } from "@/components/Filds/index";
 import PButton from "@/components/Button.vue";
@@ -84,14 +77,12 @@ export default {
   title: "Meus Chamados",
   components: {
     Container,
-    Ticket,
     PhCheck,
     PhTicket,
     PhArrowsClockwise,
     RouterView,
     Modal,
     Acordion,
-    CallCards,
     CallList,
     FieldInput,
     PButton,
