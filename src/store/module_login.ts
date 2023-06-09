@@ -3,14 +3,14 @@ import { UserRequest } from "@/types/user";
 import { defineStore } from "pinia";
 import { toast } from "vue3-toastify";
 
-const token = localStorage.getItem("token") || null;
-const user = localStorage.getItem("user") || null;
+const token = sessionStorage.getItem("token");
+const user = sessionStorage.getItem("user");
 
 export const useAuth = defineStore("user", {
   state: () => ({
     name: "",
-    token: token,
-    user: user,
+    token: token ? JSON.parse(token) : null,
+    user: user ? JSON.parse(user) : {},
   }),
   getters: {
     isLoggedIn: (state) => !!state.token,
