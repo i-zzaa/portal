@@ -41,6 +41,7 @@
           id="search"
           v-model="word"
           :required="false"
+          :disabled="!listCall.length"
           container-custom="w-full sm:col-span-4 sm:mb-0 mb-2"
           class-custom="border border-gray-04 rounded-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-03 w-full disabled:cursor-no-drop disabled:text-gray-02 text-text"
         />
@@ -51,16 +52,20 @@
             icon="PhMagnifyingGlass"
             class-custom="sm:w-12  rounded-full p-4  flex justify-center sm:mr-4"
             @click="() => search()"
+            :disabled="!listCall.length"
           />
         </div>
       </div>
     </template>
-    <call-list :listCall="listCall" :nextTicket="nextTicket" />
-    <pagination
-      :totalPages="totalPages || 1"
-      :pageSize="pageSize"
-      :currentPage="currentPage"
-      :pageChanged="pageChanged"
+    <call-list
+      :listCall="listCall"
+      :nextTicket="nextTicket"
+      :pagination="{
+        totalPages: totalPages,
+        pageSize: pageSize,
+        currentPage: currentPage,
+      }"
+      :page-changed="pageChanged"
     />
   </container>
 </template>
@@ -76,7 +81,6 @@ import Acordion from "@/components/Acordion.vue";
 import CallList from "@/components/CallList.vue";
 import { FieldInput } from "@/components/Filds/index";
 import PButton from "@/components/Button.vue";
-import Pagination from "@/components/Pagination.vue";
 
 import { useMyCalls } from "@/store/module_chamados";
 import { STATUS } from "@/constants/utils";
@@ -94,7 +98,6 @@ export default {
     CallList,
     FieldInput,
     PButton,
-    Pagination,
   },
   setup() {
     const pageSize = 15;

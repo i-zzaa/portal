@@ -43,6 +43,7 @@
     "not_catalog": "Catálogo não selecionado.",
     "not_service": "Serviço não selecionado.",
     "not_title": "Assunto não preenchido.",
-    "not_detail": "Senha não preenchida."
+    "not_detail": "Senha não preenchida.",
+    "empty": "Não há dados."
   }
 }
