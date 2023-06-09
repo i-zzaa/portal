@@ -56,6 +56,12 @@
       </div>
     </template>
     <call-list :listCall="listCall" :nextTicket="nextTicket" />
+    <pagination
+      :totalPages="totalPages || 1"
+      :pageSize="pageSize"
+      :currentPage="currentPage"
+      :pageChanged="pageChanged"
+    />
   </container>
 </template>
 
@@ -70,6 +76,7 @@ import Acordion from "@/components/Acordion.vue";
 import CallList from "@/components/CallList.vue";
 import { FieldInput } from "@/components/Filds/index";
 import PButton from "@/components/Button.vue";
+import Pagination from "@/components/Pagination.vue";
 
 import { useMyCalls } from "@/store/module_chamados";
 import { STATUS } from "@/constants/utils";
@@ -87,10 +94,12 @@ export default {
     CallList,
     FieldInput,
     PButton,
+    Pagination,
   },
   setup() {
+    const pageSize = 15;
     const myCalls = useMyCalls();
-    myCalls.getCalls();
+    myCalls.getCalls(pageSize, 1);
 
     const listCall: any = computed(() => {
       return myCalls.listCall.map((item: any) => {
@@ -115,9 +124,15 @@ export default {
       });
     });
 
+    const totalPages: any = computed(() => myCalls.totalPages);
+    const currentPage: any = computed(() => myCalls.currentPage);
+
     return {
       listCall,
       myCalls,
+      pageSize,
+      totalPages,
+      currentPage,
     };
   },
   data() {
@@ -139,6 +154,9 @@ export default {
     nextTicket(item: any) {
       this.ticket = item;
       this.showModal = true;
+    },
+    async pageChanged(currentPage: number) {
+      await this.myCalls.getCalls(this.pageSize, currentPage);
     },
   },
 };

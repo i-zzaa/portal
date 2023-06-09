@@ -7,13 +7,20 @@ export const useMyCalls = defineStore("myCalls", {
     catalogo: "",
     servico: "",
     listCall: [],
+    totalPages: 1,
+    currentPage: 1,
   }),
   getters: {},
   actions: {
-    async getCalls() {
+    async getCalls(pageSize: number, currentPage: number) {
       try {
-        const { data }: any = await MyCallsService.getCalls();
-        this.listCall = data;
+        const { data }: any = await MyCallsService.getCalls(
+          pageSize,
+          currentPage
+        );
+        this.listCall = data.data;
+        this.totalPages = data.totalPages;
+        this.currentPage = data.currentPage;
       } catch (error) {
         console.log("module_chamados - getCalls - ", error);
         toast.error("Erro ao carregar os chamados!");
