@@ -49,7 +49,8 @@
             label=""
             type="submit"
             icon="PhMagnifyingGlass"
-            class-custom="sm:w-12  rounded-full p-4  flex justify-center "
+            class-custom="sm:w-12  rounded-full p-4  flex justify-center sm:mr-4"
+            @click="() => search()"
           />
         </div>
       </div>
@@ -116,6 +117,7 @@ export default {
 
     return {
       listCall,
+      myCalls,
     };
   },
   data() {
@@ -131,9 +133,8 @@ export default {
     };
   },
   methods: {
-    search(item: any) {
-      this.ticket = item;
-      this.showModal = true;
+    async search() {
+      await this.myCalls.search(this.word);
     },
     nextTicket(item: any) {
       this.ticket = item;
