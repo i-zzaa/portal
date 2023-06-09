@@ -20,16 +20,6 @@
       />
 
       <p-button :label="$t('login_submit')" type="submit" />
-
-      <div class="flex items-center gap-2 text-gray-02 mt-8 uppercase">
-        <hr class="bg-primary w-full" />
-        {{ $t("login_or") }}
-        <hr class="bg-primary w-full" />
-      </div>
-
-      <div class="mt-4 flex justify-evenly">
-        <p-button color="bg-gov" :label="$t('login_gov')" @click="authorize" />
-      </div>
     </div>
   </form>
 </template>

@@ -11,24 +11,6 @@ export const Auth = () => {
 
   return axiosInstance;
 };
-export const AuthGovAuthorize = () => {
-  const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_AUTH_GOV,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-  });
-
-  const token = sessionStorage.getItem("tokenGov");
-  if (token) {
-    axiosInstance.defaults.headers.common.Authorization = `Bearer ${JSON.parse(
-      token
-    )}`;
-  }
-
-  return axiosInstance;
-};
 
 export default () => {
   const axiosInstance = axios.create({
