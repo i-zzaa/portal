@@ -83,9 +83,6 @@ export default {
         this.$router.push("/");
       }
     },
-    authorize() {
-      this.auth.authorize();
-    },
   },
 };
 </script>
