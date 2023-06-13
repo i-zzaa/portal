@@ -1,7 +1,6 @@
 import MyCallsService from "@/services/MyCallsService";
 import { defineStore } from "pinia";
 import { toast } from "vue3-toastify";
-
 export const useMyCalls = defineStore("myCalls", {
   state: () => ({
     catalogo: "",

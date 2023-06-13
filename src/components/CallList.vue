@@ -6,6 +6,8 @@
           @click="() => nextTicket(item)"
           :color="`border-${item?.status.toLowerCase()}`"
           list
+          @mouseenter="() => (item.show = true)"
+          @mouseleave="() => (item.show = false)"
         >
           <div class="relative">
             <div class="grid gap-1">
@@ -47,6 +49,11 @@
                 <span class="font-semibold"> Data </span>
                 <span> {{ item?.date }} </span>
               </div>
+            </div>
+            <div v-if="item.show" class="w-full mt-4">
+              <span class="font-semibold mb-2">{{ $t("details_ticket") }} </span
+              ><br />
+              <span> {{ item?.detail.at(-1).detalhe }} </span>
             </div>
           </div>
         </list>

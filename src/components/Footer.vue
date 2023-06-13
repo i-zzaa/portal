@@ -17,18 +17,17 @@
       <li class="grid items-center leading-4">
         <span class="text-xs leading-4 flex gap-2 items-center">
           <ph-at :size="10" weight="bold" class="duration-700" />
-          crm@i9atech.com
+          {{ email }}
         </span>
       </li>
-      <!-- <li class="p-2">
-        <div class="bg-logo-02 bg-no-repeat bg-contain h-24 w-48"></div>
-      </li> -->
     </ul>
   </footer>
 </template>
 
 <script lang="ts">
 import { PhMapPin, PhPhone, PhAt } from "@phosphor-icons/vue";
+import { useHelpDesk } from "@/store/module_helpdesk";
+import { computed } from "vue";
 
 export default {
   components: { PhMapPin, PhPhone, PhAt },
@@ -37,22 +36,12 @@ export default {
     onclick: Function,
     color: String,
   },
+  setup() {
+    const helpDesk = useHelpDesk();
+    const email = computed(() => helpDesk.solicitacao.destinatario);
 
-  data() {
     return {
-      routesCurrent: [
-        { component: "início", icon: "PhHouse", to: "/home" },
-        {
-          component: "Solicite um atendimento",
-          icon: "PhTicket",
-          to: "/help-desk",
-        },
-        {
-          component: "Meus chamados",
-          icon: "PhNewspaper",
-          to: "/meus-chamados",
-        },
-      ],
+      email,
     };
   },
 };

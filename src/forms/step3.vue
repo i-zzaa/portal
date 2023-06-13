@@ -169,15 +169,11 @@ export default {
 
     const solicitacao = computed(() => helpDesk.solicitacao);
 
-    helpDesk.setSolicitacao({
-      ...solicitacao.value,
-    });
-
     const listCatalogs = computed(() => helpDesk.listCatalogs);
     const listServices = computed(() => helpDesk.listServices);
 
     const form = reactive({
-      ...helpDesk.solicitacao,
+      ...solicitacao.value,
     });
 
     return {
@@ -222,7 +218,11 @@ export default {
         throw new Error(this.$t("enum.not_detail"));
       }
 
-      this.helpDesk.setSolicitation(this.form);
+      try {
+        this.helpDesk.setSolicitation(this.form);
+
+        this.$router.push("meus-chamado");
+      } catch (error) {}
     },
   },
 };

@@ -13,7 +13,7 @@ export const useHelpDesk = defineStore("helpDesk", {
       idService: "",
       assunto: "",
       detahes: "",
-      destinatario: "atendimento-prodam@ios.com.br",
+      destinatario: "crm@i9atech.com",
       telefone: "",
       ramal: "",
       ip: "",
@@ -47,7 +47,8 @@ export const useHelpDesk = defineStore("helpDesk", {
     },
     setService(params: any) {
       this.servico = params;
-      this.solicitacao.idService = params.id;
+
+      this.solicitacao.idService = params?.id;
     },
     setSolicitacao(params: any) {
       this.solicitacao = params;

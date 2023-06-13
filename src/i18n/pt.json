@@ -29,7 +29,8 @@
   "footer_tel": "Telefone: 61 4063-9886",
   "footer_email": "crm@i9atech.com",
   "error_login_outlook": "Erro ao realizar o login!",
-  "open_ticket": "Reabrir",
+  "open_ticket": "Responder",
+  "details_ticket": " Detalhe do último ticket",
   "ENUM": {
     "logout": "Sair",
     "success": "success",

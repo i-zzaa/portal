@@ -21,13 +21,8 @@
                 'after:block': currentStep === index,
                 'after:hidden': index === 0,
                 'text-primary':
-                  (currentStep !== index &&
-                    step.status === $t('ENUM.success')) ||
-                  currentStep === index,
-                'text-[#dee2e6]':
-                  currentStep !== index && step.status === $t('ENUM.none'),
-                'text-red-01':
-                  currentStep !== index && step.status === $t('ENUM.error'),
+                  step.status === $t('ENUM.success') || currentStep === index,
+                'text-[#dee2e6]': step.status === $t('ENUM.none'),
                 'cursor-pointer': hasclick,
                 'cursor-no-drop': !hasclick,
               }"
