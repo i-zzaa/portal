@@ -4,21 +4,24 @@ import { defineStore } from "pinia";
 
 import { toast } from "vue3-toastify";
 
+const defaultSolicitacao: any = {
+  idCatalog: "",
+  idService: "",
+  assunto: "",
+  detahes: "",
+  destinatario: "crm@i9atech.com",
+  telefone: "",
+  ramal: "",
+  ip: "",
+  patrimonio: "",
+  file: null,
+};
+
 export const useHelpDesk = defineStore("helpDesk", {
   state: () => ({
     catalogo: "",
     servico: "",
-    solicitacao: {
-      idCatalog: "",
-      idService: "",
-      assunto: "",
-      detahes: "",
-      destinatario: "crm@i9atech.com",
-      telefone: "",
-      ramal: "",
-      ip: "",
-      patrimonio: "",
-    },
+    solicitacao: { ...defaultSolicitacao },
     listCatalogs: [],
     listServices: [],
     steps: [
@@ -85,9 +88,14 @@ export const useHelpDesk = defineStore("helpDesk", {
       try {
         await HelpDeskService.createTicket(form);
         toast.success("Ticket criado com sucesso!");
+
+        this.solicitacao = { ...defaultSolicitacao };
+
+        return true;
       } catch (error) {
         console.log("module_catalogo - setSolicitation - ", error);
         toast.error("Erro ao enviar a solicitação!");
+        throw new Error("Erro ao enviar a solicitação!");
       }
     },
   },

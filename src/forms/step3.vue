@@ -65,12 +65,14 @@
           <field-input
             :label="$t('step3_input_4')"
             name="telefone"
-            type="text"
+            type="tel"
             autocomplete="telefone"
             id="telefone"
             v-model="form.telefone"
             containerCustom="col-span-6 sm:col-span-2"
             :required="false"
+            @change="formatTel"
+            :maxlength="9"
           />
           <field-input
             :label="$t('step3_input_5')"
@@ -102,6 +104,8 @@
             containerCustom="col-span-6 sm:col-span-3"
             :required="false"
           />
+
+          <upload class="col-span-6" v-model="form.file" />
         </div>
         <div class="flex flex-wrap -mx-3">
           <div class="flex w-full max-w-full px-3 mt-6 [flex:0_0_auto]">
@@ -138,6 +142,7 @@ import { toast } from "vue3-toastify";
 import { useHelpDesk } from "@/store/module_helpdesk";
 
 import Container from "@/components/Container.vue";
+import Upload from "@/components/Upload.vue";
 import Card from "@/components/Card.vue";
 import { FieldInput } from "@/components/Filds/index";
 import { FieldTextarea } from "@/components/Filds/index";
@@ -158,6 +163,7 @@ export default {
     FieldInput,
     FieldTextarea,
     FieldSelect,
+    Upload,
   },
   setup() {
     const store = useWizard();
@@ -184,10 +190,29 @@ export default {
       listServices,
     };
   },
+
   methods: {
     ...mapActions(useWizard, ["setStep"]),
     ...mapActions(useHelpDesk, ["updateStep"]),
 
+    formatTel(event: any) {
+      const cleanedNumber = event.target.value.replace(/\D/g, "");
+      let formattedNumber = "";
+      if (cleanedNumber.length > 9) {
+        formattedNumber = cleanedNumber.replace(
+          /^(\d{2})(\d{1})(\d{4})(\d{4})$/,
+          "($1)  $2 $3-$4"
+        );
+      } else {
+        formattedNumber = cleanedNumber.replace(
+          /^(\d{1})(\d{4})(\d{4})$/,
+          "$1  $2-$3"
+        );
+      }
+
+      // Update the data property with the formatted number
+      this.form.telefone = formattedNumber;
+    },
     prevTicket() {
       const step = { ...this.steps[INDEX_STEP] };
       step.status = this.$t("ENUM.none");
@@ -200,7 +225,9 @@ export default {
       this.helpDesk.getService(Number(this.form.idCatalog));
       this.form.idService = "";
     },
-    submit() {
+    async submit(event: any) {
+      event.preventDefault();
+
       if (!this.form.idCatalog) {
         toast.error(this.$t("enum.not_catalog"));
         throw new Error(this.$t("enum.not_catalog"));
@@ -217,12 +244,28 @@ export default {
         toast.error(this.$t("enum.not_detail"));
         throw new Error(this.$t("enum.not_detail"));
       }
+      // if (!this.form.file) {
+      //   toast.error(this.$t("enum.not_detail"));
+      //   throw new Error(this.$t("enum.not_detail"));
+      // }
 
-      try {
-        this.helpDesk.setSolicitation(this.form);
+      const formData = new FormData();
+      this.form.file && formData.append("file", this.form?.file);
 
-        this.$router.push("meus-chamado");
-      } catch (error) {}
+      const { file, ...result } = this.form;
+
+      formData.append(
+        "data",
+        JSON.stringify({
+          ...result,
+        })
+      );
+
+      const response: boolean = await this.helpDesk.setSolicitation(formData);
+
+      if (response) {
+        this.$router.push("/meus-chamados");
+      }
     },
   },
 };
