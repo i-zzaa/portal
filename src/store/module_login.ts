@@ -7,7 +7,7 @@ const user = sessionStorage.getItem("user");
 
 export const useAuth = defineStore("user", {
   state: () => ({
-    name: "",
+    username: "",
     user: user ? JSON.parse(user) : {},
   }),
   getters: {
@@ -22,6 +22,7 @@ export const useAuth = defineStore("user", {
           throw new Error("Erro ao efetuar o login!");
         }
         this.user = data.user;
+        this.username = data.user.username;
         sessionStorage.setItem("user", JSON.stringify(this.user));
 
         return true;

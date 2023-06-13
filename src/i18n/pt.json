@@ -1,4 +1,5 @@
 {
+  "nav_welcome": "Olá, { username }!",
   "login_text": "Portal de Serviços i9atach - Empresa de Tecnologia da Informação e Comunicação",
   "login_input_label": "Login",
   "login_password_label": "Senha",

@@ -1,11 +1,11 @@
 <template>
   <nav
-    class="sm:grid hidden grid-cols-2 items-center px-6 rounded-full border border-gray-03 shadow-md justify-end h-20 m-4"
+    class="sm:grid hidden grid-cols-5 items-center px-6 rounded-full border border-gray-03 shadow-md justify-end h-20 m-4"
   >
-    <div class="bg-logo-01 bg-no-repeat bg-contain h-12"></div>
+    <div class="bg-logo-01 bg-no-repeat bg-contain h-12 col-span-2"></div>
 
-    <div class="grid items-center grid-cols-3 h-full">
-      <ul class="flex col-span-2 h-full items-center gap-8">
+    <div class="grid items-center h-full col-span-3">
+      <ul class="flex h-full items-center gap-4 justify-stretch">
         <li
           v-for="(item, index) in routesCurrent"
           :key="index"
@@ -18,7 +18,12 @@
           >
         </li>
       </ul>
-      <div class="flex justify-end col-start-12">
+      <div
+        class="flex justify-end col-start-12 gap-4 text-primary min-w-[5rem] nowrap"
+      >
+        <span class="text-ellipsis overflow-hidden">
+          {{ $t("nav_welcome", { username }) }}</span
+        >
         <ph-sign-out
           :size="20"
           class="text-right text-primary hover:opacity-70 hover:cursor-pointer hover:scale-105"
@@ -66,9 +71,16 @@
       >
         <li class="flex justify-center">
           <div
-            class="bg-logo-01 bg-center bg-no-repeat bg-contain h-24 w-40"
+            class="bg-logo-01 bg-center bg-no-repeat bg-contain h-40 w-60"
           ></div>
         </li>
+        <li class="flex justify-center">
+          <span class="text-ellipsis overflow-hidden text-white text-lg -mt-16">
+            {{ $t("nav_welcome", { username }) }}</span
+          >
+        </li>
+        <hr class="bg-primary w-full mb-4 opacity-90 mx-auto" />
+
         <li
           v-for="(item, index) in routesCurrent"
           :key="index"
@@ -81,11 +93,13 @@
           >
         </li>
         <li
-          class="flex items-center justify-center gap-2 mt-48 hover:opacity-70 hover:cursor-pointer hover:scale-105"
+          class="hover:opacity-70 hover:cursor-pointer hover:scale-105"
           @click="handleLogout"
         >
-          {{ $t("ENUM.logout") }}
-          <ph-sign-out :size="20" class="text-right text-white" />
+          <div class="mt-12 flex items-center justify-center gap-2">
+            {{ $t("ENUM.logout") }}
+            <ph-sign-out :size="20" class="text-right text-white" />
+          </div>
         </li>
       </ul>
     </div>
@@ -104,6 +118,7 @@ import {
 } from "@phosphor-icons/vue";
 import { mapActions } from "pinia";
 import { useAuth } from "@/store/module_login";
+import { computed } from "vue";
 
 export default {
   components: {
@@ -119,6 +134,12 @@ export default {
     label: String,
     onclick: Function,
     color: String,
+  },
+  setup() {
+    const store = useAuth();
+    const username = computed(() => store.user.username);
+
+    return { username };
   },
 
   data() {
