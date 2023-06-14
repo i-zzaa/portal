@@ -9,7 +9,7 @@
     <div class="mb-12">
       <div class="flex flex-wrap -mx-3">
         <div class="w-full max-w-full px-3 mx-auto my-12 [flex:0_0_auto]">
-          <div class="grid" :class="`grid-cols-${steps?.length}`">
+          <div class="grid" :class="`grid-cols-3`">
             <button
               v-for="(step, index) in steps"
               :key="index"
