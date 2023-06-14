@@ -65,22 +65,26 @@ export default {
   methods: {
     async submit(e: any) {
       e.preventDefault();
-      if (!this.username) {
-        toast.error(this.$t("enum.not_username"));
-        throw new Error(this.$t("enum.not_username"));
-      }
-      if (!this.password) {
-        toast.error(this.$t("enum.not_password"));
-        throw new Error(this.$t("enum.not_password"));
-      }
+      try {
+        if (!this.username) {
+          toast.error(this.$t("enum.not_username"));
+          throw new Error(this.$t("enum.not_username"));
+        }
+        if (!this.password) {
+          toast.error(this.$t("enum.not_password"));
+          throw new Error(this.$t("enum.not_password"));
+        }
 
-      await this.auth.login({
-        username: this.username,
-        password: this.password,
-      });
+        await this.auth.login({
+          username: this.username,
+          password: this.password,
+        });
 
-      if (this.isLoggedIn) {
-        this.$router.push("/");
+        if (this.isLoggedIn) {
+          this.$router.push("/");
+        }
+      } catch (error) {
+        this.$router.push("/login");
       }
     },
   },

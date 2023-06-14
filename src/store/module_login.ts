@@ -16,13 +16,13 @@ export const useAuth = defineStore("user", {
   actions: {
     async login(form: UserRequest) {
       try {
-        const { data }: any = await AuthService.signIn(form);
-        if (!data.user) {
+        const response: any = await AuthService.signIn(form);
+        if (response.status !== 200 || response.status !== 201) {
           toast.error("Erro ao efetuar o login!");
           throw new Error("Erro ao efetuar o login!");
         }
-        this.user = data.user;
-        this.username = data.user.username;
+        this.user = response.data.user;
+        this.username = response.data.user.username;
         sessionStorage.setItem("user", JSON.stringify(this.user));
 
         return true;
