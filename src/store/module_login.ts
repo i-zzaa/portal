@@ -8,7 +8,7 @@ const user = sessionStorage.getItem("user");
 export const useAuth = defineStore("user", {
   state: () => ({
     username: "",
-    user: user ? JSON.parse(user) : {},
+    user: user ? JSON.parse(user) : null,
   }),
   getters: {
     isLoggedIn: (state) => !!state.user,
@@ -17,7 +17,8 @@ export const useAuth = defineStore("user", {
     async login(form: UserRequest) {
       try {
         const response: any = await AuthService.signIn(form);
-        if (response.status !== 200 || response.status !== 201) {
+        if (response.status !== 200 && response.status !== 201) {
+          this.user = null;
           toast.error("Erro ao efetuar o login!");
           throw new Error("Erro ao efetuar o login!");
         }
