@@ -145,13 +145,17 @@ export default {
   data() {
     return {
       routesCurrent: [
-        { label: "início", icon: "PhHouse", to: "/" },
+        { label: this.$t("MENU.home"), icon: "PhHouse", to: "/" },
         {
-          label: "Solicite um atendimento",
+          label: this.$t("MENU.help_desk"),
           icon: "PhTicket",
           to: "/help-desk",
         },
-        { label: "Meus chamados", icon: "PhNewspaper", to: "/meus-chamados" },
+        {
+          label: this.$t("MENU.my_calls"),
+          icon: "PhNewspaper",
+          to: "/meus-chamados",
+        },
       ],
       menuHamburguerActive: false,
     };

@@ -1,7 +1,10 @@
 <template>
   <div class="p-4">
-    <container :title="$t('step3_title')" :detail="$t('step3_title_detail')">
+    <container :title="$t('step3_title')">
       <form @submit="submit">
+        <div class="text-lg my-4" v-if="isReplay">
+          {{ ticket }}
+        </div>
         <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
           <field-select
             :label="$t('step3_select_1')"
@@ -15,7 +18,8 @@
             label-index="title"
             index="id"
             :onchange="onchange"
-            :required="true"
+            :required="!isReplay"
+            v-if="!isReplay"
           />
           <field-select
             :label="$t('step3_select_2')"
@@ -30,7 +34,8 @@
             index="id"
             :onchange="() => {}"
             :disabled="!form.idCatalog"
-            :required="true"
+            :required="!isReplay"
+            v-if="!isReplay"
           />
           <field-input
             :label="$t('step3_input_1')"
@@ -61,6 +66,7 @@
             v-model="form.destinatario"
             containerCustom="col-span-6 sm:col-span-2"
             :disabled="true"
+            v-if="!isReplay"
           />
           <field-input
             :label="$t('step3_input_4')"
@@ -73,6 +79,7 @@
             :required="false"
             @change="formatTel"
             :maxlength="9"
+            v-if="!isReplay"
           />
           <field-input
             :label="$t('step3_input_5')"
@@ -83,6 +90,7 @@
             v-model="form.ramal"
             containerCustom="col-span-6 sm:col-span-2"
             :required="false"
+            v-if="!isReplay"
           />
           <field-input
             :label="$t('step3_input_6')"
@@ -93,6 +101,7 @@
             v-model="form.ip"
             containerCustom="col-span-6 sm:col-span-3"
             :disabled="true"
+            v-if="!isReplay"
           />
           <field-input
             :label="$t('step3_input_7')"
@@ -103,6 +112,7 @@
             v-model="form.patrimonio"
             containerCustom="col-span-6 sm:col-span-3"
             :required="false"
+            v-if="!isReplay"
           />
 
           <upload class="col-span-6" v-model="form.file" />
@@ -182,13 +192,22 @@ export default {
       ...solicitacao.value,
     });
 
+    const isReplay = computed(() => helpDesk.isReplay);
+    const ticket = computed(() => helpDesk.ticket);
+
     return {
       steps,
       form,
       helpDesk,
       listCatalogs,
       listServices,
+      isReplay,
+      ticket,
     };
+  },
+
+  unmounted() {
+    this.helpDesk.setIsReplay(false);
   },
 
   methods: {

@@ -25,6 +25,7 @@
   "step3_select_1": "Catálogo",
   "step3_select_2": "Serviço",
   "step3_title_detail": "",
+  "ticket_replay": "TICKET { ticket }",
   "call_title": "Meus Chamados",
   "call_search": "Pesquisar",
   "call_title_detail": "",
@@ -33,7 +34,7 @@
   "footer_email": "crm@i9atech.com",
   "error_login_outlook": "Erro ao realizar o login!",
   "open_ticket": "Responder",
-  "details_ticket": " Detalhe do último ticket",
+  "details_ticket": "Detalhe do último artigo",
   "ENUM": {
     "logout": "Sair",
     "success": "success",
@@ -50,5 +51,10 @@
     "not_detail": "Senha não preenchida.",
     "empty": "Não há dados.",
     "not_img": "Selecione um arquivo."
+  },
+  "MENU": {
+    "home": "início",
+    "help_desk": "Solicite um atendimento",
+    "my_calls": "Meus chamados"
   }
 }

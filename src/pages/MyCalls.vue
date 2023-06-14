@@ -22,7 +22,7 @@
           :label="$t('open_ticket')"
           :color="STATUS.reaberto.toLowerCase()"
           type="submit"
-          @click="$router.push('help-desk')"
+          @click="replay"
         />
       </template>
     </modal>
@@ -74,6 +74,7 @@
 import { PhArrowsClockwise, PhCheck, PhTicket } from "@phosphor-icons/vue";
 import { RouterView } from "vue-router";
 import { computed } from "vue";
+import { mapActions } from "pinia";
 
 import Container from "@/components/Container.vue";
 import Modal from "@/components/Modal.vue";
@@ -84,6 +85,7 @@ import PButton from "@/components/Button.vue";
 
 import { useMyCalls } from "@/store/module_chamados";
 import { STATUS } from "@/constants/utils";
+import { useHelpDesk } from "@/store/module_helpdesk";
 
 export default {
   title: "Meus Chamados",
@@ -151,6 +153,9 @@ export default {
     };
   },
   methods: {
+    ...mapActions(useHelpDesk, ["setIsReplay"]),
+    ...mapActions(useHelpDesk, ["setTicket"]),
+
     async search() {
       await this.myCalls.search(this.word);
     },
@@ -160,6 +165,11 @@ export default {
     },
     async pageChanged(currentPage: number) {
       await this.myCalls.getCalls(this.pageSize, currentPage);
+    },
+    replay() {
+      this.setTicket(this.$t("ticket_replay", { ticket: this.ticket?.ticket }));
+      this.setIsReplay(true);
+      this.$router.push("help-desk");
     },
   },
 };

@@ -24,6 +24,8 @@ export const useHelpDesk = defineStore("helpDesk", {
     solicitacao: { ...defaultSolicitacao },
     listCatalogs: [],
     listServices: [],
+    isReplay: false,
+    ticket: "",
     steps: [
       {
         title: "Catálogo",
@@ -44,6 +46,12 @@ export const useHelpDesk = defineStore("helpDesk", {
     setCatalog(params: any) {
       this.catalogo = params;
       this.solicitacao.idCatalog = params.id;
+    },
+    setIsReplay(value: boolean) {
+      this.isReplay = value;
+    },
+    setTicket(value: string) {
+      this.ticket = value;
     },
     updateStep(index: number, item: any) {
       this.steps[index] = item;
