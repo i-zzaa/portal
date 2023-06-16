@@ -1,12 +1,12 @@
 {
   "name": "portal",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "scripts": {
     "dev": "vite  --host",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "start": "node serve.js"
   },
   "dependencies": {
