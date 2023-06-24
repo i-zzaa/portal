@@ -27,7 +27,7 @@
         <ph-sign-out
           :size="20"
           class="text-right text-primary hover:opacity-70 hover:cursor-pointer hover:scale-105"
-          @click="$router.push('/login')"
+          @click="handleLogout"
         />
       </div>
     </div>
@@ -163,9 +163,9 @@ export default {
   methods: {
     ...mapActions(useAuth, ["logout"]),
     handleLogout() {
+      this.logout();
       this.$router.push("/login");
       this.menuHamburguerActive = false;
-      this.logout();
     },
   },
 };
