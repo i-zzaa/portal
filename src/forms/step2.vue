@@ -9,7 +9,9 @@
           <li v-for="(item, index) in listServices" :key="index" class="">
             <Card @click="() => nextTicket(item)">
               <template v-slot:title>
-                <div class="flex items-center gap-2 text-sm text-start">
+                <div
+                  class="flex items-center gap-2 text-sm text-start text-primary"
+                >
                   <component :is="item.icon" class="h-6 w-6" />
                   {{ item.title }}
                 </div>

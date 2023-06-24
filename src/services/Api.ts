@@ -1,21 +1,28 @@
 import axios from "axios";
+import { useAuth } from "@/store/module_login";
 
 export default () => {
+  const store = useAuth();
+
   const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
-    withCredentials: true,
+    // withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
     (response: any) => response,
     (error) => {
-      if (error.response.status === 401) {
-        sessionStorage.removeItem("user");
-        location.reload();
+      const loggedIn = store.isLoggedIn;
+      if (!loggedIn) {
+        store.logout();
       }
       return Promise.reject(error);
     }
   );
+
+  if (store.$state.token) {
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${store.$state.token}`;
+  }
 
   return axiosInstance;
 };

@@ -4,27 +4,32 @@ import { defineStore } from "pinia";
 import { toast } from "vue3-toastify";
 
 const user = sessionStorage.getItem("user");
+const token = sessionStorage.getItem("token");
 
 export const useAuth = defineStore("user", {
   state: () => ({
     username: "",
+    token: token ? JSON.parse(token) : null,
     user: user ? JSON.parse(user) : null,
   }),
   getters: {
-    isLoggedIn: (state) => !!state.user,
+    isLoggedIn: (state) => !!state.token,
   },
   actions: {
     async login(form: UserRequest) {
       try {
-        const response: any = await AuthService.signIn(form);
-        if (response.status !== 200 && response.status !== 201) {
+        const { data }: any = await AuthService.signIn(form);
+        // if (response.status !== 200 && response.status !== 201) {
+        if (!data.token) {
           this.user = null;
           toast.error("Erro ao efetuar o login!");
           throw new Error("Erro ao efetuar o login!");
         }
-        this.user = response.data.user;
-        this.username = response.data.user.username;
+        this.user = data.user;
+        this.username = data.user.username;
+        this.token = data.token;
         sessionStorage.setItem("user", JSON.stringify(this.user));
+        sessionStorage.setItem("token", JSON.stringify(this.token));
 
         return true;
       } catch (error) {
