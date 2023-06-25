@@ -2,6 +2,7 @@
   <container
     :title="$t('step2_title')"
     :detail="$t('step2_title_detail', { catalogo: catalogo?.title })"
+    :loading="loading"
   >
     <div>
       <div class="flex flex-wrap mt-6 justify-center">
@@ -60,6 +61,7 @@ export default {
 
     const store = useWizard();
     const steps = computed(() => store.steps);
+    const loading: any = computed(() => helpDesk.loading);
 
     const listServices: any = computed(() => helpDesk.listServices);
 
@@ -67,6 +69,7 @@ export default {
       catalogo,
       steps,
       listServices,
+      loading,
     };
   },
   methods: {

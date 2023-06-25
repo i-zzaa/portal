@@ -1,5 +1,9 @@
 <template>
-  <container :title="$t('step1_title')" :detail="$t('step1_title_detail')">
+  <container
+    :title="$t('step1_title')"
+    :detail="$t('step1_title_detail')"
+    :loading="loading"
+  >
     <ul class="flex flex-wrap gap-6 justify-center">
       <li v-for="(item, index) in listCatalogs" :key="index" class="">
         <Card @click="() => nextTicket(item)">
@@ -49,12 +53,15 @@ export default {
     const currentStep = computed(() => store.currentStep);
     const steps = computed(() => store.steps);
 
+    const loading: any = computed(() => helpDesk.loading);
+
     const listCatalogs: any = computed(() => helpDesk.listCatalogs);
     return {
       currentStep,
       steps,
       listCatalogs,
       helpDesk,
+      loading,
     };
   },
   methods: {

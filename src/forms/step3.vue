@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <container :title="$t('step3_title')">
+    <container :title="$t('step3_title')" :loading="loading">
       <form @submit="submit">
         <div class="text-lg my-4" v-if="isReplay">
           {{ ticket }}
@@ -188,6 +188,8 @@ export default {
     const listCatalogs = computed(() => helpDesk.listCatalogs);
     const listServices = computed(() => helpDesk.listServices);
 
+    const loading: any = computed(() => helpDesk.loading);
+
     const form = reactive({
       ...solicitacao.value,
     });
@@ -203,6 +205,7 @@ export default {
       listServices,
       isReplay,
       ticket,
+      loading,
     };
   },
 

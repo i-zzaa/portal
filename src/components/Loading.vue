@@ -1,18 +1,4 @@
 <template>
-  <div class="spinner bg-loading"></div>
+  <div class="spinner bg-loading animate-spin w-16 h-16 rounded-full"></div>
 </template>
 
-<style scoped>
-.spinner {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  animation: spinner-c7wet2 1s infinite linear;
-}
-
-@keyframes spinner-c7wet2 {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-</style>

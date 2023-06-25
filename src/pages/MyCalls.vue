@@ -7,8 +7,8 @@
     >
       <template v-slot:title>
         <span class="text-2xl">
-          Detalhes do Ticket nº {{ ticket?.ticket }}</span
-        >
+          {{ $t("my_call_modal_ticket", { ticket: ticket?.ticket }) }}
+        </span>
       </template>
 
       <template v-slot:body>
@@ -28,7 +28,11 @@
     </modal>
   </transition>
 
-  <container :title="$t('call_title')" :detail="$t('call_title_detail')">
+  <container
+    :title="$t('call_title')"
+    :detail="$t('call_title_detail')"
+    :loading="loading"
+  >
     <template v-slot:header>
       <div
         class="sm:ml-auto sm:grid w-full sm:grid-cols-5 sm:items-center sm:justify-center sm:gap-1 gap-2 sm:mb-0 mb-12"
@@ -88,7 +92,6 @@ import { STATUS } from "@/constants/utils";
 import { useHelpDesk } from "@/store/module_helpdesk";
 
 export default {
-  title: "Meus Chamados",
   components: {
     Container,
     PhCheck,
@@ -131,6 +134,7 @@ export default {
 
     const totalPages: any = computed(() => myCalls.totalPages);
     const currentPage: any = computed(() => myCalls.currentPage);
+    const loading: any = computed(() => myCalls.loading);
 
     return {
       listCall,
@@ -138,6 +142,7 @@ export default {
       pageSize,
       totalPages,
       currentPage,
+      loading,
     };
   },
   data() {

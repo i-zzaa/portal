@@ -19,6 +19,7 @@ const defaultSolicitacao: any = {
 
 export const useHelpDesk = defineStore("helpDesk", {
   state: () => ({
+    loading: false,
     catalogo: "",
     servico: "",
     solicitacao: { ...defaultSolicitacao },
@@ -74,35 +75,49 @@ export const useHelpDesk = defineStore("helpDesk", {
       }
     },
     async getCatalogo() {
+      this.loading = true;
+
       try {
         const { data }: any = await HelpDeskService.getCatalog();
         this.listCatalogs = data;
+
+        this.loading = false;
       } catch (error) {
         console.log("module_catalogo - getCatalogo - ", error);
         toast.error("Erro ao carregar os catálogos!");
+        this.loading = false;
       }
     },
     async getService(idCatalog: number) {
+      this.loading = true;
+
       try {
         const { data } = await HelpDeskService.getService(idCatalog);
 
         this.listServices = data;
+        this.loading = false;
       } catch (error) {
         console.log("module_catalogo - getService - ", error);
         toast.error("Erro ao carregar os serviços!");
+        this.loading = false;
       }
     },
     async setSolicitation(form: SolicitacaoProps | any) {
+      this.loading = true;
+
       try {
         await HelpDeskService.createTicket(form);
         toast.success("Ticket criado com sucesso!");
 
         this.solicitacao = { ...defaultSolicitacao };
+        this.loading = false;
 
         return true;
       } catch (error) {
         console.log("module_catalogo - setSolicitation - ", error);
         toast.error("Erro ao enviar a solicitação!");
+        this.loading = false;
+
         throw new Error("Erro ao enviar a solicitação!");
       }
     },

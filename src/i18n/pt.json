@@ -35,6 +35,7 @@
   "error_login_outlook": "Erro ao realizar o login!",
   "open_ticket": "Responder",
   "details_ticket": "Detalhe do último artigo",
+  "my_call_modal_ticket": "Detalhes do Ticket nº { ticket }",
   "ENUM": {
     "logout": "Sair",
     "success": "success",
