@@ -11,6 +11,7 @@ export const useAuth = defineStore("user", {
     username: "",
     token: token ? JSON.parse(token) : null,
     user: user ? JSON.parse(user) : null,
+    loading: false,
   }),
   getters: {
     isLoggedIn: (state) => !!state.token,
@@ -18,6 +19,7 @@ export const useAuth = defineStore("user", {
   actions: {
     async login(form: UserRequest) {
       try {
+        this.loading = true;
         const { data }: any = await AuthService.signIn(form);
         // if (response.status !== 200 && response.status !== 201) {
         if (!data.token) {
@@ -30,11 +32,13 @@ export const useAuth = defineStore("user", {
         this.token = data.token;
         sessionStorage.setItem("user", JSON.stringify(this.user));
         sessionStorage.setItem("token", JSON.stringify(this.token));
+        this.loading = false;
 
         return true;
       } catch (error) {
         console.log("module_login - login - ", error);
         toast.error("Erro ao efetuar o login!");
+        this.loading = false;
       }
     },
     logout() {

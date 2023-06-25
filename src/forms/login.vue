@@ -19,7 +19,7 @@
         v-model="password"
       />
 
-      <p-button :label="$t('login_submit')" type="submit" />
+      <p-button :label="$t('login_submit')" type="submit" :loading="loading" />
     </div>
   </form>
 </template>
@@ -61,6 +61,7 @@ export default {
   },
   computed: {
     ...mapState(useAuth, ["isLoggedIn"]),
+    ...mapState(useAuth, ["loading"]),
   },
   methods: {
     async submit(e: any) {

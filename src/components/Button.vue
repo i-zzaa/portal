@@ -6,6 +6,11 @@
     :type="type"
     :disabled="disabled"
   >
+    <ph-circle-notch
+      class="animate-spin h-5 w-5 mr-3 text-white"
+      v-if="loading"
+    />
+
     <component v-if="!!icon" :is="icon" class="h-4 w-4" :class="iconCustom" />
 
     <span v-if="!!label">{{ label?.toUpperCase() }}</span>
@@ -17,6 +22,7 @@ import {
   PhMagnifyingGlass,
   PhCaretCircleLeft,
   PhCaretCircleRight,
+  PhCircleNotch,
 } from "@phosphor-icons/vue";
 
 type ButtonType = "submit" | "reset" | "button";
@@ -26,11 +32,13 @@ export default {
     PhMagnifyingGlass,
     PhCaretCircleLeft,
     PhCaretCircleRight,
+    PhCircleNotch,
   },
   props: {
     label: String,
     onclick: Function,
     color: { type: String, required: false, default: "bg-primary" },
+    loading: { type: Boolean, required: false, default: false },
     icon: String,
     classCustom: { type: String, required: false, default: " px-3 py-1.5" },
     iconCustom: { type: String, required: false, default: "" },

@@ -38,6 +38,8 @@ export default {
         "logo-01": "url('@/assets/img/logo-01.png')",
         "logo-02": "url('@/assets/img/logo-02.png')",
         "gradient-01": "radial-gradient(at top left, #06BDEF 0%, #022e49 60%)",
+        loading:
+          "radial-gradient(farthest-side, #474bff 94%, #0000) top/9px 9px no-repeat, conic-gradient(#0000 30%, #474bff)",
       },
       maxWidth: {
         80: "80%",
