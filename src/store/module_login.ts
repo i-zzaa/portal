@@ -20,12 +20,12 @@ export const useAuth = defineStore("user", {
     async login(form: UserRequest) {
       try {
         this.loading = true;
-        const { data }: any = await AuthService.signIn(form);
+        const { data, message }: any = await AuthService.signIn(form);
         // if (response.status !== 200 && response.status !== 201) {
         if (!data.token) {
           this.user = null;
-          toast.error("Erro ao efetuar o login!");
-          throw new Error("Erro ao efetuar o login!");
+          toast.error(message);
+          throw new Error(message);
         }
         this.user = data.user;
         this.username = data.user.username;
@@ -35,9 +35,9 @@ export const useAuth = defineStore("user", {
         this.loading = false;
 
         return true;
-      } catch (error) {
+      } catch (error: any) {
         console.log("module_login - login - ", error);
-        toast.error("Erro ao efetuar o login!");
+        toast.error(error.message);
         this.loading = false;
       }
     },

@@ -57,7 +57,7 @@ export default {
     const helpDesk = useHelpDesk();
     const catalogo: any = computed(() => helpDesk.catalogo);
 
-    helpDesk.getService(catalogo.value.id);
+    helpDesk.getService(catalogo.value.cod);
 
     const store = useWizard();
     const steps = computed(() => store.steps);

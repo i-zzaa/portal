@@ -5,8 +5,8 @@ export default {
   async getCatalog() {
     return Api().get("catalogo");
   },
-  async getService(idCatalog: number) {
-    return Api().get("servicos/" + idCatalog);
+  async getService(codCatalog: string) {
+    return Api().get("servicos/" + codCatalog);
   },
   async getNetwork() {
     return Api().get("network");

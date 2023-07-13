@@ -5,7 +5,7 @@ import { defineStore } from "pinia";
 import { toast } from "vue3-toastify";
 
 const defaultSolicitacao: any = {
-  idCatalog: "",
+  codCatalog: "",
   idService: "",
   assunto: "",
   detahes: "",
@@ -46,7 +46,7 @@ export const useHelpDesk = defineStore("helpDesk", {
   actions: {
     setCatalog(params: any) {
       this.catalogo = params;
-      this.solicitacao.idCatalog = params.id;
+      this.solicitacao.codCatalog = params.cod;
     },
     setIsReplay(value: boolean) {
       this.isReplay = value;
@@ -60,7 +60,7 @@ export const useHelpDesk = defineStore("helpDesk", {
     setService(params: any) {
       this.servico = params;
 
-      this.solicitacao.idService = params?.id;
+      this.solicitacao.idService = params?.cod;
     },
     setSolicitacao(params: any) {
       this.solicitacao = params;
@@ -88,11 +88,11 @@ export const useHelpDesk = defineStore("helpDesk", {
         this.loading = false;
       }
     },
-    async getService(idCatalog: number) {
+    async getService(codCatalog: string) {
       this.loading = true;
 
       try {
-        const { data } = await HelpDeskService.getService(idCatalog);
+        const { data } = await HelpDeskService.getService(codCatalog);
 
         this.listServices = data;
         this.loading = false;
