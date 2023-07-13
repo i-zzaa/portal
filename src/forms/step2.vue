@@ -16,11 +16,7 @@
                   <component :is="item.icon" class="h-6 w-6" />
                   {{ item.title }}
                 </div>
-                <hr class="bg-primary w-full mt-4" />
               </template>
-              <div class="mt-8">
-                {{ item.description }}
-              </div>
             </Card>
           </li>
         </ul>
@@ -39,7 +35,12 @@
 </template>
 
 <script lang="ts">
-import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
+import {
+  PhKey,
+  PhShareNetwork,
+  PhFloppyDisk,
+  PhBrowsers,
+} from "@phosphor-icons/vue";
 import { useHelpDesk } from "@/store/module_helpdesk";
 import { computed } from "vue";
 import { mapActions } from "pinia";
@@ -52,7 +53,14 @@ import { useWizard } from "@/store/module_wizard";
 const INDEX_STEP = 1;
 
 export default {
-  components: { Container, Card, PhKey, PhShareNetwork, PhFloppyDisk },
+  components: {
+    Container,
+    Card,
+    PhKey,
+    PhShareNetwork,
+    PhFloppyDisk,
+    PhBrowsers,
+  },
   setup() {
     const helpDesk = useHelpDesk();
     const catalogo: any = computed(() => helpDesk.catalogo);

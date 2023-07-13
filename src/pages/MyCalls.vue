@@ -109,29 +109,7 @@ export default {
     const myCalls = useMyCalls();
     myCalls.getCalls(pageSize, 1);
 
-    const listCall: any = computed(() => {
-      return myCalls.listCall.map((item: any) => {
-        switch (item.status) {
-          case STATUS.reaberto:
-            item.icon = "PhArrowsClockwise";
-            break;
-          case STATUS.encerrado:
-            item.icon = "PhCheck";
-            break;
-          case STATUS.resolvido:
-            item.icon = "PhCheck";
-            break;
-          case STATUS.novo:
-            item.icon = "PhTicket";
-            break;
-          default:
-            break;
-        }
-
-        return item;
-      });
-    });
-
+    const listCall: any = computed(() => myCalls.listCall);
     const totalPages: any = computed(() => myCalls.totalPages);
     const currentPage: any = computed(() => myCalls.currentPage);
     const loading: any = computed(() => myCalls.loading);

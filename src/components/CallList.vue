@@ -4,7 +4,7 @@
       <li v-for="(item, index) in listCall" :key="index" class="w-full">
         <list
           @click="() => nextTicket(item)"
-          :color="`border-${item?.status.toLowerCase()}`"
+          :color="`border-${item?.color}`"
           list
           @mouseenter="() => (item.show = true)"
           @mouseleave="() => (item.show = false)"
@@ -13,7 +13,7 @@
             <div class="grid gap-1">
               <span
                 class="absolute sm:top-[95%] top-[50%] -left-10 h-6 w-6 rounded-full flex items-center justify-center -mt-8"
-                :class="`${item?.status.toLowerCase()}`"
+                :class="`${item?.color}`"
               >
                 <component :is="item?.icon" class="h-4 w-4 text-white" />
               </span>
@@ -39,11 +39,11 @@
               </div>
               <div class="grid gap-1">
                 <span class="font-semibold"> Tipo </span>
-                <span> {{ item?.tipo }} </span>
+                <span> {{ item?.type }} </span>
               </div>
               <div class="grid gap-1">
                 <span class="font-semibold"> Prioridade </span>
-                <span> {{ item?.prioridade }} </span>
+                <span> {{ item?.priority }} </span>
               </div>
               <div class="grid gap-1">
                 <span class="font-semibold"> Data </span>
@@ -53,7 +53,7 @@
             <div v-if="item.show" class="w-full mt-4">
               <span class="font-semibold mb-2">{{ $t("details_ticket") }} </span
               ><br />
-              <span> {{ item?.detail.at(-1).detalhe }} </span>
+              <span> {{ item?.detail.at(-1).detail }} </span>
             </div>
           </div>
         </list>

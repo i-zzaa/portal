@@ -5,7 +5,11 @@
     :loading="loading"
   >
     <ul class="flex flex-wrap gap-6 justify-center">
-      <li v-for="(item, index) in listCatalogs" :key="index" class="">
+      <li
+        v-for="(item, index) in listCatalogs"
+        :key="index"
+        class="w-full md:w-64"
+      >
         <Card @click="() => nextTicket(item)">
           <template v-slot:title>
             <div
@@ -14,11 +18,7 @@
               <component :is="item.icon" class="h-6 w-6" />
               {{ item.title }}
             </div>
-            <hr class="bg-primary w-full mt-4" />
           </template>
-          <div class="mt-8">
-            {{ item.description }}
-          </div>
         </Card>
       </li>
     </ul>
@@ -26,11 +26,17 @@
   </container>
 </template>
 
+
 <script lang="ts">
 import Container from "@/components/Container.vue";
 import Card from "@/components/Card.vue";
 import { useHelpDesk } from "@/store/module_helpdesk";
-import { PhKey, PhShareNetwork, PhFloppyDisk } from "@phosphor-icons/vue";
+import {
+  PhKey,
+  PhShareNetwork,
+  PhFloppyDisk,
+  PhBrowsers,
+} from "@phosphor-icons/vue";
 import { mapActions } from "pinia";
 import { RouterView } from "vue-router";
 import { useWizard } from "@/store/module_wizard";
@@ -46,6 +52,7 @@ export default {
     PhShareNetwork,
     PhFloppyDisk,
     RouterView,
+    PhBrowsers,
   },
   setup() {
     const store = useWizard();
