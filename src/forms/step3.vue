@@ -260,7 +260,7 @@ export default {
     },
     onchange(e: any) {
       e.preventDefault();
-      this.helpDesk.getService(Number(this.form.idCatalog));
+      this.helpDesk.getService(this.form.idCatalog);
       this.form.idService = "";
     },
     async submit(event: any) {
