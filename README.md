@@ -8,7 +8,7 @@
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/), [Vue3](https://v3.vuejs.org/)  Yarn.
+[Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/) versão 19.2.0, [Vue3](https://v3.vuejs.org/)  Yarn.
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
 ### 🎲 Rodando o Front
@@ -27,6 +27,28 @@ $ yarn install
 $ yarn dev
 
 # O servidor inciará na porta:5173 - acesse <http://127.0.0.1:5173/>
+
+```
+
+### 🎲 Rodando o Front Produção
+
+```
+# Clone este repositório
+$ git https://github.com/i-zzaa/portal.git
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd portal
+
+# Instale as dependências 
+$ yarn install
+
+# Build da aplicação que vai criar a pasta dist para produção
+$ yarn build
+
+# Execute a aplicação em modo de produção
+$ yarn start
+
+# O servidor inciará
 
 ```
 

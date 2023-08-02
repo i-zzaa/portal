@@ -10,8 +10,9 @@ export interface CatalogProps {
 }
 
 export interface SolicitacaoProps {
-  idCatalog: number;
-  idService: number;
+  codCatalog: string;
+  codCategory: string;
+  codService: string;
   assunto: string;
   detahes: string;
   destinatario: string;
@@ -19,4 +20,5 @@ export interface SolicitacaoProps {
   ramal?: string;
   ip: string;
   patrimonio?: string;
+  file: File;
 }
