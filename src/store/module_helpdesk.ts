@@ -63,12 +63,14 @@ export const useHelpDesk = defineStore("helpDesk", {
     setService(params: any) {
       this.servico = params;
 
-      this.solicitacao.idService = params?.cod;
+      this.solicitacao.codService = params.cod;
     },
     setCategory(params: any) {
       this.categoria = params;
 
-      this.solicitacao.idService = params?.cod;
+      this.solicitacao.codCategory = params.cod;
+
+      this.getService(params.cod);
     },
     setSolicitacao(params: any) {
       this.solicitacao = params;

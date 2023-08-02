@@ -8,16 +8,16 @@
         <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
           <field-select
             :label="$t('step3_select_1')"
-            name="assunto"
+            name="catalogo"
             type="text"
-            autocomplete="assunto"
-            id="assunto"
+            autocomplete="catalogo"
+            id="catalogo"
             v-model="form.codCatalog"
             containerCustom="col-span-6 sm:col-span-2"
             :options="listCatalogs"
             label-index="title"
-            index="id"
-            :onchange="onchange"
+            index="cod"
+            :onchange="onchangeCatalog"
             :required="!isReplay"
             v-if="!isReplay"
           />
@@ -31,8 +31,8 @@
             containerCustom="col-span-6 sm:col-span-2"
             :options="listCategory"
             label-index="title"
-            index="id"
-            :onchange="() => {}"
+            index="cod"
+            :onchange="onchangeCategory"
             :disabled="!form.codCatalog"
             :required="!isReplay"
             v-if="!isReplay"
@@ -47,7 +47,7 @@
             containerCustom="col-span-6 sm:col-span-2"
             :options="listServices"
             label-index="title"
-            index="id"
+            index="cod"
             :onchange="() => {}"
             :disabled="!form.codCategory"
             :required="!isReplay"
@@ -197,18 +197,19 @@ export default {
 
     const helpDesk = useHelpDesk();
     helpDesk.getCatalogo();
-    helpDesk.getNetWork();
 
     const solicitacao = computed(() => helpDesk.solicitacao);
 
     const listCatalogs = computed(() => helpDesk.listCatalogs);
     const listCategory = computed(() => helpDesk.listCategory);
     const listServices = computed(() => helpDesk.listServices);
+    const ip = computed(() => helpDesk.solicitacao.ip);
 
     const loading: any = computed(() => helpDesk.loading);
 
     const form = reactive({
       ...solicitacao.value,
+      ip: ip.value,
     });
 
     const isReplay = computed(() => helpDesk.isReplay);
@@ -234,6 +235,8 @@ export default {
   methods: {
     ...mapActions(useWizard, ["setStep"]),
     ...mapActions(useHelpDesk, ["updateStep"]),
+    ...mapActions(useHelpDesk, ["getCategory"]),
+    ...mapActions(useHelpDesk, ["getService"]),
 
     formatTel(event: any) {
       const cleanedNumber = event.target.value.replace(/\D/g, "");
@@ -260,29 +263,38 @@ export default {
 
       this.setStep(1);
     },
-    onchange(e: any) {
+    onchangeCatalog(e: any) {
       e.preventDefault();
-      this.helpDesk.getService(this.form.idCatalog);
-      this.form.idService = "";
+      this.getCategory(this.form.codCatalog);
+      this.form.codCategory = "";
+    },
+    onchangeCategory(e: any) {
+      e.preventDefault();
+      this.getService(this.form.codCategory);
+      this.form.codService = "";
     },
     async submit(event: any) {
       event.preventDefault();
 
-      if (!this.form.idCatalog) {
-        toast.error(this.$t("enum.not_catalog"));
-        throw new Error(this.$t("enum.not_catalog"));
+      if (!this.form.codCatalog) {
+        toast.error(this.$t("ENUM.not_catalog"));
+        throw new Error(this.$t("ENUM.not_catalog"));
       }
-      if (!this.form.idService) {
-        toast.error(this.$t("enum.not_service"));
-        throw new Error(this.$t("enum.not_service"));
+      if (!this.form.codCategory) {
+        toast.error(this.$t("ENUM.not_category"));
+        throw new Error(this.$t("ENUM.not_category"));
+      }
+      if (!this.form.codService) {
+        toast.error(this.$t("ENUM.not_service"));
+        throw new Error(this.$t("ENUM.not_service"));
       }
       if (!this.form.assunto) {
-        toast.error(this.$t("enum.not_title"));
-        throw new Error(this.$t("enum.not_title"));
+        toast.error(this.$t("ENUM.not_title"));
+        throw new Error(this.$t("ENUM.not_title"));
       }
       if (!this.form.detahes) {
-        toast.error(this.$t("enum.not_detail"));
-        throw new Error(this.$t("enum.not_detail"));
+        toast.error(this.$t("ENUM.not_detail"));
+        throw new Error(this.$t("ENUM.not_detail"));
       }
       // if (!this.form.file) {
       //   toast.error(this.$t("enum.not_detail"));

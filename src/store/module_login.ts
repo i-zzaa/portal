@@ -37,7 +37,7 @@ export const useAuth = defineStore("user", {
         return true;
       } catch (error: any) {
         console.log("module_login - login - ", error);
-        toast.error(error.message);
+        toast.error("Erro na conexão!");
         this.loading = false;
       }
     },
