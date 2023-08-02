@@ -11,4 +11,23 @@ export default defineConfig({
       "@styles": fileURLToPath(new URL("./src/assets/css", import.meta.url)),
     },
   },
+  // server: {
+  //   proxy: {
+  //     "/auth": {
+  //       target: process.env.VITE_API_AUTH,
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/auth/, ""),
+  //     },
+  //     "/api": {
+  //       target: process.env.VITE_API_URL,
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, ""),
+  //     },
+  //     // '/docs': {
+  //     //   target: process.env.VITE_API_SWAGGER_EXEC,
+  //     //   changeOrigin: true,
+  //     //   rewrite: (path) => path.replace(/^\/docs/, '')
+  //     // }
+  //   },
+  // },
 });
