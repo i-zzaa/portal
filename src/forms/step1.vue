@@ -59,8 +59,9 @@ export default {
     const helpDesk = useHelpDesk();
     const currentStep = computed(() => store.currentStep);
     const steps = computed(() => store.steps);
-
     const loading: any = computed(() => helpDesk.loading);
+
+    helpDesk.getNetWork();
 
     const listCatalogs: any = computed(() => helpDesk.listCatalogs);
     return {

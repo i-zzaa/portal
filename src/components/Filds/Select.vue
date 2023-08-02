@@ -53,7 +53,6 @@ export default {
     containerCustom: String,
     autocomplete: String,
     required: Boolean,
-
     modelValue: {
       type: [String, Number],
       required: true,
