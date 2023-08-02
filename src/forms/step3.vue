@@ -12,7 +12,7 @@
             type="text"
             autocomplete="assunto"
             id="assunto"
-            v-model="form.idCatalog"
+            v-model="form.codCatalog"
             containerCustom="col-span-6 sm:col-span-2"
             :options="listCatalogs"
             label-index="title"
@@ -27,13 +27,13 @@
             type="text"
             autocomplete="assunto"
             id="assunto"
-            v-model="form.idService"
+            v-model="form.codCategory"
             containerCustom="col-span-6 sm:col-span-2"
-            :options="listServices"
+            :options="listCategory"
             label-index="title"
             index="id"
             :onchange="() => {}"
-            :disabled="!form.idCatalog"
+            :disabled="!form.codCatalog"
             :required="!isReplay"
             v-if="!isReplay"
           />
@@ -43,13 +43,13 @@
             type="text"
             autocomplete="assunto"
             id="assunto"
-            v-model="form.idService"
+            v-model="form.codService"
             containerCustom="col-span-6 sm:col-span-2"
             :options="listServices"
             label-index="title"
             index="id"
             :onchange="() => {}"
-            :disabled="!form.idCatalog"
+            :disabled="!form.codCategory"
             :required="!isReplay"
             v-if="!isReplay"
           />
@@ -202,6 +202,7 @@ export default {
     const solicitacao = computed(() => helpDesk.solicitacao);
 
     const listCatalogs = computed(() => helpDesk.listCatalogs);
+    const listCategory = computed(() => helpDesk.listCategory);
     const listServices = computed(() => helpDesk.listServices);
 
     const loading: any = computed(() => helpDesk.loading);
@@ -218,6 +219,7 @@ export default {
       form,
       helpDesk,
       listCatalogs,
+      listCategory,
       listServices,
       isReplay,
       ticket,

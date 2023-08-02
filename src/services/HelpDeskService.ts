@@ -8,6 +8,9 @@ export default {
   async getService(codCatalog: string) {
     return Api().get("servicos/" + codCatalog);
   },
+  async getCategory(codCatalog: string) {
+    return Api().get("categoria/" + codCatalog);
+  },
   async getNetwork() {
     return Api().get("network");
   },

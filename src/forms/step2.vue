@@ -7,7 +7,7 @@
     <div>
       <div class="flex flex-wrap mt-6 justify-center">
         <ul class="flex flex-wrap gap-6 justify-center">
-          <li v-for="(item, index) in listServices" :key="index" class="">
+          <li v-for="(item, index) in listCategory" :key="index" class="">
             <Card @click="() => nextTicket(item)">
               <template v-slot:title>
                 <div
@@ -65,23 +65,23 @@ export default {
     const helpDesk = useHelpDesk();
     const catalogo: any = computed(() => helpDesk.catalogo);
 
-    helpDesk.getService(catalogo.value.cod);
+    helpDesk.getCategory(catalogo.value.cod);
 
     const store = useWizard();
     const steps = computed(() => store.steps);
     const loading: any = computed(() => helpDesk.loading);
 
-    const listServices: any = computed(() => helpDesk.listServices);
+    const listCategory: any = computed(() => helpDesk.listCategory);
 
     return {
       catalogo,
       steps,
-      listServices,
+      listCategory,
       loading,
     };
   },
   methods: {
-    ...mapActions(useHelpDesk, ["setService"]),
+    ...mapActions(useHelpDesk, ["setCategory"]),
     ...mapActions(useWizard, ["setStep"]),
     ...mapActions(useHelpDesk, ["updateStep"]),
 
@@ -105,7 +105,7 @@ export default {
       this.updateStep(index, step);
 
       if (item) {
-        this.setService(item);
+        this.setCategory(item);
       }
       this.setStep(index);
     },

@@ -6,7 +6,8 @@ import { toast } from "vue3-toastify";
 
 const defaultSolicitacao: any = {
   codCatalog: "",
-  idService: "",
+  codCategory: "",
+  codService: "",
   assunto: "",
   detahes: "",
   destinatario: "crm@i9atech.com",
@@ -22,8 +23,10 @@ export const useHelpDesk = defineStore("helpDesk", {
     loading: false,
     catalogo: "",
     servico: "",
+    categoria: "",
     solicitacao: { ...defaultSolicitacao },
     listCatalogs: [],
+    listCategory: [],
     listServices: [],
     isReplay: false,
     ticket: "",
@@ -59,6 +62,11 @@ export const useHelpDesk = defineStore("helpDesk", {
     },
     setService(params: any) {
       this.servico = params;
+
+      this.solicitacao.idService = params?.cod;
+    },
+    setCategory(params: any) {
+      this.categoria = params;
 
       this.solicitacao.idService = params?.cod;
     },
@@ -99,6 +107,20 @@ export const useHelpDesk = defineStore("helpDesk", {
       } catch (error) {
         console.log("module_catalogo - getService - ", error);
         toast.error("Erro ao carregar os serviços!");
+        this.loading = false;
+      }
+    },
+    async getCategory(codCatalog: string) {
+      this.loading = true;
+
+      try {
+        const { data } = await HelpDeskService.getCategory(codCatalog);
+
+        this.listCategory = data;
+        this.loading = false;
+      } catch (error) {
+        console.log("module_catalogo -   getCategory - ", error);
+        toast.error("Erro ao carregar a categoria!");
         this.loading = false;
       }
     },

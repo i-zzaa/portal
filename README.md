@@ -1,18 +1,54 @@
-# Vue 3 + TypeScript + Vite
+<h1 align="center">
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+👾  PORTAL 👾
+</h1>
+<p align="center">🚀  Esse projeto tem como objetivo principal permitir que o usuário abre solicitações helpdesk
+</p>
 
-## Recommended IDE Setup
+### Pré-requisitos
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/), [Vue3](https://v3.vuejs.org/)  Yarn.
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-## Type Support For `.vue` Imports in TS
+### 🎲 Rodando o Front
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+```
+# Clone este repositório
+$ git https://github.com/i-zzaa/portal.git
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+# Acesse a pasta do projeto no terminal/cmd
+$ cd portal
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+# Instale as dependências 
+$ yarn install
+
+# Execute a aplicação em modo de desenvolvimento
+$ yarn dev
+
+# O servidor inciará na porta:5173 - acesse <http://127.0.0.1:5173/>
+
+```
+
+### ⚙️ Configurações
+
+É necessário criar um arquivo .env  na raiz do projeto com a variável de ambiente VITE_API_URL com a url do backend
+
+.*env*
+
+```
+VITE_API_URL = http://127.0.0.1:3000/
+```
+
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Vue](https://vuejs.org/)3
+- [Vite](https://vitejs.dev/)
+- [Vue-router](https://router.vuejs.org/guide/advanced/meta.html)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
+- Pinia
+- Eslint
+- Prettier
+- [Phospho Icon](https://phosphoricons.com/)
