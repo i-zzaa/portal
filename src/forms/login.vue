@@ -55,8 +55,8 @@ export default {
   },
   data() {
     return {
-      username: "andressa.novaes",
-      password: "12345678",
+      username: "root@localhost",
+      password: "mxfE124nAlm06ocW",
     };
   },
   computed: {
@@ -67,12 +67,12 @@ export default {
     async submit(e: any) {
       e.preventDefault();
       if (!this.username) {
-        toast.error(this.$t("enum.not_username"));
-        throw new Error(this.$t("enum.not_username"));
+        toast.error(this.$t("ENUM.not_username"));
+        throw new Error(this.$t("ENUM.not_username"));
       }
       if (!this.password) {
-        toast.error(this.$t("enum.not_password"));
-        throw new Error(this.$t("enum.not_password"));
+        toast.error(this.$t("ENUM.not_password"));
+        throw new Error(this.$t("ENUM.not_password"));
       }
 
       await this.auth.login({

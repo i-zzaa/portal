@@ -21,7 +21,6 @@ export const useAuth = defineStore("user", {
       try {
         this.loading = true;
         const { data, message }: any = await AuthService.signIn(form);
-        // if (response.status !== 200 && response.status !== 201) {
         if (!data.token) {
           this.user = null;
           toast.error(message);
@@ -41,9 +40,13 @@ export const useAuth = defineStore("user", {
         this.loading = false;
       }
     },
-    logout() {
+    async logout() {
       this.user = null;
       sessionStorage.clear();
+
+      try {
+        await AuthService.logout();
+      } catch (error) {}
     },
   },
 });

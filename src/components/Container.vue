@@ -5,7 +5,7 @@
     <p-loading v-if="loading" />
     <div v-else>
       <div class="flex flex-wrap -mx-3 text-start">
-        <div class="w-full grid sm:grid-cols-3 sm:justify-between">
+        <div class="w-full grid sm:justify-between">
           <h1 class="text-3xl font-ligth my-12 text-title sm:col-span-2">
             {{ title }}
             <span class="font-light"> {{ detail }}</span>

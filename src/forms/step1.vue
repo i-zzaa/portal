@@ -4,7 +4,7 @@
     :detail="$t('step1_title_detail')"
     :loading="loading"
   >
-    <ul class="flex flex-wrap gap-6 justify-center">
+    <ul class="flex flex-wrap gap-6 justify-center" v-if="listCatalogs.length">
       <li
         v-for="(item, index) in listCatalogs"
         :key="index"
@@ -22,6 +22,8 @@
         </Card>
       </li>
     </ul>
+
+    <empty v-else></empty>
     <div class="flex mt-6"></div>
   </container>
 </template>
@@ -41,6 +43,7 @@ import { mapActions } from "pinia";
 import { RouterView } from "vue-router";
 import { useWizard } from "@/store/module_wizard";
 import { computed } from "vue";
+import Empty from "@/components/Empty.vue";
 
 const INDEX_STEP = 0;
 
@@ -53,6 +56,7 @@ export default {
     PhFloppyDisk,
     RouterView,
     PhBrowsers,
+    Empty,
   },
   setup() {
     const store = useWizard();

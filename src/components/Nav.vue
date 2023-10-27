@@ -162,8 +162,8 @@ export default {
   },
   methods: {
     ...mapActions(useAuth, ["logout"]),
-    handleLogout() {
-      this.logout();
+    async handleLogout() {
+      await this.logout();
       this.$router.push("/login");
       this.menuHamburguerActive = false;
     },

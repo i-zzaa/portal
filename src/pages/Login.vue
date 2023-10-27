@@ -16,8 +16,6 @@
     <div class="bg-white grid p-4 items-center sm:col-span-2 col-span-3">
       <form-login />
     </div>
-
-    <!-- <form-login class="grid sm:hidden" /> -->
   </div>
 </template>
 

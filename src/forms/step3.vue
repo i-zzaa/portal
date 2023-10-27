@@ -23,10 +23,10 @@
           />
           <field-select
             :label="$t('step3_select_2')"
-            name="assunto"
+            name="category"
             type="text"
-            autocomplete="assunto"
-            id="assunto"
+            autocomplete="category"
+            id="category"
             v-model="form.codCategory"
             containerCustom="col-span-6 sm:col-span-2"
             :options="listCategory"

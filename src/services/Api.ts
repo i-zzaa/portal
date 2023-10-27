@@ -13,7 +13,7 @@ export default () => {
     (response: any) => response,
     (error) => {
       const loggedIn = store.isLoggedIn;
-      if (!loggedIn) {
+      if (!loggedIn && error.config.url !== "login") {
         store.logout();
       }
       return Promise.reject(error);
