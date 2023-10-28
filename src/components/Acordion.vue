@@ -45,7 +45,6 @@ import {
   PhTicket,
   PhCaretDown,
 } from "@phosphor-icons/vue";
-import { getIconColor } from "@/constants/utils";
 
 export default {
   components: { PhArrowsClockwise, PhCheck, PhTicket, PhCaretDown },
@@ -55,7 +54,6 @@ export default {
   setup(props: any) {
     return {
       list: props.items,
-      getIconColor,
     };
   },
   data() {

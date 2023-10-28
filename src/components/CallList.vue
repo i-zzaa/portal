@@ -19,7 +19,7 @@
               </span>
             </div>
             <div
-              class="sm:flex flex-wrap grid sm:gap-2 gap-4 items-start justify-between text-sm text-primary"
+              class="flex flex-wrap sm:gap-2 gap-4 items-start justify-between text-sm text-primary"
             >
               <div class="grid gap-1">
                 <span class="font-semibold"> Ticket </span>

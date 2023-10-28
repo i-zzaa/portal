@@ -77,7 +77,7 @@
 <script lang="ts">
 import { PhArrowsClockwise, PhCheck, PhTicket } from "@phosphor-icons/vue";
 import { RouterView, useRoute } from "vue-router";
-import { computed, reactive, ref } from "vue";
+import { computed, ref } from "vue";
 import { mapActions } from "pinia";
 
 import Container from "@/components/Container.vue";
@@ -113,8 +113,8 @@ export default {
     const route: any = useRoute();
     const showModal: any = ref(false);
 
-    const handleGetTicket = async () => {
-      await myCalls.getMyCall(route.params.id);
+    const handleGetTicket = async (id: number = route.params.id) => {
+      await myCalls.getMyCall(id);
       showModal.value = true;
     };
 
@@ -137,6 +137,7 @@ export default {
       loading,
       showModal,
       ticket,
+      handleGetTicket,
     };
   },
   data() {
@@ -150,11 +151,14 @@ export default {
     ...mapActions(useHelpDesk, ["setTicket"]),
 
     async search() {
-      await this.myCalls.search(this.word);
+      if (this.word) {
+        await this.myCalls.search(this.word);
+      } else {
+        this.pageChanged(1);
+      }
     },
     nextTicket(item: any) {
-      this.ticket = item;
-      this.showModal = true;
+      this.handleGetTicket(item.id);
     },
     async pageChanged(currentPage: number) {
       await this.myCalls.getCalls(this.pageSize, currentPage);
