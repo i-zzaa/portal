@@ -3,7 +3,7 @@
     <h3 class="text-[#344767] mt-12 text-lg" v-if="title">
       {{ title }}
     </h3>
-    <h5 class="font-normal dark:text-white text-[#8392ab]" v-if="description">
+    <h5 class="font-normal text-[#8392ab]" v-if="description">
       {{ description }}
     </h5>
     <div class="mb-12">
