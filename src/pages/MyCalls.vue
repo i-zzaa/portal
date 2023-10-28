@@ -13,7 +13,7 @@
 
       <template v-slot:body>
         <div>
-          <Acordion :items="ticket?.detail" />
+          <Acordion :items="ticket?.details" />
         </div>
       </template>
 

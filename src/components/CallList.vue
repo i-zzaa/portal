@@ -53,7 +53,7 @@
             <div v-if="item.show" class="w-full mt-4">
               <span class="font-semibold mb-2">{{ $t("details_ticket") }} </span
               ><br />
-              <span> {{ item?.detail.at(-1).detail }} </span>
+              <span> {{ item?.detail }} </span>
             </div>
           </div>
         </list>
