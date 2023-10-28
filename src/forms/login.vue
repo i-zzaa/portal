@@ -37,6 +37,7 @@ import { FieldInput } from "@/components/Filds/index";
 
 import { toast } from "vue3-toastify";
 import { mapState } from "pinia";
+import { onMounted, onUnmounted } from "vue";
 
 export default {
   components: {
@@ -48,9 +49,30 @@ export default {
   },
   setup() {
     const auth = useAuth();
+    let inactivityTimer: any = null;
+
+    const startInactivityTimer = () => {
+      inactivityTimer = setTimeout(() => {
+        auth.logout();
+      }, 3600000); // 1 hora em milissegundos
+    };
+
+    const resetInactivityTimer = () => {
+      // Resetar o temporizador se houver interação do usuário
+      clearTimeout(inactivityTimer);
+      startInactivityTimer();
+    };
+
+    onUnmounted(() => clearInterval(inactivityTimer));
+    onMounted(() => {
+      // Adicionar um ouvinte de eventos para redefinir o temporizador em eventos de interação do usuário
+      window.addEventListener("mousemove", resetInactivityTimer);
+      window.addEventListener("keydown", resetInactivityTimer);
+    });
 
     return {
       auth,
+      startInactivityTimer,
     };
   },
   data() {
@@ -82,6 +104,7 @@ export default {
 
       if (this.isLoggedIn) {
         this.$router.push("/");
+        this.startInactivityTimer();
       } else {
         this.$router.push("/login");
       }

@@ -3,7 +3,7 @@
     <modal
       v-if="showModal"
       @close="showModal = false"
-      :color="`border-${ticket?.status.toLowerCase()}`"
+      :color="`border-${ticket.color}`"
     >
       <template v-slot:title>
         <span class="text-2xl">
@@ -76,8 +76,8 @@
 
 <script lang="ts">
 import { PhArrowsClockwise, PhCheck, PhTicket } from "@phosphor-icons/vue";
-import { RouterView } from "vue-router";
-import { computed } from "vue";
+import { RouterView, useRoute } from "vue-router";
+import { computed, reactive, ref } from "vue";
 import { mapActions } from "pinia";
 
 import Container from "@/components/Container.vue";
@@ -106,13 +106,27 @@ export default {
   },
   setup() {
     const pageSize = 15;
+
     const myCalls = useMyCalls();
     myCalls.getCalls(pageSize, 1);
+
+    const route: any = useRoute();
+    const showModal: any = ref(false);
+
+    const handleGetTicket = async () => {
+      await myCalls.getMyCall(route.params.id);
+      showModal.value = true;
+    };
+
+    if (route.params.id) {
+      handleGetTicket();
+    }
 
     const listCall: any = computed(() => myCalls.listCall);
     const totalPages: any = computed(() => myCalls.totalPages);
     const currentPage: any = computed(() => myCalls.currentPage);
     const loading: any = computed(() => myCalls.loading);
+    const ticket: any = computed(() => myCalls.ticket);
 
     return {
       listCall,
@@ -121,16 +135,12 @@ export default {
       totalPages,
       currentPage,
       loading,
+      showModal,
+      ticket,
     };
   },
   data() {
     return {
-      showModal: false,
-      ticket: {
-        ticket: "",
-        status: "",
-        detail: [],
-      },
       word: "",
       STATUS: STATUS,
     };

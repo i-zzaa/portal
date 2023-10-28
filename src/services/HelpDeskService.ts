@@ -12,7 +12,7 @@ export default {
     return Api().get("categoria/" + codCatalog);
   },
   async getNetwork() {
-    return Api().get("network");
+    return await Api().get("network");
   },
   async createTicket(form: SolicitacaoProps) {
     return Api().post("ticket", form);

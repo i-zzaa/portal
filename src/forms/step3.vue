@@ -39,15 +39,15 @@
           />
           <field-select
             :label="$t('step3_select_3')"
-            name="assunto"
+            name="service"
             type="text"
-            autocomplete="assunto"
-            id="assunto"
+            autocomplete="service"
+            id="service"
             v-model="form.codService"
             containerCustom="col-span-6 sm:col-span-2"
             :options="listServices"
             label-index="title"
-            index="cod"
+            index="id"
             :onchange="() => {}"
             :disabled="!form.codCategory"
             :required="!isReplay"
@@ -55,42 +55,42 @@
           />
           <field-input
             :label="$t('step3_input_1')"
-            name="assunto"
+            name="subject"
             type="text"
-            autocomplete="assunto"
-            id="assunto"
-            v-model="form.assunto"
+            autocomplete="subject"
+            id="subject"
+            v-model="form.subject"
             containerCustom="col-span-6 sm:col-span-6	"
             :required="true"
           />
           <field-textarea
             :label="$t('step3_input_2')"
-            name="detahes"
+            name="detail"
             type="text"
-            autocomplete="detahes"
-            id="detahes"
-            v-model="form.detahes"
+            autocomplete="detail"
+            id="detail"
+            v-model="form.detail"
             containerCustom="col-span-6 sm:col-span-6	"
             :required="true"
           />
           <field-input
             :label="$t('step3_input_3')"
-            name="destinatario"
+            name="recipient"
             type="text"
-            autocomplete="destinatario"
-            id="destinatario"
-            v-model="form.destinatario"
+            autocomplete="recipient"
+            id="recipient"
+            v-model="form.recipient"
             containerCustom="col-span-6 sm:col-span-2"
             :disabled="true"
             v-if="!isReplay"
           />
           <field-input
             :label="$t('step3_input_4')"
-            name="telefone"
+            name="telephone"
             type="tel"
-            autocomplete="telefone"
-            id="telefone"
-            v-model="form.telefone"
+            autocomplete="telephone"
+            id="telephone"
+            v-model="form.telephone"
             containerCustom="col-span-6 sm:col-span-2"
             :required="false"
             @change="formatTel"
@@ -99,11 +99,11 @@
           />
           <field-input
             :label="$t('step3_input_5')"
-            name="ramal"
+            name="extension"
             type="text"
-            autocomplete="ramal"
-            id="ramal"
-            v-model="form.ramal"
+            autocomplete="extension"
+            id="extension"
+            v-model="form.extension"
             containerCustom="col-span-6 sm:col-span-2"
             :required="false"
             v-if="!isReplay"
@@ -121,11 +121,11 @@
           />
           <field-input
             :label="$t('step3_input_7')"
-            name="patrimonio"
+            name="patrimony"
             type="text"
-            autocomplete="patrimonio"
-            id="patrimonio"
-            v-model="form.patrimonio"
+            autocomplete="patrimony"
+            id="patrimony"
+            v-model="form.patrimony"
             containerCustom="col-span-6 sm:col-span-3"
             :required="false"
             v-if="!isReplay"
@@ -193,19 +193,18 @@ export default {
   },
   setup() {
     const store = useWizard();
-    const steps = computed(() => store.steps);
-
     const helpDesk = useHelpDesk();
+
+    helpDesk.getNetWork();
     helpDesk.getCatalogo();
 
+    const steps = computed(() => store.steps);
     const solicitacao = computed(() => helpDesk.solicitacao);
-
     const listCatalogs = computed(() => helpDesk.listCatalogs);
     const listCategory = computed(() => helpDesk.listCategory);
     const listServices = computed(() => helpDesk.listServices);
-    const ip = computed(() => helpDesk.solicitacao.ip);
-
     const loading: any = computed(() => helpDesk.loading);
+    const ip = computed(() => helpDesk.solicitacao.ip);
 
     const form = reactive({
       ...solicitacao.value,
@@ -254,7 +253,7 @@ export default {
       }
 
       // Update the data property with the formatted number
-      this.form.telefone = formattedNumber;
+      this.form.telephone = formattedNumber;
     },
     prevTicket() {
       const step = { ...this.steps[INDEX_STEP] };
@@ -273,6 +272,15 @@ export default {
       this.getService(this.form.codCategory);
       this.form.codService = "";
     },
+    getBase64(file: any) {
+      return new Promise((resolve: any, reject: any) => {
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    },
     async submit(event: any) {
       event.preventDefault();
 
@@ -288,35 +296,27 @@ export default {
         toast.error(this.$t("ENUM.not_service"));
         throw new Error(this.$t("ENUM.not_service"));
       }
-      if (!this.form.assunto) {
+      if (!this.form.subject) {
         toast.error(this.$t("ENUM.not_title"));
         throw new Error(this.$t("ENUM.not_title"));
       }
-      if (!this.form.detahes) {
+      if (!this.form.detail) {
         toast.error(this.$t("ENUM.not_detail"));
         throw new Error(this.$t("ENUM.not_detail"));
       }
-      // if (!this.form.file) {
-      //   toast.error(this.$t("enum.not_detail"));
-      //   throw new Error(this.$t("enum.not_detail"));
-      // }
 
-      const formData = new FormData();
-      this.form.file && formData.append("file", this.form?.file);
+      const base64: any = await this.getBase64(this.form.file);
+      this.form.filename = this.form.file?.name;
 
       const { file, ...result } = this.form;
 
-      formData.append(
-        "data",
-        JSON.stringify({
-          ...result,
-        })
-      );
+      const response: any = await this.helpDesk.setSolicitation({
+        file: base64,
+        form: result,
+      });
 
-      const response: boolean = await this.helpDesk.setSolicitation(formData);
-
-      if (response) {
-        this.$router.push("/meus-chamados");
+      if (Boolean(response.TicketID)) {
+        this.$router.push(`/meus-chamados/${response.TicketID}`);
       }
     },
   },
