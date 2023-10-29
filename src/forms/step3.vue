@@ -1,159 +1,158 @@
 <template>
   <div class="p-4">
     <container :title="$t('step3_title')" :loading="loading">
-      <form @submit="submit">
-        <div class="text-lg my-4" v-if="isReplay">
-          {{ ticket }}
-        </div>
-        <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
-          <field-select
-            :label="$t('step3_select_1')"
-            name="catalogo"
-            type="text"
-            autocomplete="catalogo"
-            id="catalogo"
-            v-model="form.codCatalog"
-            containerCustom="col-span-6 sm:col-span-2"
-            :options="listCatalogs"
-            label-index="title"
-            index="cod"
-            :onchange="onchangeCatalog"
-            :required="!isReplay"
-            v-if="!isReplay"
-          />
-          <field-select
-            :label="$t('step3_select_2')"
-            name="category"
-            type="text"
-            autocomplete="category"
-            id="category"
-            v-model="form.codCategory"
-            containerCustom="col-span-6 sm:col-span-2"
-            :options="listCategory"
-            label-index="title"
-            index="cod"
-            :onchange="onchangeCategory"
-            :disabled="!form.codCatalog"
-            :required="!isReplay"
-            v-if="!isReplay"
-          />
-          <field-select
-            :label="$t('step3_select_3')"
-            name="service"
-            type="text"
-            autocomplete="service"
-            id="service"
-            v-model="form.codService"
-            containerCustom="col-span-6 sm:col-span-2"
-            :options="listServices"
-            label-index="title"
-            index="id"
-            :onchange="() => {}"
-            :disabled="!form.codCategory"
-            :required="!isReplay"
-            v-if="!isReplay"
-          />
-          <field-input
-            :label="$t('step3_input_1')"
-            name="subject"
-            type="text"
-            autocomplete="subject"
-            id="subject"
-            v-model="form.subject"
-            containerCustom="col-span-6 sm:col-span-6	"
-            :required="true"
-          />
-          <field-textarea
-            :label="$t('step3_input_2')"
-            name="detail"
-            type="text"
-            autocomplete="detail"
-            id="detail"
-            v-model="form.detail"
-            containerCustom="col-span-6 sm:col-span-6	"
-            :required="true"
-          />
-          <field-input
-            :label="$t('step3_input_3')"
-            name="recipient"
-            type="text"
-            autocomplete="recipient"
-            id="recipient"
-            v-model="form.recipient"
-            containerCustom="col-span-6 sm:col-span-2"
-            :disabled="true"
-            v-if="!isReplay"
-          />
-          <field-input
-            :label="$t('step3_input_4')"
-            name="telephone"
-            type="tel"
-            autocomplete="telephone"
-            id="telephone"
-            v-model="form.telephone"
-            containerCustom="col-span-6 sm:col-span-2"
-            :required="false"
-            @change="formatTel"
-            :maxlength="9"
-            v-if="!isReplay"
-          />
-          <field-input
-            :label="$t('step3_input_5')"
-            name="extension"
-            type="text"
-            autocomplete="extension"
-            id="extension"
-            v-model="form.extension"
-            containerCustom="col-span-6 sm:col-span-2"
-            :required="false"
-            v-if="!isReplay"
-          />
-          <field-input
-            :label="$t('step3_input_6')"
-            name="ip"
-            type="text"
-            autocomplete="ip"
-            id="ip"
-            v-model="form.ip"
-            containerCustom="col-span-6 sm:col-span-3"
-            :disabled="true"
-            v-if="!isReplay"
-          />
-          <field-input
-            :label="$t('step3_input_7')"
-            name="patrimony"
-            type="text"
-            autocomplete="patrimony"
-            id="patrimony"
-            v-model="form.patrimony"
-            containerCustom="col-span-6 sm:col-span-3"
-            :required="false"
-            v-if="!isReplay"
-          />
+      <div class="text-lg my-4" v-if="isReplay">
+        {{ ticket }}
+      </div>
+      <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
+        <field-select
+          :label="$t('step3_select_1')"
+          name="catalogo"
+          type="text"
+          autocomplete="catalogo"
+          id="catalogo"
+          v-model="form.codCatalog"
+          containerCustom="col-span-6 sm:col-span-2"
+          :options="listCatalogs"
+          label-index="title"
+          index="cod"
+          :onchange="onchangeCatalog"
+          :required="!isReplay"
+          v-if="!isReplay"
+        />
+        <field-select
+          :label="$t('step3_select_2')"
+          name="category"
+          type="text"
+          autocomplete="category"
+          id="category"
+          v-model="form.codCategory"
+          containerCustom="col-span-6 sm:col-span-2"
+          :options="listCategory"
+          label-index="title"
+          index="cod"
+          :onchange="onchangeCategory"
+          :disabled="!form.codCatalog"
+          :required="!isReplay"
+          v-if="!isReplay"
+        />
+        <field-select
+          :label="$t('step3_select_3')"
+          name="service"
+          type="text"
+          autocomplete="service"
+          id="service"
+          v-model="form.codService"
+          containerCustom="col-span-6 sm:col-span-2"
+          :options="listServices"
+          label-index="title"
+          index="id"
+          :onchange="() => {}"
+          :disabled="!form.codCategory"
+          :required="!isReplay"
+          v-if="!isReplay"
+        />
+        <field-input
+          :label="$t('step3_input_1')"
+          name="subject"
+          type="text"
+          autocomplete="subject"
+          id="subject"
+          v-model="form.subject"
+          containerCustom="col-span-6 sm:col-span-6	"
+          :required="true"
+        />
+        <field-textarea
+          :label="$t('step3_input_2')"
+          name="detail"
+          type="text"
+          autocomplete="detail"
+          id="detail"
+          v-model="form.detail"
+          containerCustom="col-span-6 sm:col-span-6	"
+          :required="true"
+        />
+        <field-input
+          :label="$t('step3_input_3')"
+          name="recipient"
+          type="text"
+          autocomplete="recipient"
+          id="recipient"
+          v-model="form.recipient"
+          containerCustom="col-span-6 sm:col-span-2"
+          :disabled="true"
+          v-if="!isReplay"
+        />
+        <field-input
+          :label="$t('step3_input_4')"
+          name="telephone"
+          type="tel"
+          autocomplete="telephone"
+          id="telephone"
+          v-model="form.telephone"
+          containerCustom="col-span-6 sm:col-span-2"
+          :required="false"
+          @change="formatTel"
+          :maxlength="9"
+          v-if="!isReplay"
+        />
+        <field-input
+          :label="$t('step3_input_5')"
+          name="extension"
+          type="text"
+          autocomplete="extension"
+          id="extension"
+          v-model="form.extension"
+          containerCustom="col-span-6 sm:col-span-2"
+          :required="false"
+          v-if="!isReplay"
+        />
+        <field-input
+          :label="$t('step3_input_6')"
+          name="ip"
+          type="text"
+          autocomplete="ip"
+          id="ip"
+          v-model="form.ip"
+          containerCustom="col-span-6 sm:col-span-3"
+          :disabled="true"
+          v-if="!isReplay"
+        />
+        <field-input
+          :label="$t('step3_input_7')"
+          name="patrimony"
+          type="text"
+          autocomplete="patrimony"
+          id="patrimony"
+          v-model="form.patrimony"
+          containerCustom="col-span-6 sm:col-span-3"
+          :required="false"
+          v-if="!isReplay"
+        />
 
-          <upload class="col-span-6" v-model="form.file" />
+        <upload class="col-span-6" v-model="form.file" />
+      </div>
+      <div class="flex flex-wrap -mx-3">
+        <div class="flex w-full max-w-full px-3 mt-6 [flex:0_0_auto]">
+          <button
+            v-if="hasButtonPrev"
+            type="button"
+            @click="() => prevTicket()"
+            class="inline-block px-6 py-3 mb-0 font-bold text-right uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs bg-gradient-to-tl from-[#ced4da] to-[#ebeff4] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25 text-[#3a416f]"
+          >
+            {{ $t("ENUM.btn_prev") }}
+          </button>
+          <button
+            type="button"
+            :onclick="submit"
+            send-form-btn=""
+            href="javascript:;"
+            class="inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-[#141727] to-[#3a416f] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25"
+          >
+            {{ $t("ENUM.btn_submit") }}
+          </button>
         </div>
-        <div class="flex flex-wrap -mx-3">
-          <div class="flex w-full max-w-full px-3 mt-6 [flex:0_0_auto]">
-            <button
-              v-if="hasButtonPrev"
-              type="button"
-              @click="() => prevTicket()"
-              class="inline-block px-6 py-3 mb-0 font-bold text-right uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs bg-gradient-to-tl from-[#ced4da] to-[#ebeff4] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25 text-[#3a416f]"
-            >
-              {{ $t("ENUM.btn_prev") }}
-            </button>
-            <button
-              type="submit"
-              send-form-btn=""
-              href="javascript:;"
-              class="inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-[1.02] active:opacity-[.85] hover:shadow-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-[#141727] to-[#3a416f] leading-pro text-[.75rem] ease-in tracking-tight shadow-md bg-150 bg-x-25"
-            >
-              {{ $t("ENUM.btn_submit") }}
-            </button>
-          </div>
-        </div>
-      </form>
+      </div>
     </container>
   </div>
 </template>
@@ -272,15 +271,7 @@ export default {
       this.getService(this.form.codCategory);
       this.form.codService = "";
     },
-    getBase64(file: any) {
-      return new Promise((resolve: any, reject: any) => {
-        const reader = new FileReader();
 
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-      });
-    },
     async submit(event: any) {
       event.preventDefault();
 
@@ -305,18 +296,25 @@ export default {
         throw new Error(this.$t("ENUM.not_detail"));
       }
 
-      const base64: any = await this.getBase64(this.form.file);
       this.form.filename = this.form.file?.name;
 
       const { file, ...result } = this.form;
 
-      const response: any = await this.helpDesk.setSolicitation({
-        file: base64,
-        form: result,
-      });
+      console.log(result);
+
+      const formData = new FormData();
+      formData.append("file", this.form.file);
+      formData.append(
+        "form",
+        JSON.stringify({
+          ...result,
+        })
+      );
+
+      const response: any = await this.helpDesk.setSolicitation(formData);
 
       if (Boolean(response.TicketID)) {
-        this.$router.push(`/meus-chamados/${response.TicketID}`);
+        // this.$router.push(`/meus-chamados/${response.TicketID}`);
       }
     },
   },

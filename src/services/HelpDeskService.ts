@@ -17,7 +17,7 @@ export default {
   async createTicket(form: SolicitacaoProps) {
     return Api().post("ticket", form, {
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Content-Type": "multipart/form-data",
       },
     });
   },
