@@ -137,7 +137,7 @@ export default {
   },
   setup() {
     const store = useAuth();
-    const username = computed(() => store.user.username);
+    const username = computed(() => store.user?.username || "");
 
     return { username };
   },

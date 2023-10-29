@@ -51,9 +51,17 @@
               </div>
             </div>
             <div v-if="item.show" class="w-full mt-4">
-              <span class="font-semibold mb-2">{{ $t("details_ticket") }} </span
-              ><br />
-              <span> {{ item?.detail }} </span>
+              <span class="font-semibold mb-2"
+                >{{ $t("details_ticket") }}
+              </span>
+              <div
+                class="mt-2 flex flex-wrap justify-between font-light items-center gap-2 text-sm text-start leading-3"
+              >
+                <span><b>Fila: </b>{{ item.detail.queue }}</span>
+                <span><b>Atendente: </b> {{ item.detail.attendant }}</span>
+                <span><b>Detalhe: </b> {{ item.detail.detail }}</span>
+                <span><b>Data: </b> {{ item.detail.date }}</span>
+              </div>
             </div>
           </div>
         </list>

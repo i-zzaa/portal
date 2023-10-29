@@ -1,7 +1,7 @@
 <template>
   <div class="w-full max-w-md mx-auto grid gap-2">
     <div
-      v-for="(item, index) in list"
+      v-for="(item, index) in items"
       :key="index"
       class="bg-white bg-clip-border rounded-lg px-2 py-1 ring-1 ring-slate-900/5 hover:shadow-lg hover:cursor-pointer hover:scale-110 duration-700"
     >
@@ -30,7 +30,7 @@
         <div class="grid items-center gap-2 text-sm text-start">
           <span><b>Fila: </b>{{ item.queue }}</span>
           <span><b>Atendente: </b> {{ item.attendant }}</span>
-          <span><b>Detalhe: </b> {{ item.detalhe }}</span>
+          <span><b>Detalhe: </b> {{ item.detail }}</span>
           <span><b>Data: </b> {{ item.date }}</span>
         </div>
       </div>
@@ -49,13 +49,9 @@ import {
 export default {
   components: { PhArrowsClockwise, PhCheck, PhTicket, PhCaretDown },
   props: {
-    items: { type: Array, required: true },
+    items: { type: Array<any>, required: true },
   },
-  setup(props: any) {
-    return {
-      list: props.items,
-    };
-  },
+
   data() {
     return {
       activeIndex: 0,

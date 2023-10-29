@@ -8,7 +8,7 @@
         type="text"
         autocomplete="login"
         id="login"
-        v-model="username"
+        v-model="form.username"
       />
       <field-input
         :label="$t('login_password_label')"
@@ -16,7 +16,7 @@
         type="password"
         autocomplete="password"
         id="password"
-        v-model="password"
+        v-model="form.password"
       />
 
       <p-button :label="$t('login_submit')" type="submit" :loading="loading" />
@@ -37,7 +37,8 @@ import { FieldInput } from "@/components/Filds/index";
 
 import { toast } from "vue3-toastify";
 import { mapState } from "pinia";
-import { onMounted, onUnmounted } from "vue";
+import { computed, onMounted, onUnmounted, reactive } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -47,71 +48,47 @@ export default {
     PhMicrosoftOutlookLogo,
     FieldInput,
   },
-  setup() {
+  setup(props: any, ctx: any) {
     const auth = useAuth();
-    let inactivityTimer: any = null;
-
-    const startInactivityTimer = () => {
-      inactivityTimer = setTimeout(() => {
-        auth.logout();
-      }, 3600000); // 1 hora em milissegundos
-    };
-
-    const resetInactivityTimer = () => {
-      // Resetar o temporizador se houver interação do usuário
-      clearTimeout(inactivityTimer);
-      startInactivityTimer();
-    };
-
-    onUnmounted(() => clearInterval(inactivityTimer));
-    onMounted(() => {
-      // Adicionar um ouvinte de eventos para redefinir o temporizador em eventos de interação do usuário
-      window.addEventListener("mousemove", resetInactivityTimer);
-      window.addEventListener("keydown", resetInactivityTimer);
+    const router = useRouter();
+    const form = reactive({
+      username: "root@localhost",
+      password: "mxfE124nAlm06ocW",
     });
+
+    const loading: any = computed(() => auth.loading);
+    const isLoggedIn: any = computed(() => auth.isLoggedIn);
+
+    const submit = async (e: any) => {
+      e.preventDefault();
+      if (!form.username) {
+        toast.error(ctx.$t("ENUM.not_username"));
+        throw new Error(ctx.$t("ENUM.not_username"));
+      }
+      if (!form.password) {
+        toast.error(ctx.$t("ENUM.not_password"));
+        throw new Error(ctx.$t("ENUM.not_password"));
+      }
+
+      await auth.login({
+        username: form.username,
+        password: form.password,
+      });
+
+      if (isLoggedIn.value) {
+        router.push("/");
+      } else {
+        router.push("/login");
+      }
+    };
 
     return {
       auth,
-      startInactivityTimer,
+      router,
+      form,
+      submit,
+      loading,
     };
-  },
-  data() {
-    return {
-      username: "root@localhost",
-      password: "mxfE124nAlm06ocW",
-    };
-  },
-  computed: {
-    ...mapState(useAuth, ["isLoggedIn"]),
-    ...mapState(useAuth, ["loading"]),
-  },
-  methods: {
-    async submit(e: any) {
-      e.preventDefault();
-      if (!this.username) {
-        toast.error(this.$t("ENUM.not_username"));
-        throw new Error(this.$t("ENUM.not_username"));
-      }
-      if (!this.password) {
-        toast.error(this.$t("ENUM.not_password"));
-        throw new Error(this.$t("ENUM.not_password"));
-      }
-
-      await this.auth.login({
-        username: this.username,
-        password: this.password,
-      });
-
-      if (this.isLoggedIn) {
-        this.$router.push("/");
-        this.startInactivityTimer();
-      } else {
-        this.$router.push("/login");
-      }
-    },
   },
 };
 </script>
-
-<style>
-</style>

@@ -40,7 +40,7 @@ export const useMyCalls = defineStore("myCalls", {
       this.loading = true;
       try {
         const { data }: any = await MyCallsService.getMyCall(id);
-        this.ticket = data.data[0];
+        this.ticket = data.data;
 
         this.loading = false;
       } catch (error) {
