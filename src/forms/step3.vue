@@ -300,8 +300,6 @@ export default {
 
       const { file, ...result } = this.form;
 
-      console.log(result);
-
       const formData = new FormData();
       formData.append("file", this.form.file);
       formData.append(
@@ -314,7 +312,7 @@ export default {
       const response: any = await this.helpDesk.setSolicitation(formData);
 
       if (Boolean(response.TicketID)) {
-        // this.$router.push(`/meus-chamados/${response.TicketID}`);
+        this.$router.push(`/meus-chamados/${response.TicketID}`);
       }
     },
   },
