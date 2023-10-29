@@ -36,8 +36,7 @@ import PButton from "@/components/Button.vue";
 import { FieldInput } from "@/components/Filds/index";
 
 import { toast } from "vue3-toastify";
-import { mapState } from "pinia";
-import { computed, onMounted, onUnmounted, reactive } from "vue";
+import { computed, reactive } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -48,47 +47,48 @@ export default {
     PhMicrosoftOutlookLogo,
     FieldInput,
   },
-  setup(props: any, ctx: any) {
+  setup() {
     const auth = useAuth();
     const router = useRouter();
     const form = reactive({
-      username: "root@localhost",
-      password: "mxfE124nAlm06ocW",
+      username: "",
+      password: "",
     });
 
     const loading: any = computed(() => auth.loading);
     const isLoggedIn: any = computed(() => auth.isLoggedIn);
 
-    const submit = async (e: any) => {
-      e.preventDefault();
-      if (!form.username) {
-        toast.error(ctx.$t("ENUM.not_username"));
-        throw new Error(ctx.$t("ENUM.not_username"));
-      }
-      if (!form.password) {
-        toast.error(ctx.$t("ENUM.not_password"));
-        throw new Error(ctx.$t("ENUM.not_password"));
-      }
-
-      await auth.login({
-        username: form.username,
-        password: form.password,
-      });
-
-      if (isLoggedIn.value) {
-        router.push("/");
-      } else {
-        router.push("/login");
-      }
-    };
-
     return {
       auth,
       router,
       form,
-      submit,
       loading,
+      isLoggedIn,
     };
+  },
+  methods: {
+    async submit(e: any) {
+      e.preventDefault();
+      if (!this.form.username) {
+        toast.error(this.$t("ENUM.not_username"));
+        throw new Error(this.$t("ENUM.not_username"));
+      }
+      if (!this.form.password) {
+        toast.error(this.$t("ENUM.not_password"));
+        throw new Error(this.$t("ENUM.not_password"));
+      }
+
+      await this.auth.login({
+        username: this.form.username,
+        password: this.form.password,
+      });
+
+      if (this.isLoggedIn.value) {
+        this.router.push("/");
+      } else {
+        this.router.push("/login");
+      }
+    },
   },
 };
 </script>
