@@ -15,6 +15,10 @@ export default {
     return await Api().get("network");
   },
   async createTicket(form: SolicitacaoProps) {
-    return Api().post("ticket", form);
+    return Api().post("ticket", form, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      },
+    });
   },
 };
