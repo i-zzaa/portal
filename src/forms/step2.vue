@@ -4,7 +4,7 @@
     :detail="$t('step2_title_detail', { catalogo: catalogo?.title })"
     :loading="loading"
   >
-    <div>
+    <div v-if="listCategory.length">
       <div class="flex flex-wrap mt-6 justify-center">
         <ul class="flex flex-wrap gap-6 justify-center">
           <li v-for="(item, index) in listCategory" :key="index" class="">
@@ -31,6 +31,8 @@
         </button>
       </div>
     </div>
+
+    <empty v-else></empty>
   </container>
 </template>
 

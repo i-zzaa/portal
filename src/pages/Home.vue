@@ -1,8 +1,8 @@
 <template>
   <div class="w-full max-w-full px-3 text-center [flex:0_0_auto]">
     <Wizard
-      title="Selecione um catálogo de Serviço"
-      description="This information will let us know more about you."
+      :title="$t('step1_title')"
+      :description="$t('step1_title_detail')"
       :steps="store.steps"
       :components="components"
       :hasclick="false"

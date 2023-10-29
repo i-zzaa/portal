@@ -43,6 +43,16 @@ const router = createRouter({
       },
       meta: { title: "Meus Chamados", requiresAuth: true },
     },
+    {
+      path: "/meus-chamados/:id",
+      name: "ticket",
+      components: {
+        PNav,
+        default: () => import("@/pages/MyCalls.vue"),
+        PFooter,
+      },
+      meta: { title: "Meus Chamados", requiresAuth: true },
+    },
   ],
 });
 

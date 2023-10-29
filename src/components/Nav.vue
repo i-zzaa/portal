@@ -137,7 +137,7 @@ export default {
   },
   setup() {
     const store = useAuth();
-    const username = computed(() => store.user.username);
+    const username = computed(() => store.user?.username || "");
 
     return { username };
   },
@@ -162,8 +162,8 @@ export default {
   },
   methods: {
     ...mapActions(useAuth, ["logout"]),
-    handleLogout() {
-      this.logout();
+    async handleLogout() {
+      await this.logout();
       this.$router.push("/login");
       this.menuHamburguerActive = false;
     },

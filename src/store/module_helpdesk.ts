@@ -8,14 +8,15 @@ const defaultSolicitacao: any = {
   codCatalog: "",
   codCategory: "",
   codService: "",
-  assunto: "",
-  detahes: "",
-  destinatario: "crm@i9atech.com",
-  telefone: "",
-  ramal: "",
-  ip: "",
-  patrimonio: "",
+  subject: "",
+  detail: "",
+  recipient: "crm@i9atech.com",
+  telephone: "",
+  extension: "",
+  ip: sessionStorage.getItem("ip") || "",
+  patrimony: "",
   file: null,
+  filename: "",
 };
 
 export const useHelpDesk = defineStore("helpDesk", {
@@ -50,6 +51,8 @@ export const useHelpDesk = defineStore("helpDesk", {
     setCatalog(params: any) {
       this.catalogo = params;
       this.solicitacao.codCatalog = params.cod;
+
+      sessionStorage.setItem("codCatalog", params.cod);
     },
     setIsReplay(value: boolean) {
       this.isReplay = value;
@@ -63,12 +66,14 @@ export const useHelpDesk = defineStore("helpDesk", {
     setService(params: any) {
       this.servico = params;
 
-      this.solicitacao.codService = params.cod;
+      this.solicitacao.codService = params.id;
+      sessionStorage.setItem("codService", params.id);
     },
     setCategory(params: any) {
       this.categoria = params;
 
       this.solicitacao.codCategory = params.cod;
+      sessionStorage.setItem("codCategory", params.cod);
 
       this.getService(params.cod);
     },
@@ -79,6 +84,7 @@ export const useHelpDesk = defineStore("helpDesk", {
       try {
         const { data }: any = await HelpDeskService.getNetwork();
         this.solicitacao.ip = data;
+        sessionStorage.setItem("ip", data);
       } catch (error) {
         console.log("module_catalogo - getCatalogo - ", error);
         toast.error("Erro ao carregar os catálogos!");
@@ -130,13 +136,13 @@ export const useHelpDesk = defineStore("helpDesk", {
       this.loading = true;
 
       try {
-        await HelpDeskService.createTicket(form);
+        const { data } = await HelpDeskService.createTicket(form);
         toast.success("Ticket criado com sucesso!");
 
         this.solicitacao = { ...defaultSolicitacao };
         this.loading = false;
 
-        return true;
+        return data;
       } catch (error) {
         console.log("module_catalogo - setSolicitation - ", error);
         toast.error("Erro ao enviar a solicitação!");

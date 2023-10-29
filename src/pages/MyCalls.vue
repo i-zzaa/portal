@@ -3,7 +3,7 @@
     <modal
       v-if="showModal"
       @close="showModal = false"
-      :color="`border-${ticket?.status.toLowerCase()}`"
+      :color="`border-${ticket.color}`"
     >
       <template v-slot:title>
         <span class="text-2xl">
@@ -13,7 +13,7 @@
 
       <template v-slot:body>
         <div>
-          <Acordion :items="ticket?.detail" />
+          <Acordion :items="ticket?.details" />
         </div>
       </template>
 
@@ -76,8 +76,8 @@
 
 <script lang="ts">
 import { PhArrowsClockwise, PhCheck, PhTicket } from "@phosphor-icons/vue";
-import { RouterView } from "vue-router";
-import { computed } from "vue";
+import { RouterView, useRoute } from "vue-router";
+import { computed, ref } from "vue";
 import { mapActions } from "pinia";
 
 import Container from "@/components/Container.vue";
@@ -106,13 +106,27 @@ export default {
   },
   setup() {
     const pageSize = 15;
+
     const myCalls = useMyCalls();
     myCalls.getCalls(pageSize, 1);
+
+    const route: any = useRoute();
+    const showModal: any = ref(false);
+
+    const handleGetTicket = async (id: number = route.params.id) => {
+      await myCalls.getMyCall(id);
+      showModal.value = true;
+    };
+
+    if (route.params.id) {
+      handleGetTicket();
+    }
 
     const listCall: any = computed(() => myCalls.listCall);
     const totalPages: any = computed(() => myCalls.totalPages);
     const currentPage: any = computed(() => myCalls.currentPage);
     const loading: any = computed(() => myCalls.loading);
+    const ticket: any = computed(() => myCalls.ticket);
 
     return {
       listCall,
@@ -121,16 +135,13 @@ export default {
       totalPages,
       currentPage,
       loading,
+      showModal,
+      ticket,
+      handleGetTicket,
     };
   },
   data() {
     return {
-      showModal: false,
-      ticket: {
-        ticket: "",
-        status: "",
-        detail: [],
-      },
       word: "",
       STATUS: STATUS,
     };
@@ -140,11 +151,14 @@ export default {
     ...mapActions(useHelpDesk, ["setTicket"]),
 
     async search() {
-      await this.myCalls.search(this.word);
+      if (this.word) {
+        await this.myCalls.search(this.word);
+      } else {
+        this.pageChanged(1);
+      }
     },
     nextTicket(item: any) {
-      this.ticket = item;
-      this.showModal = true;
+      this.handleGetTicket(item.id);
     },
     async pageChanged(currentPage: number) {
       await this.myCalls.getCalls(this.pageSize, currentPage);

@@ -34,7 +34,6 @@
           type="file"
           id="file-input"
           name="file"
-          :accept="accept"
           ref="fileInput"
           @change="uploadSelect"
           :maxlength="maxlength"
