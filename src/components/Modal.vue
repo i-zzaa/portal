@@ -20,7 +20,7 @@
         </div>
         <hr class="bg-primary w-full mt-4" />
 
-        <div class="mt-4">
+        <div class="mt-4 overflow-y-auto max-h-96">
           <slot name="body"></slot>
         </div>
 

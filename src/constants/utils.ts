@@ -3,4 +3,5 @@ export enum STATUS {
   reaberto = "Reaberto",
   novo = "Novo",
   resolvido = "Resolvido",
+  fechado = "closed successful",
 }

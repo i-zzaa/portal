@@ -1,5 +1,5 @@
 import Api from "@/services/Api";
-import { SolicitacaoProps } from "@/types/helpdesk";
+import { SolicitacaoProps, SolicitacaoReplyProps } from "@/types/helpdesk";
 
 export default {
   async getCatalog() {
@@ -16,6 +16,13 @@ export default {
   },
   async createTicket(form: SolicitacaoProps) {
     return Api().post("ticket", form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
+  async createTicketReply(form: SolicitacaoReplyProps) {
+    return Api().post("ticket/reply", form, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

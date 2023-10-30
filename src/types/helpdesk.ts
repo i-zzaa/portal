@@ -13,12 +13,21 @@ export interface SolicitacaoProps {
   codCatalog: string;
   codCategory: string;
   codService: string;
-  assunto: string;
-  detahes: string;
-  destinatario: string;
-  telefone?: string;
-  ramal?: string;
+  subject: string;
+  detail: string;
+  recipient: string;
+  telephone?: string;
+  extension?: string;
   ip: string;
-  patrimonio?: string;
+  patrimony?: string;
+  filename?: string;
+  file: File;
+}
+
+export interface SolicitacaoReplyProps {
+  subject: string;
+  detail: string;
+  recipient: string;
+  filename?: string;
   file: File;
 }

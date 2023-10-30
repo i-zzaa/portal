@@ -38,6 +38,7 @@ export const useAuth = defineStore("user", {
         console.log("module_login - login - ", error);
         toast.error("Erro na conexão!");
         this.loading = false;
+        throw new Error(error);
       }
     },
     async logout() {

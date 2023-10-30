@@ -9,7 +9,7 @@
         @click="toggle(index)"
         class="w-full px-8 py-6 flex justify-between"
       >
-        <div class="w-full text-left flex gap-2 justify-start">
+        <div class="w-full text-left flex gap-2 justify-start items-center">
           <span
             class="h-6 w-6 rounded-full flex items-center justify-center"
             :class="`${item.color}`"
@@ -17,7 +17,6 @@
             <component :is="item.icon" class="h-4 w-4 text-white" />
           </span>
           <h2 class="font-bold text-lg">{{ item.title }}</h2>
-          <h2 class="font-bold text-lg">{{ item.status }}</h2>
         </div>
         <ph-caret-down
           :size="18"
@@ -28,6 +27,7 @@
       </button>
       <div v-show="activeIndex === index" class="px-8 pb-6">
         <div class="grid items-center gap-2 text-sm text-start">
+          <span><b>Status: </b>{{ item.status }}</span>
           <span><b>Fila: </b>{{ item.queue }}</span>
           <span><b>Atendente: </b> {{ item.attendant }}</span>
           <span><b>Detalhe: </b> {{ item.detail }}</span>

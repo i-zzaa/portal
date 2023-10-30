@@ -1,8 +1,8 @@
 <template>
   <div class="p-4">
     <container :title="$t('step3_title')" :loading="loading">
-      <div class="text-lg my-4" v-if="isReplay">
-        {{ ticket }}
+      <div class="text-lg my-4" v-if="isReply">
+        {{ $t("ticket_reply", { ticket: ticket?.ticket }) }}
       </div>
       <div class="grid grid-cols-6 gap-2 sm:flex-wrap -mx-3 text-left">
         <field-select
@@ -17,8 +17,8 @@
           label-index="title"
           index="cod"
           :onchange="onchangeCatalog"
-          :required="!isReplay"
-          v-if="!isReplay"
+          :required="!isReply"
+          v-if="!isReply"
         />
         <field-select
           :label="$t('step3_select_2')"
@@ -33,8 +33,8 @@
           index="cod"
           :onchange="onchangeCategory"
           :disabled="!form.codCatalog"
-          :required="!isReplay"
-          v-if="!isReplay"
+          :required="!isReply"
+          v-if="!isReply"
         />
         <field-select
           :label="$t('step3_select_3')"
@@ -49,8 +49,8 @@
           index="id"
           :onchange="() => {}"
           :disabled="!form.codCategory"
-          :required="!isReplay"
-          v-if="!isReplay"
+          :required="!isReply"
+          v-if="!isReply"
         />
         <field-input
           :label="$t('step3_input_1')"
@@ -81,7 +81,7 @@
           v-model="form.recipient"
           containerCustom="col-span-6 sm:col-span-2"
           :disabled="true"
-          v-if="!isReplay"
+          v-if="!isReply"
         />
         <field-input
           :label="$t('step3_input_4')"
@@ -94,7 +94,7 @@
           :required="false"
           @change="formatTel"
           :maxlength="9"
-          v-if="!isReplay"
+          v-if="!isReply"
         />
         <field-input
           :label="$t('step3_input_5')"
@@ -105,7 +105,7 @@
           v-model="form.extension"
           containerCustom="col-span-6 sm:col-span-2"
           :required="false"
-          v-if="!isReplay"
+          v-if="!isReply"
         />
         <field-input
           :label="$t('step3_input_6')"
@@ -116,7 +116,7 @@
           v-model="form.ip"
           containerCustom="col-span-6 sm:col-span-3"
           :disabled="true"
-          v-if="!isReplay"
+          v-if="!isReply"
         />
         <field-input
           :label="$t('step3_input_7')"
@@ -127,7 +127,7 @@
           v-model="form.patrimony"
           containerCustom="col-span-6 sm:col-span-3"
           :required="false"
-          v-if="!isReplay"
+          v-if="!isReply"
         />
 
         <upload class="col-span-6" v-model="form.file" />
@@ -172,6 +172,7 @@ import Card from "@/components/Card.vue";
 import { FieldInput } from "@/components/Filds/index";
 import { FieldTextarea } from "@/components/Filds/index";
 import { FieldSelect } from "@/components/Filds/index";
+import { useMyCalls } from "@/store/module_chamados";
 
 const INDEX_STEP = 2;
 
@@ -193,6 +194,7 @@ export default {
   setup() {
     const store = useWizard();
     const helpDesk = useHelpDesk();
+    const myCalls = useMyCalls();
 
     helpDesk.getNetWork();
     helpDesk.getCatalogo();
@@ -210,8 +212,8 @@ export default {
       ip: ip.value,
     });
 
-    const isReplay = computed(() => helpDesk.isReplay);
-    const ticket = computed(() => helpDesk.ticket);
+    const isReply = computed(() => helpDesk.isReply);
+    const ticket: any = computed(() => myCalls.ticket);
 
     return {
       steps,
@@ -220,14 +222,14 @@ export default {
       listCatalogs,
       listCategory,
       listServices,
-      isReplay,
+      isReply,
       ticket,
       loading,
     };
   },
 
   unmounted() {
-    this.helpDesk.setIsReplay(false);
+    this.helpDesk.setIsReply(false);
   },
 
   methods: {
@@ -275,15 +277,15 @@ export default {
     async submit(event: any) {
       event.preventDefault();
 
-      if (!this.form.codCatalog) {
+      if (!this.form.codCatalog && !this.isReply) {
         toast.error(this.$t("ENUM.not_catalog"));
         throw new Error(this.$t("ENUM.not_catalog"));
       }
-      if (!this.form.codCategory) {
+      if (!this.form.codCategory && !this.isReply) {
         toast.error(this.$t("ENUM.not_category"));
         throw new Error(this.$t("ENUM.not_category"));
       }
-      if (!this.form.codService) {
+      if (!this.form.codService && !this.isReply) {
         toast.error(this.$t("ENUM.not_service"));
         throw new Error(this.$t("ENUM.not_service"));
       }
@@ -298,6 +300,10 @@ export default {
 
       this.form.filename = this.form.file?.name;
 
+      if (this.isReply) {
+        this.form.ticketId = this.ticket.id;
+      }
+
       const { file, ...result } = this.form;
 
       const formData = new FormData();
@@ -309,7 +315,9 @@ export default {
         })
       );
 
-      const response: any = await this.helpDesk.setSolicitation(formData);
+      const response: any = this.isReply
+        ? await this.helpDesk.setSolicitationReply(formData)
+        : await this.helpDesk.setSolicitation(formData);
 
       if (Boolean(response.TicketID)) {
         this.$router.push(`/meus-chamados/${response.TicketID}`);

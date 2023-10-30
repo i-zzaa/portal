@@ -29,8 +29,9 @@ export const useHelpDesk = defineStore("helpDesk", {
     listCatalogs: [],
     listCategory: [],
     listServices: [],
-    isReplay: false,
-    ticket: "",
+    isReply: false,
+    ticket: null,
+    ticketId: null,
     steps: [
       {
         title: "Catálogo",
@@ -54,10 +55,10 @@ export const useHelpDesk = defineStore("helpDesk", {
 
       sessionStorage.setItem("codCatalog", params.cod);
     },
-    setIsReplay(value: boolean) {
-      this.isReplay = value;
+    setIsReply(value: boolean) {
+      this.isReply = value;
     },
-    setTicket(value: string) {
+    setTicket(value: any) {
       this.ticket = value;
     },
     updateStep(index: number, item: any) {
@@ -138,6 +139,25 @@ export const useHelpDesk = defineStore("helpDesk", {
       try {
         const { data } = await HelpDeskService.createTicket(form);
         toast.success("Ticket criado com sucesso!");
+
+        this.solicitacao = { ...defaultSolicitacao };
+        this.loading = false;
+
+        return data;
+      } catch (error) {
+        console.log("module_catalogo - setSolicitation - ", error);
+        toast.error("Erro ao enviar a solicitação!");
+        this.loading = false;
+
+        throw new Error("Erro ao enviar a solicitação!");
+      }
+    },
+    async setSolicitationReply(form: SolicitacaoProps | any) {
+      this.loading = true;
+
+      try {
+        const { data } = await HelpDeskService.createTicketReply(form);
+        toast.success("Ticket respondido com sucesso!");
 
         this.solicitacao = { ...defaultSolicitacao };
         this.loading = false;

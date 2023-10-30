@@ -17,12 +17,12 @@
         </div>
       </template>
 
-      <template v-if="ticket.status === STATUS.encerrado" v-slot:footer>
+      <template v-if="ticket.status === STATUS.fechado" v-slot:footer>
         <p-button
           :label="$t('open_ticket')"
           :color="STATUS.reaberto.toLowerCase()"
           type="submit"
-          @click="replay"
+          @click="reply"
         />
       </template>
     </modal>
@@ -147,7 +147,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(useHelpDesk, ["setIsReplay"]),
+    ...mapActions(useHelpDesk, ["setIsReply"]),
     ...mapActions(useHelpDesk, ["setTicket"]),
 
     async search() {
@@ -163,9 +163,8 @@ export default {
     async pageChanged(currentPage: number) {
       await this.myCalls.getCalls(this.pageSize, currentPage);
     },
-    replay() {
-      this.setTicket(this.$t("ticket_replay", { ticket: this.ticket?.ticket }));
-      this.setIsReplay(true);
+    reply() {
+      this.setIsReply(true);
       this.$router.push("help-desk");
     },
   },
