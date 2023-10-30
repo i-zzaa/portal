@@ -51,8 +51,8 @@ export default {
     const auth = useAuth();
     const router = useRouter();
     const form = reactive({
-      username: "root@localhost",
-      password: "mxfE124nAlm06ocW",
+      username: "",
+      password: "",
     });
 
     const loading: any = computed(() => auth.loading);
@@ -83,7 +83,7 @@ export default {
         password: this.form.password,
       });
 
-      if (this.isLoggedIn.value) {
+      if (this.isLoggedIn) {
         this.router.push("/");
       } else {
         this.router.push("/login");
