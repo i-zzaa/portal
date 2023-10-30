@@ -17,7 +17,7 @@
         </div>
       </template>
 
-      <template v-if="ticket.status === STATUS.fechado" v-slot:footer>
+      <template v-if="ticket.status === STATUS.resolvido" v-slot:footer>
         <p-button
           :label="$t('open_ticket')"
           :color="STATUS.reaberto.toLowerCase()"
