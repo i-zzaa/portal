@@ -12,10 +12,10 @@ export default () => {
   axiosInstance.interceptors.response.use(
     (response: any) => response,
     (error) => {
-      const loggedIn = store.isLoggedIn;
-      if (!loggedIn && error.config.url !== "login") {
-        store.logout();
-      }
+      // const loggedIn = store.isLoggedIn;
+      // if (!loggedIn && error.config.url !== "login") {
+      //   store.logout();
+      // }
       return Promise.reject(error);
     }
   );
