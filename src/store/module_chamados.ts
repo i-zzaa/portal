@@ -50,16 +50,16 @@ export const useMyCalls = defineStore("myCalls", {
         this.loading = false;
       }
     },
-    async search(word: string) {
+    async search(param: any) {
       this.loading = true;
 
-      if (!word) {
+      if (!param.word) {
         toast.error("Pequisa em branco!");
         return;
       }
 
       try {
-        const { data }: any = await MyCallsService.search(word);
+        const { data }: any = await MyCallsService.search(param);
         this.listCall = data;
         this.loading = false;
       } catch (error) {

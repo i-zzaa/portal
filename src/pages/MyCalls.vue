@@ -45,7 +45,6 @@
           id="search"
           v-model="word"
           :required="false"
-          :disabled="!listCall.length"
           container-custom="w-full sm:col-span-4 sm:mb-0 mb-2"
           class-custom="border border-gray-04 rounded-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-03 w-full disabled:cursor-no-drop disabled:text-gray-02 text-text"
         />
@@ -56,7 +55,6 @@
             icon="PhMagnifyingGlass"
             class-custom="sm:w-12  rounded-full p-4  flex justify-center sm:mr-4"
             @click="() => search()"
-            :disabled="!listCall.length"
           />
         </div>
       </div>
@@ -152,7 +150,11 @@ export default {
 
     async search() {
       if (this.word) {
-        await this.myCalls.search(this.word);
+        await this.myCalls.search({
+          word: this.word,
+          pageSize: this.pageSize,
+          currentPage: this.currentPage,
+        });
       } else {
         this.pageChanged(1);
       }

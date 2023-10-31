@@ -11,7 +11,9 @@ export default {
   async getMyCall(id: number) {
     return Api().get(`${route}/${id}`);
   },
-  async search(word: string) {
-    return Api().get(`${route}/search/${word}`);
+  async search({ word, pageSize, currentPage }: any) {
+    return Api().get(
+      `${route}/search/${word}?pageSize=${pageSize}&currentPage=${currentPage}`
+    );
   },
 };
