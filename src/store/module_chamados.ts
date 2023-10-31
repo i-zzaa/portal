@@ -60,7 +60,9 @@ export const useMyCalls = defineStore("myCalls", {
 
       try {
         const { data }: any = await MyCallsService.search(param);
-        this.listCall = data;
+        this.listCall = data.data;
+        this.totalPages = data.totalPages;
+        this.currentPage = data.currentPage;
         this.loading = false;
       } catch (error) {
         console.log("module_chamados - search - ", error);
